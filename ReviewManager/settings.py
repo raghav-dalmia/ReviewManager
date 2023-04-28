@@ -50,9 +50,12 @@ INSTALLED_APPS = [
     'fontawesomefree',
 
     # my custom apps
-    'appAuth'
+    'appAuth',
+    'userProfile',
+    'reviewService',
 ]
 
+LOGIN_REDIRECT_URL = 'about'
 ACCOUNT_LOGOUT_ON_GET = True
 SOCIALACCOUNT_QUERY_EMAIL = True
 SOCIALACCOUNT_LOGIN_ON_GET = True
@@ -131,7 +134,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -155,3 +158,6 @@ AUTHENTICATION_BACKENDS = [
     # `account` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

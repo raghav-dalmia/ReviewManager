@@ -1,3 +1,34 @@
 {% extends 'base.html' %}
-{% block title%}Signup{% endblock %}
-{% block body %}This is signup page.{% endblock %}
+{% block title%}Create Account{% endblock %}
+{% block body %}
+    {% load socialaccount %}
+
+    <div class="card text-center m-2">
+        <div class="card-body">
+            <h3 class="card-title">Create Account</h3>
+            <div class="row g-2">
+                <form method="post" action={% url 'signup' %}>
+                    {% csrf_token %}
+                    <div class="form-floating mb-2">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="User Name" required>
+                        <label for="username">User Name</label>
+                    </div>
+                    <div class="form-floating mb-2">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password" minlength="4" required>
+                        <label for="password">Password</label>
+                    </div>
+                    <div class="btn-toolbar" role="toolbar">
+                        <div class="btn-group me-2" role="group">
+                            <button type="reset" class="btn btn-outline-dark">Reset</button>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <button type="submit" class="btn btn-dark">Create</button>
+                        </div>
+                    </div>
+                <p class="mt-2">Already have an <a href={% url 'login' %}>account</a>. </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
