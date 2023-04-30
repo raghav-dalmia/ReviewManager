@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+	{% load static %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" type="text/css" href="../static/css/reviewForm.css"> -->
+	<link rel="stylesheet" type="text/css" href=" {% static '/css/reviewForm.css' %} ">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+  	<div class="head">
+		<div class="ok">
+			<div class="vector">
+				<object data="{% static '/img/reviewFormVector.svg' %}"> </object>
+    		</div>
+    		<div class="nudge">
+    			<p>Excited? Esctatic? Elated?</p>
+    			Let us know how you feel, we love hearing from our customers!
+    		</div>	
+		</div>
+	</div>
+
+  	<form action = "" method="post" enctype="multipart/form-data" action={% url "reviewForm" username=username %}>
+		{% csrf_token %}
+		{{ question }}
+	    <div class="body">
+			<div class="form-group">
+				<label for="igHandle" class = "label">Drop your instagram @</label>
+    				<input type="text" id="igHandle" aria-describedby="igHandle" placeholder="Just your handle" name = "reviewee">
+			</div>
+
+			<label class = "label">How did you like our product?</label>
+			<div class="emoji justify-content-center">
+				<ul class="feedback">
+				    <li class="angry">
+				        <div>
+				            <svg class="eye left">
+				                <use xlink:href="#eye">
+				            </svg>
+				            <svg class="eye right">
+				                <use xlink:href="#eye">
+				            </svg>
+				            <svg class="mouth">
+				                <use xlink:href="#mouth">
+				            </svg>
+
+				        </div>
+				    </li>
+				    <li class="sad">
+				        <div>
+				            <svg class="eye left">
+				                <use xlink:href="#eye">
+				            </svg>
+				            <svg class="eye right">
+				                <use xlink:href="#eye">
+				            </svg>
+				            <svg class="mouth">
+				                <use xlink:href="#mouth">
+				            </svg>
+				        </div>
+				    </li>
+				    <li class="ok">
+				        <div></div>
+				    </li>
+				    <li class="good active">
+				        <div>
+				            <svg class="eye left">
+				                <use xlink:href="#eye">
+				            </svg>
+				            <svg class="eye right">
+				                <use xlink:href="#eye">
+				            </svg>
+				            <svg class="mouth">
+				                <use xlink:href="#mouth">
+				            </svg>
+				        </div>
+				    </li>
+				    <li class="happy">
+				        <div>
+				            <svg class="eye left">
+				                <use xlink:href="#eye">
+				            </svg>
+				            <svg class="eye right">
+				                <use xlink:href="#eye">
+				            </svg>
+				        </div>
+				    </li>
+				</ul>
+				<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+				    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 4" id="eye">
+				        <path d="M1,1 C1.83333333,2.16666667 2.66666667,2.75 3.5,2.75 C4.33333333,2.75 5.16666667,2.16666667 6,1"></path>
+				    </symbol>
+				    <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 7" id="mouth">
+				        <path d="M1,5.5 C3.66666667,2.5 6.33333333,1 9,1 C11.6666667,1 14.3333333,2.5 17,5.5"></path>
+				    </symbol>
+				</svg>
+			</div>
+
+    		<div class="form-group delivery">
+				<label for="delivery" class = "label">How was the packaging experience?</label>
+    				<input type="text" id="igHandle" aria-describedby="igHandle" placeholder="We know you loved it!!" name="packaging">
+			</div>
+
+			<div class="form-group details">
+				<label for="details" class = "label">We want to hear more</label>
+    				<textarea id = "textarea" placeholder="We try our best but we'd love to know more..." name="feedback"></textarea>
+			</div>
+
+			<div class="form-group image-uploader">
+				<label for="details" class = "label">Pictures speak louder than words. Share what you loved through them!</label>
+				<input type="file" id="reviewImages" name="attachment" aria-describedby="igHandle" placeholder="We know you loved it!!" accept=".jpg,.gif,.png, .jpeg, .pdf" multiple>
+				<!-- https://codepen.io/OptimalLearner/pen/QWMGyZj?editors=0110 With multiple support -->
+				<!-- https://codepen.io/piyushpd139/pen/XWmeoMG With multiple support -->
+			</div>
+
+			<div class="submitBtn">
+				<button type="submit" class="btn btn-outline-primary">Submit</button>	
+			</div>
+	    </div>
+  	</form>
+
+  	<div class="branding">
+  		<a target="blank" href = "#">Start your very own review page with us<a/>
+  	<div/>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static '/js/reviewForm.js' %}"></script>
+  </body>
+</html>
