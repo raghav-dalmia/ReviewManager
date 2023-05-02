@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 views = [
-    path('/', TemplateView.as_view(template_name='about.html'), name='about'),
+    path('', TemplateView.as_view(template_name='about.html'), name='about'),
     path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
 ]
 
