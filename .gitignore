@@ -2,3 +2,4 @@
 *.sqlite3
 *.db
 media
+**/__pycache__/ 

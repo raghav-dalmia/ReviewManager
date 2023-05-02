@@ -1,0 +1,23 @@
+<div class="reviews container">
+    <div class="row rating">
+        <span class="fa-sharp fa-solid fa-star"></span>
+        <span class="fa-sharp fa-solid fa-star"></span>
+        <span class="fa-sharp fa-solid fa-star"></span>
+        <span class="fa-sharp fa-regular fa-star"></span>
+        <span class="fa-sharp fa-regular fa-star"></span>
+    </div>
+    <div class="row review-title">
+        Amazing product, fast delivery, what else could you want
+    </div>
+    <div class="row review-info">
+        <div class="col reviewee float-left">
+            Reviewed by {{ review.author }}
+        </div>
+        <div class="col date text-right">
+            {{ review.date }}
+        </div>
+    </div>
+    <div class="row review-content">
+        {{ review.content }}
+    </div>
+</div>
