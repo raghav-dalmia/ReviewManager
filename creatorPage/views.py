@@ -20,17 +20,23 @@ creatorReview = [
     {
         "author": "Mayank",
         "date": "29-3-2023",
-        "content": "The watches sold are truly amazing. The watches sold are truly amazing. The watches sold are truly amazing."
+        "content": "The watches sold are truly amazing. The watches sold are truly amazing. The watches sold are truly amazing.",
+        "title": "Amazing product, fast delivery, what else could you want",
+        "rating": 5
     },
     {
         "author": "Raghav",
         "date": "01-3-2023",
-        "content": "The tshirts sold are truly amazing. The watches sold are truly amazing. The watches sold are truly amazing."
+        "content": "The tshirts sold are truly amazing. The watches sold are truly amazing. The watches sold are truly amazing.",
+        "title": "Very good customer service",
+        "rating": 4
     },
     {
         "author": "Aditya",
         "date": "10-3-2023",
-        "content": "The hooodie sold are truly amazing. The watches sold are truly amazing. The watches sold are truly amazing."
+        "content": "The hooodie sold are truly amazing. The watches sold are truly amazing. The watches sold are truly amazing.",
+        "title": "Not satisfied",
+        "rating": 3
     }
 ]
 
