@@ -7,6 +7,9 @@ def get_review_question(username: str) -> str:
     return str(creator.question)
 
 
-def create_review(username: str, ratings: int, feedback: str, attachment) -> ReviewModel:
+def create_review(username: str, ratings: int, feedback: str, attachments) -> ReviewModel:
     creator = UserModel.Creator.objects.get(user__username__exact=username)
-    return ReviewModel.Review.objects.create(creator=creator, ratings=ratings, feedback=feedback, attachments=attachment)
+    review = ReviewModel.Review.objects.create(creator=creator, ratings=ratings, feedback=feedback)
+    for attachment in attachments:
+        ReviewModel.ReviewImages.objects.create(review=review, attachments=attachment)
+    return review

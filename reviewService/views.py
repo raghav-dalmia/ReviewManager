@@ -16,12 +16,12 @@ class ReviewFormView(View):
     def post(self, request, username: str):
         rating = int(request.POST['rating'])
         feedback = str(request.POST['feedback'])
-        attachment = request.FILES['attachment']
+        attachment = request.FILES.getlist('attachment')
         dao.create_review(
             username=username,
             ratings=rating,
             feedback=feedback,
-            attachment=attachment
+            attachments=attachment
         )
         messages.success(request, "Feedback submitted successfully.")
         return redirect('reviewForm', username=username)
