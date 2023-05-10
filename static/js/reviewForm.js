@@ -2,6 +2,7 @@ document.querySelectorAll('.feedback li').forEach(entry => entry.addEventListene
     if(!entry.classList.contains('active')) {
         document.querySelector('.feedback li.active').classList.remove('active');
         entry.classList.add('active');
+        document.getElementById("rating").value = entry.getAttribute("data-val");
     }
     e.preventDefault();
 }));

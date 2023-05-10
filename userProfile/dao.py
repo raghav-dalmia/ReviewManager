@@ -8,4 +8,7 @@ def create_creator(username: str, password: str) -> models.Creator:
 
 
 def get_creator(user: User) -> models.Creator:
-    return models.Creator.objects.get(user__username__exact=user.username)
+    try:
+        return models.Creator.objects.get(user__username__exact=user.username)
+    except:
+        return models.Creator.objects.create(user=user)
