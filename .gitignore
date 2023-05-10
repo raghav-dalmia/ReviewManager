@@ -2,6 +2,9 @@
 *.sqlite3
 *.db
 media
+**/__pycache__/
+migrations/
+*/migrations/
 
 ### OSX ###
 .DS_Store
@@ -87,6 +90,3 @@ target/
 *.pyc
 __pycache__/
 
-*/migrations/*
-*/migrations/
-migrations/
