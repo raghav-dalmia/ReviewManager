@@ -34,12 +34,11 @@ git push or even git push --force
   - Commit all your changes (only your change)
   - Then run following commands:
 ```angular2html
-git stash
-git stash drop
-git stash clear
+git stash --> Store your changes
+git stash pop --> To pop your changes
+git stash clear --> Drop your changes (will be deleted, can't get them back)
 ```
 - Raise the PR, get it reviewed and merge it.
-- Never force push to main branch.
 
 ### Contributing guidelines
 - Don't make any DB calls outside of `dao` class.
