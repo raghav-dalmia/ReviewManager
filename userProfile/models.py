@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Creator(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    description = models.CharField(max_length=255, null=True)
+    description = models.CharField(max_length=255, default="")
     question = models.CharField(max_length=500, null=False, default="Give your feedback.")
     last_updated = models.DateTimeField(auto_now=True)
 
