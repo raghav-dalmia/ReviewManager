@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'appAuth',
     'userProfile',
     'reviewService',
+    'creatorPage',
 ]
 
 LOGIN_REDIRECT_URL = 'about'
@@ -98,6 +99,11 @@ TEMPLATES = [
         },
     },
 ]
+
+SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
+TEMPLATE_DIRS = (
+    os.path.join(SETTINGS_PATH, 'templates'),
+)
 
 WSGI_APPLICATION = 'ReviewManager.wsgi.application'
 

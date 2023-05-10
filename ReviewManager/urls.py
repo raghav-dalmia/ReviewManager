@@ -31,4 +31,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('user/', include('userProfile.urls')),
     path('review/', include('reviewService.urls')),
+    path('<str:username>/', include('creatorPage.urls')),
 ] + views + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
