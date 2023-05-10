@@ -15,11 +15,20 @@ python manage.py createsuperuser
 ### Things to keep in mind before making any change
 - Take fresh pull of main branch
 ```
+git checkout -b <feature-branch>
+# After changes are done
+git add .
+git commit -m "In past tense"
+# Make sure main is up to date when you are ready to commit
+git checkout main
 git fetch
 git pull --no-ff
-# if it rebase your pull and give merge confilcts then don't forget to run
+git rebase main --> Resolve conflicts
 git rebase --contiue
+git push or even git push --force
+# Force won't cause a problem in this case since we have already rebased
 ```
+
 - Create new branch
 - Don't commit any changes related to dependencies, cache and migrations.
   - Commit all your changes (only your change)
