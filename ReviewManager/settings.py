@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'appAuth',
     'userProfile',
     'reviewService',
+    'creatorPage',
 ]
 
 LOGIN_REDIRECT_URL = 'about'
@@ -99,6 +100,11 @@ TEMPLATES = [
     },
 ]
 
+SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
+TEMPLATE_DIRS = (
+    os.path.join(SETTINGS_PATH, 'templates'),
+)
+
 WSGI_APPLICATION = 'ReviewManager.wsgi.application'
 
 # Database
@@ -143,6 +149,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+STATIC_ROOT = '/Users/mayankchauhan/Desktop/Odium/ReviewManager'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 

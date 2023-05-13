@@ -1,0 +1,32 @@
+{% load star_rating %}
+<div class="reviews container">
+    <div class="row rating">
+        {% with ''|center:review.rating as range %}
+        {% for _ in range %}
+            <span class="fa-sharp fa-solid fa-star"></span>
+        {% endfor %}
+        {% endwith %}
+        
+        {% with review.rating|subtract_:"5" as emptyStar %}     
+        {% with ''|center:emptyStar as range %}
+        {% for _ in range %}
+            <span class="fa-sharp fa-regular fa-star"></span>
+        {% endfor %}
+        {% endwith %}
+        {% endwith %}
+    </div>
+    <div class="row review-title">
+        {{ review.title }}
+    </div>
+    <div class="row review-info">
+        <div class="col reviewee float-left">
+            Reviewed by {{ review.author }}
+        </div>
+        <div class="col date text-right">
+            {{ review.date }}
+        </div>
+    </div>
+    <div class="row review-content">
+        {{ review.content }}
+    </div>
+</div>

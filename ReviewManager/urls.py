@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 views = [
-    path('/', TemplateView.as_view(template_name='about.html'), name='about'),
+    path('', TemplateView.as_view(template_name='about.html'), name='about'),
     path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
 ]
 
@@ -31,4 +31,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('user/', include('userProfile.urls')),
     path('review/', include('reviewService.urls')),
+    path('<str:username>/', include('creatorPage.urls')),
 ] + views + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
