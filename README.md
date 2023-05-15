@@ -47,3 +47,25 @@ git stash clear --> Drop your changes (will be deleted, can't get them back)
 - We have two setting file
   - `settings.py` - Have settings for dev env
   - `prod_settings.py` - settings for production env. Need to track all the changes done for dev settings and during deployment need to update prod settings.
+
+
+### UI things to keep in mind
+- Use rem instead of pixel, 1 rem can be set to a particular value so all the fonts can be controlled centrally
+- Use vh, vw when you want something to take the entire screen and % when you want to keep space with respect to parent element
+- Blue - #007bff
+- Try to have all similar group fonts of same size, Ex - all buttons should have text of same size, all questions should have same font, etc
+- Attach SS of UI changes in the PR
+```
+git checkout -b <feature-branch>
+# After changes are done
+git add .
+git commit -m "In past tense"
+# Make sure main is up to date when you are ready to commit
+git checkout main
+git fetch
+git pull --no-ff
+git rebase main --> Resolve conflicts
+git rebase --contiue
+git push or even git push --force
+# Force won't cause a problem in this case since we have already rebased
+```
