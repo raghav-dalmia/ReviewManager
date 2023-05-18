@@ -1,0 +1,43 @@
+.left-panel {
+    height: 100vh;
+    min-width: 20vw;
+    max-width: 20vw;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    margin-top: 4rem;
+  }
+
+  .left-panel a {
+    color: #6c7383;
+    font-weight: 200;
+    padding: 0.5rem 2rem;
+    margin: 0.5rem 1rem;
+    border-radius: 8px;
+    letter-spacing: 1px;
+  }
+
+  .left-panel a i {
+    padding: 0rem 1rem;
+  }
+
+  .left-panel a.active {
+    background-color: pink;
+  }
+
+  .redirect-tab-panel {
+    padding: 0.6rem 0rem;
+  }
+
+  .redirect-tab-panel span{
+    font-size: 1.2rem;
+  }
+
+  .active-button {
+    background: #007bff;
+    color:white !important;
+  }
+  
+  
+
+  

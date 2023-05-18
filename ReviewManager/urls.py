@@ -21,8 +21,10 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 views = [
-    path('', TemplateView.as_view(template_name='about.html'), name='about'),
-    path('about/', TemplateView.as_view(template_name='about.html'), name='about'),
+    # Will have landing page on this route
+    path('', TemplateView.as_view(template_name='./components/results.html'), name='about'),
+    path('result/', TemplateView.as_view(template_name='./components/results.html'), name='results'),
+    path('form/', TemplateView.as_view(template_name='./components/form.html'), name='form'),
 ]
 
 urlpatterns = [
@@ -31,5 +33,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('user/', include('userProfile.urls')),
     path('review/', include('reviewService.urls')),
-    path('<str:username>/', include('creatorPage.urls')),
+    # path('<str:username>/', include('creatorPage.urls')),
 ] + views + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
