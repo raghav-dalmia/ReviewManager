@@ -7,12 +7,48 @@
 
     <!-- Bootstrap CSS -->
 	{% load static %}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
     <!-- <link rel="stylesheet" type="text/css" href="../static/css/reviewForm.css"> -->
 	<link rel="stylesheet" type="text/css" href=" {% static '/css/reviewForm.css' %} ">
     <title>{{ username }} - Feedback</title>
   </head>
-  <body>
+  <body class="p-3">
+  <div aria-live="polite" aria-atomic="true" class="position-relative">
+  <!-- Position it: -->
+  <!-- - `.toast-container` for spacing between toasts -->
+  <!-- - `.position-absolute`, `top-0` & `end-0` to position the toasts in the upper right corner -->
+  <!-- - `.p-3` to prevent the toasts from sticking to the edge of the container  -->
+  <div class="toast-container position-absolute top-0 end-0 p-3">
+
+    <!-- Then put toasts within -->
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">Bootstrap</strong>
+        <small class="text-muted">just now</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        See? Just like this.
+      </div>
+    </div>
+
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="..." class="rounded me-2" alt="...">
+        <strong class="me-auto">Bootstrap</strong>
+        <small class="text-muted">2 seconds ago</small>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Heads up, toasts will stack automatically
+      </div>
+    </div>
+  </div>
+</div>
   	<div class="head">
 		<div class="ok">
 			<div class="vector">
@@ -26,7 +62,7 @@
 		</div>
 	</div>
 
-  	<form action = "" method="post" enctype="multipart/form-data" action={% url "reviewForm" username=username %}>
+  	<form data-action={% url "reviewForm" username=username %}>
 		{% csrf_token %}
 		{{ question }}
 	    <div class="body">
@@ -35,7 +71,7 @@
     				<input type="text" id="igHandle" aria-describedby="igHandle" placeholder="Just your handle" name = "reviewee">
 			</div>
 
-			<label class = "label">How did you like our product?</label>
+			<label for="rating" class = "label">How did you like our product?</label>
             <input type="hidden" name="rating" id="rating" min="1" max="5" value="4">
 			<div class="emoji justify-content-center">
 				<ul class="feedback">
@@ -104,24 +140,54 @@
 			</div>
 
     		<div class="form-group delivery">
-				<label for="delivery" class = "label">How was the packaging experience?</label>
-    				<input type="text" id="igHandle" aria-describedby="igHandle" placeholder="We know you loved it!!" name="packaging">
+				<label for="packaging" class = "label">How was the packaging experience?</label>
+    				<input type="text" id="packaging" aria-describedby="packaging" placeholder="We know you loved it!!" name="packaging">
 			</div>
 
 			<div class="form-group details">
-				<label for="details" class = "label">We want to hear more</label>
-    				<textarea id = "textarea" placeholder="We try our best but we'd love to know more..." name="feedback"></textarea>
+				<label for="feedback" class = "label">We want to hear more</label>
+    				<textarea id = "feedback" aria-describedby="feedback" placeholder="We try our best but we'd love to know more..." name="feedback"></textarea>
 			</div>
 
-			<div class="form-group image-uploader">
-				<label for="details" class = "label">Pictures speak louder than words. Share what you loved through them!</label>
-				<input type="file" id="reviewImages" name="attachment" aria-describedby="igHandle" placeholder="We know you loved it!!" accept=".jpg,.gif,.png, .jpeg, .pdf" multiple>
-				<!-- https://codepen.io/OptimalLearner/pen/QWMGyZj?editors=0110 With multiple support -->
-				<!-- https://codepen.io/piyushpd139/pen/XWmeoMG With multiple support -->
-			</div>
+{#			<div class="form-group image-uploader">#}
+{#				<label for="details" class = "label">Pictures speak louder than words. Share what you loved through them!</label>#}
+{#				<input type="file" id="reviewImages" name="attachment" aria-describedby="igHandle" placeholder="We know you loved it!!" accept=".jpg,.gif,.png, .jpeg, .pdf" multiple>#}
+{#				<!-- https://codepen.io/OptimalLearner/pen/QWMGyZj?editors=0110 With multiple support -->#}
+{#				<!-- https://codepen.io/piyushpd139/pen/XWmeoMG With multiple support -->#}
+{#			</div>#}
+
+{#        <div class="input-group div6 ">#}
+{#            <input type="file" class="form-control" style="opacity: 0; z-index: -1"  aria-label="Upload" multiple/>#}
+{#        </div>#}
+            <div class="div6 form-group mb-1">
+                <label for="attachment" class = "label text-center">
+                    Pictures speak louder than words. Share what you loved through them!
+                    <br><br>
+                    <i class="fa-solid fa-upload fa-2xl"></i>
+                    <br>
+                    Upload Images
+                </label>
+                <input type="file" class="form-control" style="display: none;" name="attachment" id="attachment" accept=".jpeg,.jpg,.gif,.png"  multiple/>
+            </div>
+            <div class="form-group container mb-2">
+                <div class="row g-3" id="previewImages"></div>
+            </div>
+            <style>
+                .div6 {
+                  background-image:
+                    radial-gradient(circle closest-side, #007AFE calc(100% - 0.5px), transparent 100%),
+                    radial-gradient(circle closest-side, #007AFE calc(100% - 0.5px), transparent 100%),
+                    radial-gradient(circle closest-side, #007AFE calc(100% - 0.5px), transparent 100%),
+                    radial-gradient(circle closest-side, #007AFE calc(100% - 0.5px), transparent 100%);
+                  background-position: 0 0, 100% 0, 0 100%;
+                  background-repeat: repeat-x, repeat-y;
+                  background-size: 1em 4px, 4px 1em;
+                }
+
+            </style>
 
 			<div class="submitBtn">
-				<button type="submit" class="btn btn-outline-primary">Submit</button>	
+				<button type="button" id="formSubmit" class="btn btn-outline-primary">Submit</button>
 			</div>
 	    </div>
   	</form>
@@ -130,7 +196,7 @@
   		<a target="blank" href = "#">Start your very own review page with us<a/>
   	<div/>
     
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{% static '/js/reviewForm.js' %}"></script>
