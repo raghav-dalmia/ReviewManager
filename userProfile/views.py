@@ -19,13 +19,14 @@ class ProfileView(View):
             firstname = str(request.POST['firstname'])
             lastname = str(request.POST['lastname'])
             description = str(request.POST['description'])
-            creator = dao.get_creator(request.user)
-            creator.description = description
-            creator.user.email = email
-            creator.user.first_name = firstname
-            creator.user.last_name = lastname
-            creator.user.save()
-            creator.save()
+            phonenumber = int(request.POST['phonenumber'])
+            instagram = str(request.POST['instagram'])
+            linkedin = str(request.POST['linkedin'])
+            if not dao.models.utils.validPhoneNumber(phonenumber):
+                messages.error(request, "Invalid phone number")
+                return redirect('profile')
+            dao.update_creator(user=request.user, email=email, firstname=firstname, lastname=lastname,
+                               description=description, phonenumber=phonenumber, instagram=instagram, linkedin=linkedin)
             messages.success(request, "Profile update successfully")
         except:
             messages.error(request, "Something went wrong, please try again later.")
