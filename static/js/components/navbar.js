@@ -35,3 +35,12 @@ redirectTabPanel.addEventListener("click", () => {
     redirectTabPanel.classList.toggle("active")
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("okay")
+  var links = document.querySelectorAll(".right-panel div a")
+  for(var link of links){
+      if(link.href === window.location.href){
+          link.classList.add('active-button')
+      }
+  }
+});
