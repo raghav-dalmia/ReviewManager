@@ -19,10 +19,17 @@ textarea.oninput = function() {
 };
 
 function clearImage(pid) {
-    console.log("click");
-    console.log(pid);
+    console.log("Deleting " + pid)
     $("#prev_"+pid).remove();
     inputImageMap.delete(pid);
+}
+
+function clearFormData(id) {
+    $('#form')[0].reset()
+    for(let image_id = 1; image_id <= id; image_id++){
+        console.log(image_id)
+        clearImage(image_id)
+    }
 }
 
 $("#attachment").on("change", function (e) {
@@ -33,6 +40,7 @@ $("#attachment").on("change", function (e) {
           return;
         }
         inputImageMap[id]=file;
+        id += 1
         const reader = new FileReader();
         reader.onload = function (e) {
             const htmlPreview = "<div id='prev_" + id + "' class=\"col-3\">\n" +
@@ -43,7 +51,6 @@ $("#attachment").on("change", function (e) {
             "                        </div>\n" +
             "                    </div>";
             imageContainer.append(htmlPreview);
-            id++;
         }
         reader.readAsDataURL(file);
     });
@@ -66,13 +73,16 @@ function isValidInput(inputImages) {
 $("#formSubmit").on('click', function (e) {
     e.preventDefault();
     const subUrl = $("#formSubmit").attr("data-action");
-    const inputImages = Array.from(inputImageMap.values());
+    var inputImages = new Array()
+    for(var image_id = 0; image_id < id; image_id++){
+        inputImages.push(inputImageMap[image_id])
+    }
     if(!isValidInput(inputImages)){
         alert("form not valid");
         return;
     }
     const reviewFormData = new FormData($('form')[0]);
-    reviewFormData.set('attachment', inputImages);
+    reviewFormData.append('attachment', inputImages);
     $.ajax({
         url: subUrl,
         type: 'POST',
@@ -83,9 +93,11 @@ $("#formSubmit").on('click', function (e) {
         data: reviewFormData,
         success: function () {
             alert('success');
+            clearFormData(id);
         },
         error: function (err) {
             alert('error' + err.toString());
         }
     });
+    
 });

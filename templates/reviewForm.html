@@ -15,12 +15,7 @@
 	<link rel="stylesheet" type="text/css" href=" {% static '/css/reviewForm.css' %} ">
     <title>{{ username }} - Feedback</title>
   </head>
-  <body class="p-3">
   <div aria-live="polite" aria-atomic="true" class="position-relative">
-  <!-- Position it: -->
-  <!-- - `.toast-container` for spacing between toasts -->
-  <!-- - `.position-absolute`, `top-0` & `end-0` to position the toasts in the upper right corner -->
-  <!-- - `.p-3` to prevent the toasts from sticking to the edge of the container  -->
   <div class="toast-container position-absolute top-0 end-0 p-3">
 
     <!-- Then put toasts within -->
@@ -55,16 +50,15 @@
 				<object data="{% static '/img/reviewFormVector.svg' %}"> </object>
     		</div>
     		<div class="nudge">
-                <p><strong>Submit your feedback for @{{ username }}</strong></p>
     			<p>Excited? Esctatic? Elated?</p>
-    			Let us know how you feel, we love hearing from our customers!
+    			Let us know how you feel about @{{ username }}, we love hearing from our customers!
     		</div>	
 		</div>
 	</div>
 
-  	<form data-action={% url "reviewForm" username=username %}>
+  	<form data-action={% url "reviewForm" username=username %} enctype='multipart/form-data' id="form">
 		{% csrf_token %}
-		{{ question }}
+		
 	    <div class="body">
 			<div class="form-group">
 				<label for="igHandle" class = "label">Drop your instagram @</label>
@@ -144,28 +138,33 @@
     				<input type="text" id="packaging" aria-describedby="packaging" placeholder="We know you loved it!!" name="packaging">
 			</div>
 
+			<div class="form-group custom-question">
+				<label for="packaging" class = "label">{{ question }}</label>
+    				<input type="text" id="packaging" aria-describedby="packaging" placeholder="Don't be shy!" name="packaging">
+			</div>
+
 			<div class="form-group details">
 				<label for="feedback" class = "label">We want to hear more</label>
     				<textarea id = "feedback" aria-describedby="feedback" placeholder="We try our best but we'd love to know more..." name="feedback"></textarea>
 			</div>
+			
 
 {#			<div class="form-group image-uploader">#}
 {#				<label for="details" class = "label">Pictures speak louder than words. Share what you loved through them!</label>#}
 {#				<input type="file" id="reviewImages" name="attachment" aria-describedby="igHandle" placeholder="We know you loved it!!" accept=".jpg,.gif,.png, .jpeg, .pdf" multiple>#}
-{#				<!-- https://codepen.io/OptimalLearner/pen/QWMGyZj?editors=0110 With multiple support -->#}
-{#				<!-- https://codepen.io/piyushpd139/pen/XWmeoMG With multiple support -->#}
 {#			</div>#}
 
 {#        <div class="input-group div6 ">#}
 {#            <input type="file" class="form-control" style="opacity: 0; z-index: -1"  aria-label="Upload" multiple/>#}
 {#        </div>#}
-            <div class="div6 form-group mb-1">
-                <label for="attachment" class = "label text-center">
-                    Pictures speak louder than words. Share what you loved through them!
-                    <br><br>
+            <div class="form-group mb-1">
+                <label for="attachment" class="uploader-box">
+                    Pictures speak louder than words.
+                    <br>
+					<br>
                     <i class="fa-solid fa-upload fa-2xl"></i>
                     <br>
-                    Upload Images
+					<p style="padding-top: 0.7rem;">Upload Images/Videos</p>
                 </label>
                 <input type="file" class="form-control" style="display: none;" name="attachment" id="attachment" accept=".jpeg,.jpg,.gif,.png"  multiple/>
             </div>
