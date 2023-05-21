@@ -353,6 +353,18 @@ input::placeholder, textarea::placeholder{
  .feedback li.active div {
      animation: shake 0.8s linear forwards;
 }
+.delivery {
+    padding-bottom: 0px;
+}
+.uploader-box {
+    font-size: 1rem;
+    display: block;
+    text-align: center;
+    padding: 0.8rem 4rem;
+    border: 2px #007AFE dashed;
+    border-radius: 40px;
+}
+
  @keyframes shake {
      30% {
          transform: perspective(240px) rotateX(var(--step-1-rx, 0deg)) rotateY(var(--step-1-ry, 0deg)) rotateZ(var(--step-1-rz, 0deg)) translateZ(10px);
