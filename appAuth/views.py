@@ -6,7 +6,7 @@ from userProfile.dao import create_creator
 
 def signup_user(request):
     if request.user.is_authenticated:
-        return redirect('about')
+        return redirect('results')
     if request.method == "POST":
         username = str(request.POST['username'])
         password = str(request.POST['password'])
@@ -28,7 +28,7 @@ def signup_user(request):
 
 def login_user(request):
     if request.user.is_authenticated:
-        return redirect('about')
+        return redirect('results')
     if request.method == "POST":
         username = str(request.POST['username'])
         password = str(request.POST['password'])
@@ -37,7 +37,7 @@ def login_user(request):
         if user is not None:
             login(request=request, user=user)
             messages.success(request, "Successfully signed as " + username)
-            return redirect('about')
+            return redirect('results')
         else:
             messages.error(request, "Incorrect username or password.")
             return redirect('login')

@@ -1,0 +1,111 @@
+.filter-blue {
+    filter: invert(32%) sepia(100%) saturate(3144%) hue-rotate(200deg) brightness(104%) contrast(102%);
+  }
+
+  .navbar-brand img {
+    min-width: 30px;
+    min-height: 15px;
+    width: 8rem;
+    height: 3rem;
+  }
+
+  .header {
+    z-index: 1;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    background: white;
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+  .header .container {
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+  }
+  .header .container .logo {
+    font-size: 1.5rem;
+  }
+  .header .container nav {
+    display: flex;
+    align-items: center;
+  }
+  .header .container nav a {
+    font-size: 1.2rem;
+    padding: 0.5rem 2.5rem;
+  }
+  .header .container nav a.active {
+    background: #eee;
+    transition: 0.5s;
+    border-radius: 10px;
+  }
+  .header .container :is(.bar-icon, .close-icon) {
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+  }  
+  .header .container .overlay {
+    display: none;
+  }
+  .redirect-tab {
+    display: none;
+  }
+  .btn-outline-dark {
+    color:#007bff;
+    border-color: #007bff;
+  }
+
+
+  @media only screen and (max-width: 768px) {
+    .header {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    .header .container nav {
+      position: fixed;
+      right: -100%;
+      top: 0;
+      padding-top: 6rem;
+      width: 300px;
+      height: 100vh;
+      flex-direction: column;
+      background: #fff;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      z-index: 3;
+      transition: right 0.5s;
+    }
+    .header .container nav.active {
+      right: 0;
+    }
+    .header .container :is(.bar-icon, .close-icon) {
+      display: flex;
+    }
+    .header .container .close-icon {
+      position: absolute;
+      top: 2rem;
+      left: 2rem;
+    }
+    .redirect-tab {
+      display: flex;
+    }
+    .header .container .overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+    }
+    .header .container .overlay.active {
+      display: flex;
+    }
+
+    .active-button {
+      background: #007bff;
+      color:white !important;
+      border-radius: 8px;
+      letter-spacing: 1px;
+    }
+
+  }

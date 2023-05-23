@@ -7,7 +7,7 @@ def existInDb(username: str):
 
 creatorDetail = {
     "name": "Mayank Chauhan",
-    "about": "Using AI to create art which millions love! Reach out to cop the latest merch and t-shirt drops.",
+    "about": "The replaced content is sized to maintain its aspect ratio while filling the element's entire content box. If the object's aspect ratio doesUsing AI to create art which millions love! Reach out to cop the latest m erch and t-shirt drops. erch and t-shirt drops.",
     "socials": {
         "fb": "www.facebook.com",
         "ig": "www.facebook.com",

@@ -11,7 +11,7 @@ class ProfileView(View):
         context = {
             "creator": creator
         }
-        return render(request, 'profile.html', context=context)
+        return render(request, 'components/profile.html', context=context)
 
     def post(self, request):
         try:
