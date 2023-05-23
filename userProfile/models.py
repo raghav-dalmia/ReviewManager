@@ -15,7 +15,7 @@ class Creator(models.Model):
 
     def clean(self):
         if not utils.validPhoneNumber(self.phone_number):
-            raise ValidationError({'ratings': 'ratings rages: 0 to 5.'})
+            raise ValidationError({'phonenumber': 'Oops, you entered invalid phone number :('})
         super().clean()
 
     def save(self, *args, **kwargs):
