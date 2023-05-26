@@ -3,10 +3,41 @@
 {% block results %}
 {{ block.super }}
 <div class="card m-2">
+    
     <div class="card-body text-center">
-        <h3 class="card-title">Edit Profile</h3>
-        <form method="post" action={% url 'profile' %}>
+        <form id="profileUpdate" method="post" action={% url 'profile' %}>
             {% csrf_token %}
+            <h3 class="card-title">Review Site Control</h3>
+            <br>
+            <div class="form-group" style="display: flex;">
+                <label class="w-50" for="inputPassword6">How many reviews do you want to show?</label>
+                <select class="custom-select form-control w-50" name="numberOfResults">
+                    <option {% if creator.resultsToDisplay == 1 %} selected {% endif %} value="1">5</option>
+                    <option {% if creator.resultsToDisplay == 2 %} selected {% endif %} value="2">10</option>
+                    <option {% if creator.resultsToDisplay == 3 %} selected {% endif %} value="3">15</option>
+                    <option {% if creator.resultsToDisplay == 4 %} selected {% endif %} value="4">All</option>
+                </select>
+            </div>
+            <br>
+            <div class="form-group" style="display: flex;">
+                <label class="w-50" for="inputPassword6">How do you want to order the reviews?</label>
+                <select class="custom-select form-control w-50" name="orderBy">
+                    <option {% if creator.orderBy == 1 %} selected {% endif %} value="1">Best rated first</option>
+                    <option {% if creator.orderBy == 2 %} selected {% endif %} value="2">Newest first</option>
+                    <option {% if creator.orderBy == 3 %} selected {% endif %} value="3">Oldest first</option>
+                </select>
+            </div>
+            <br>
+            <br>
+            <h3 class="card-title">Review Form Control</h3>
+            <br>
+            <div class="form-group" style="display: flex;">
+                <label class="w-50" for="inputPassword6">Any question you would like to add to the form?</label>
+                <input class="w-50 form-control" id="question" name="question" value="{{ creator.question }}">
+            </div>
+            <br>
+            <br>
+            <h3 class="card-title">Edit Profile</h3>
             <div class="row g-2">
                 <div class="col-md">
                     <div class="form-floating mb-2">
@@ -39,10 +70,12 @@
                 <textarea class="form-control" id="description" name="description">{{ creator.description }}</textarea>
                 <label for="description">Description</label>
             </div>
-            <button type="submit" class="btn btn-dark">Update Profile</button>
+            <br>
+            <button form="profileUpdate" type="submit" class="btn btn-dark">Update Profile</button>
         </form>
     </div>
     <div class="card-footer text-center">
+        <br>
         <h3 class="card-title">Share Review Form Link</h3>
         <button type="button me-2" class="btn btn-outline-dark" id="copyLink">
             <i class="fa fa-clone" aria-hidden="true"></i> Copy Link
@@ -50,6 +83,7 @@
         <a type="button" class="btn btn-outline-success" href="whatsapp://send?text=http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}">
             <i class="fa-brands fa-whatsapp"></i> WhatsApp
         </a>
+        <br>
     </div>
 </div>
 <script>
