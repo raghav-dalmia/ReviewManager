@@ -1,38 +1,64 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title%}Login{% endblock %}
 {% block body %}
-    {% load socialaccount %}
+{% load socialaccount %}
+{% block css %}
+{{ block.super }}
+    <link rel="stylesheet" type="text/css" href=" {% static '/css/account/login.css' %} ">
+{% endblock css %}
 
-    <div class="card text-center m-2">
-        <div class="card-body">
-            <h3 class="card-title">Login</h3>
-            <div class="row g-2">
-                <form method="post" action={% url 'login' %}>
-                    {% csrf_token %}
-                    <div class="form-floating mb-2">
-                        <input type="text" class="form-control" id="username" name="username" required>
-                        <label for="username">User Name</label>
+<nav class="navbar navbar-light bg-light">
+    <a class="container navbar-brand" href="#">Brand Name</a>
+</nav>
+
+<div class="container">
+    <div class="row">
+      <div class="col-sm box-outer">
+      </div>
+      <div class="col-sm box">
+        <div class="row outer-row"></div>
+        <div class="row box-inner">
+            <div class="card">
+                <div class="card-body">
+                    <div class="title-text">
+                        <h4>Hello! let's get started</h4>
+                        <h6 class="font-weight-light">Sign in to continue.</h6>
                     </div>
-                    <div class="form-floating mb-2">
-                        <input type="password" class="form-control" id="password" name="password" minlength="4" required>
-                        <label for="password">Password</label>
+                    <div class="row g-2">
+                        <form method="post" action={% url 'login' %}>
+                            {% csrf_token %}
+                            <div class="form-floating mb-2">
+                                <input type="text" class="form-control" id="username" name="username" required>
+                                <label for="username">User Name</label>
+                            </div>
+                            <div class="form-floating mb-2">
+                                <input type="password" class="form-control" id="password" name="password" minlength="4" required>
+                                <label for="password">Password</label>
+                            </div>
+                            <div class="btn-toolbar float-end" role="toolbar">
+                                <div class="btn-group" role="group">
+                                    <button type="submit" class="btn btn-dark">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                        <p class="my-1 text-center fw-lighter">OR</p>
+                        <a class="btn btn-outline-primary" href={% provider_login_url "google" action="login" %}>
+                            <i class="fa-brands fa-google"></i> Login with Google
+                        </a>
+                        <p class="my-2">Want to create <a href={% url 'signup' %}>new account</a>?</p>
                     </div>
-                    <div class="btn-toolbar" role="toolbar">
-                        <div class="btn-group me-2" role="group">
-                            <button type="reset" class="btn btn-outline-dark">Reset</button>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button type="submit" class="btn btn-dark">Login</button>
-                        </div>
-                    </div>
-                </form>
-                <p class="my-1 fw-lighter">OR</p>
-                <a class="btn btn-outline-primary" href={% provider_login_url "google" action="login" %}>
-                    <i class="fa-brands fa-google"></i> Login with Google
-                </a>
-                <p class="my-1">Want to create <a href={% url 'signup' %}>new account</a>?</p>
+                </div>
             </div>
         </div>
+        <div class="row outer-row"></div>
+      </div>
+      <div class="col-sm box-outer">
+      </div>
     </div>
+  </div>    
+
+
+    
 
 {% endblock %}
