@@ -1,0 +1,61 @@
+body,html {
+    background-color: #e8f3ff;
+    color: #007bff;
+}
+
+.outer {
+    height: 0vh;
+}
+
+.box-outer {
+    height: 100vh;
+}
+
+.outer-row {
+    width: 0vw;
+    height: 10vh;
+}
+
+.box-inner {
+    height: 70vh;
+}
+
+.card {
+    border-style: inherit;
+}
+
+.title-text {
+    padding: 1rem;
+    line-height: 0%;
+    color: #000000;
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.font-weight-light {
+    font-weight: 300;
+}
+
+.btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+}
+
+@media only screen and (max-width: 768px) {
+    body {
+      display: block;
+      min-height: 100%;
+    }
+
+    .outer-row {
+        height: 0vh;
+    }
+
+    .box-outer {
+        height: 0vh;
+    }
+
+    .box-inner {
+        height: 100vh;
+    }
+    
+}
