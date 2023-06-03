@@ -19,19 +19,20 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 views = [
     # Will have landing page on this route
-    path('', TemplateView.as_view(template_name='./components/results.html'), name='about'),
-    path('result/', TemplateView.as_view(template_name='./components/results.html'), name='results'),
-    path('form/', TemplateView.as_view(template_name='./components/form.html'), name='form'),
+    path('', login_required(TemplateView.as_view(template_name='./components/results.html')), name='about'),
+    path('result/', login_required(TemplateView.as_view(template_name='./components/results.html')), name='results'),
+    path('form/', login_required(TemplateView.as_view(template_name='./components/form.html')), name='form'),
 ]
 
-urlpatterns = [
+urlpatterns = views + [
     path('admin/', admin.site.urls),
     path('auth/', include('appAuth.urls')),
     path('accounts/', include('allauth.urls')),
     path('user/', include('userProfile.urls')),
     path('review/', include('reviewService.urls')),
-    # path('<str:username>/', include('creatorPage.urls')),
-] + views + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('<str:username>/', include('creatorPage.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

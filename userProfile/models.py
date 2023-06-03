@@ -10,8 +10,8 @@ class Creator(models.Model):
         OLDEST = 3
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    description = models.CharField(max_length=255, default="")
-    question = models.CharField(max_length=500, default="")
+    description = models.CharField(max_length=255, default="", blank=True)
+    question = models.CharField(max_length=500, default="We want to hear more")
     resultsToDisplay = models.IntegerField(default=1)
     orderBy = models.IntegerField(default=ORDERING_TYPE.BEST)
     last_updated = models.DateTimeField(auto_now=True)
