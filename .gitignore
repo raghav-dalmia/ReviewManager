@@ -90,3 +90,5 @@ target/
 *.pyc
 __pycache__/
 
+venv
+
