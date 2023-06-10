@@ -6,10 +6,10 @@
         </div>
         <div class="col-8 info">
             <div class="row name d-flex flex-wrap">
-                {{ creatorDetail.name }}
+                {{ creatorDetail.user.first_name }} {{ creatorDetail.user.last_name }}
             </div>
             <div class="row about" maxlength="255">
-                {{ creatorDetail.about }}
+                {{ creatorDetail.description }}
             </div>
             <div class="row socials">
                 <a href={{ creatorDetail.socials.fb }} id="share-fb" class="sharer button"><i class="fa-brands fa-instagram fa-lg" style="color: #007bff;"></i></a>

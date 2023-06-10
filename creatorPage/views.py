@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from reviewService import dao as reviewServiceDao
 
 
 def existInDb(username: str):
@@ -41,10 +42,7 @@ creatorReview = [
 ]
 
 def myPage(request, username: str):
-    context = {
-        "creatorDetail": creatorDetail,
-        "reviews": creatorReview
-    }
+    context = reviewServiceDao.get_review_context(username=username)
     if not existInDb(username):
         return HttpResponse('Oops there is no creator by this name.')
     return render(request, 'creatorPage/index.html', context)
