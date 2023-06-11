@@ -5,23 +5,20 @@
 <div class="card m-2">
     
     <div class="card-body text-center">
-        <form id="profileUpdate" method="post" action={% url 'profile' %}>
+        <form id="profileUpdate" method="post" action="{% url 'profile' %}">
             {% csrf_token %}
             <h3 class="card-title">Review Site Control</h3>
             <br>
             <div class="form-group" style="display: flex;">
-                <label class="w-50" for="inputPassword6">How many reviews do you want to show?</label>
-                <select class="custom-select form-control w-50" name="numberOfResults">
-                    <option {% if creator.resultsToDisplay == 1 %} selected {% endif %} value="1">5</option>
-                    <option {% if creator.resultsToDisplay == 2 %} selected {% endif %} value="2">10</option>
-                    <option {% if creator.resultsToDisplay == 3 %} selected {% endif %} value="3">15</option>
-                    <option {% if creator.resultsToDisplay == 4 %} selected {% endif %} value="4">All</option>
-                </select>
+                <label for="numberOfResults" class="form-label w-50">How many reviews do you want to show?</label>
+                <input type="number" class="form-control w-50" id="numberOfResults" name="numberOfResults" value="{{ creator.resultsToDisplay }}" readonly>
             </div>
-            <br>
+            <div class="input-group w-75 mx-auto mt-2 mb-4">
+                <input type="range" class="form-range"  id="resultRange" value="{{ creator.resultsToDisplay }}" min="1" max="25" step="1">
+            </div>
             <div class="form-group" style="display: flex;">
-                <label class="w-50" for="inputPassword6">How do you want to order the reviews?</label>
-                <select class="custom-select form-control w-50" name="orderBy">
+                <label class="w-50" for="orderBy">How do you want to order the reviews?</label>
+                <select class="custom-select form-control w-50" id="orderBy" name="orderBy">
                     <option {% if creator.orderBy == 1 %} selected {% endif %} value="1">Best rated first</option>
                     <option {% if creator.orderBy == 2 %} selected {% endif %} value="2">Newest first</option>
                     <option {% if creator.orderBy == 3 %} selected {% endif %} value="3">Oldest first</option>
@@ -31,9 +28,9 @@
             <br>
             <h3 class="card-title">Review Form Control</h3>
             <br>
-            <div class="form-group" style="display: flex;">
-                <label class="w-50" for="inputPassword6">Any question you would like to add to the form?</label>
-                <input class="w-50 form-control" id="question" name="question" value="{{ creator.question }}">
+            <div class="input-group" style="display: flex;">
+                <label for="question">Any question you would like to add to the form?</label>
+                <textarea class="m-1 form-control" id="question" name="question">{{ creator.question }}</textarea>
             </div>
             <br>
             <br>
@@ -86,11 +83,10 @@
         <br>
     </div>
 </div>
-<script>
-    document.getElementById("copyLink").addEventListener("click", copyLink, false);
-    function copyLink() {
-        navigator.clipboard.writeText("http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}");
-        alert("URL copied");
-    }
-</script>
 {% endblock results %}
+
+{% block js %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static '/js/components/profile.js' %}"></script>
+{% endblock js %}
+

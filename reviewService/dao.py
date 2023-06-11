@@ -7,9 +7,20 @@ def get_review_question(username: str) -> str:
     return str(creator.question)
 
 
-def create_review(username: str, feedback: str, reviewee: str, packaging: str, ratings: int, attachments) -> ReviewModel:
+def create_review(username: str, feedback: str, reviewee: str, packaging: str, ratings: int,
+                  attachments) -> ReviewModel:
     creator = UserModel.Creator.objects.get(user__username__exact=username)
-    review = ReviewModel.Review.objects.create(creator=creator, feedback=feedback, reviewee=reviewee, packaging=packaging, ratings=ratings)
+    review = ReviewModel.Review.objects.create(creator=creator, feedback=feedback, reviewee=reviewee,
+                                               packaging=packaging, ratings=ratings)
     for attachment in attachments:
         ReviewModel.ReviewImage.objects.create(review=review, attachment=attachment)
     return review
+
+
+def get_review_context(username: str) -> dict:
+    creator = UserModel.Creator.objects.get(user__username__exact=username)
+    reviews = ReviewModel.Review.objects.order_by(creator.get_orderby_clause())[:creator.resultsToDisplay]
+    return {
+        "creatorDetail": creator,
+        "reviews": reviews
+    }
