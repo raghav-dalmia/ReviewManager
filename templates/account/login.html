@@ -7,23 +7,27 @@
 {{ block.super }}
     <link rel="stylesheet" type="text/css" href=" {% static '/css/account/login.css' %} ">
 {% endblock css %}
-
-<nav class="navbar navbar-light bg-light">
-    <a class="container navbar-brand" href="#">Brand Name</a>
-</nav>
-
-<div class="container">
-    <div class="row">
-      <div class="col-sm box-outer">
-      </div>
-      <div class="col-sm box">
-        <div class="row outer-row"></div>
-        <div class="row box-inner">
+    
+    <div class="row h-100">
+        <div class="col left-banner">
+            <div class="row">
+                <img class = "login-svg" src="{% static 'img/login.svg' %}" alt="" class = "filter-blue">
+            </div>
+            <br/>
+            <div class="row">
+                <h1 class="font-weight-light">Manage reviews, as easily as ever.</h1>    
+            </div>
+        </div>
+        <div class="col">
             <div class="card">
                 <div class="card-body">
+                    <div>
+                        <img class = "login-svg" src="{% static 'img/logo.svg' %}" alt="" class = "filter-blue">
+                    </div>
+                    <br/>
+                    <br/>
                     <div class="title-text">
-                        <h4>Hello! let's get started</h4>
-                        <h6 class="font-weight-light">Sign in to continue.</h6>
+                        <h5 class="font-weight-light">Sign in to continue</h5>
                     </div>
                     <div class="row g-2">
                         <form method="post" action={% url 'login' %}>
@@ -36,9 +40,10 @@
                                 <input type="password" class="form-control" id="password" name="password" minlength="4" required>
                                 <label for="password">Password</label>
                             </div>
+                            <br/>
                             <div class="btn-toolbar float-end" role="toolbar">
                                 <div class="btn-group" role="group">
-                                    <button type="submit" class="btn btn-dark">Login</button>
+                                    <button type="submit" class="btn btn-outline-primary">Login</button>
                                 </div>
                             </div>
                         </form>
@@ -46,19 +51,15 @@
                         <a class="btn btn-outline-primary" href={% provider_login_url "google" action="login" %}>
                             <i class="fa-brands fa-google"></i> Login with Google
                         </a>
-                        <p class="my-2">Want to create <a href={% url 'signup' %}>new account</a>?</p>
+                        <p class="my-2"><a href={% url 'signup' %}>Want to create new account</a>?</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row outer-row"></div>
-      </div>
-      <div class="col-sm box-outer">
-      </div>
     </div>
-  </div>    
+  </div>
 
-
+  
     
 
 {% endblock %}

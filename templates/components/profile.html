@@ -1,88 +1,109 @@
 {% extends './sidebar.html' %}
 {% load static %}
+{% block css %}
+{{ block.super }}
+<link rel="stylesheet" type="text/css" href=" {% static '/css/components/profile.css' %} ">
+{% endblock css %}
 {% block results %}
 {{ block.super }}
-<div class="card m-2">
-    
-    <div class="card-body text-center">
-        <form id="profileUpdate" method="post" action="{% url 'profile' %}">
-            {% csrf_token %}
-            <h3 class="card-title">Review Site Control</h3>
+
+<br/>
+<form id="profileUpdate" method="post" action="{% url 'profile' %}">
+    {% csrf_token %}
+    <div class="card ">
+        <div class="card-body">
+            <div class="sub-header">Review Site Control</div>
             <br>
-            <div class="form-group" style="display: flex;">
-                <label for="numberOfResults" class="form-label w-50">How many reviews do you want to show?</label>
-                <input type="number" class="form-control w-50" id="numberOfResults" name="numberOfResults" value="{{ creator.resultsToDisplay }}" readonly>
-            </div>
-            <div class="input-group w-75 mx-auto mt-2 mb-4">
-                <input type="range" class="form-range"  id="resultRange" value="{{ creator.resultsToDisplay }}" min="1" max="25" step="1">
-            </div>
-            <div class="form-group" style="display: flex;">
-                <label class="w-50" for="orderBy">How do you want to order the reviews?</label>
-                <select class="custom-select form-control w-50" id="orderBy" name="orderBy">
-                    <option {% if creator.orderBy == 1 %} selected {% endif %} value="1">Best rated first</option>
-                    <option {% if creator.orderBy == 2 %} selected {% endif %} value="2">Newest first</option>
-                    <option {% if creator.orderBy == 3 %} selected {% endif %} value="3">Oldest first</option>
-                </select>
-            </div>
-            <br>
-            <br>
-            <h3 class="card-title">Review Form Control</h3>
-            <br>
-            <div class="input-group" style="display: flex;">
-                <label for="question">Any question you would like to add to the form?</label>
-                <textarea class="m-1 form-control" id="question" name="question">{{ creator.question }}</textarea>
-            </div>
-            <br>
-            <br>
-            <h3 class="card-title">Edit Profile</h3>
-            <div class="row g-2">
-                <div class="col-md">
-                    <div class="form-floating mb-2">
-                        <input type="text" class="form-control" id="username" value="{{ creator.user.username }}" disabled readonly>
-                        <label for="username">Username</label>
-                    </div>
+            <div class="sub-body">
+                <div class="form-group">
+                    <label for="numberOfResults" class="form-label">How many reviews do you want to show?</label>
+                    <input type="number" id="numberOfResults" name="numberOfResults" value="{{ creator.resultsToDisplay }}">
                 </div>
-                <div class="col-md">
-                    <div class="form-floating mb-2">
-                        <input type="email" class="form-control" id="email" name="email" value="{{ creator.user.email }}">
-                        <label for="email">Email</label>
-                    </div>
+                <div class="input-group w-75 mx-auto mt-2 mb-4">
+                    <input type="range" id="resultRange" value="{{ creator.resultsToDisplay }}" min="1" max="25" step="1">
+                </div>
+                <div class="form-group">
+                    <label for="orderBy">How do you want to order the reviews?</label>
+                    <select class="custom-select" id="orderBy" name="orderBy">
+                        <option {% if creator.orderBy == 1 %} selected {% endif %} value="1">Best rated first</option>
+                        <option {% if creator.orderBy == 2 %} selected {% endif %} value="2">Newest first</option>
+                        <option {% if creator.orderBy == 3 %} selected {% endif %} value="3">Oldest first</option>
+                    </select>
                 </div>
             </div>
-            <div class="row g-2">
-                <div class="col-md">
-                    <div class="form-floating mb-2">
-                        <input type="text" class="form-control" id="firstname" name="firstname" value="{{ creator.user.first_name }}">
-                        <label for="firstname">First Name</label>
-                    </div>
-                </div>
-                <div class="col-md">
-                    <div class="form-floating mb-2">
-                        <input type="text" class="form-control" id="lastname" name="lastname" value="{{ creator.user.last_name }}">
-                        <label for="lastname">Last Name</label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-floating mb-2">
-                <textarea class="form-control" id="description" name="description">{{ creator.description }}</textarea>
-                <label for="description">Description</label>
-            </div>
-            <br>
-            <button form="profileUpdate" type="submit" class="btn btn-dark">Update Profile</button>
-        </form>
+        </div>
     </div>
-    <div class="card-footer text-center">
-        <br>
-        <h3 class="card-title">Share Review Form Link</h3>
-        <button type="button me-2" class="btn btn-outline-dark" id="copyLink">
-            <i class="fa fa-clone" aria-hidden="true"></i> Copy Link
-        </button>
-        <a type="button" class="btn btn-outline-success" href="whatsapp://send?text=http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}">
-            <i class="fa-brands fa-whatsapp"></i> WhatsApp
-        </a>
-        <br>
+    <br>
+    <div class="card ">
+        <div class="card-body">
+            <div class="sub-header">Review Form Control</div>
+            <br>
+            <div class="sub-body">
+                <div class="input-group" style="display: flex;">
+                    <label for="question">Any question you would like to add to the form?</label>
+                    <textarea class="m-1" id="question" name="question">{{ creator.question }}</textarea>
+                </div>
+            </div>
+        </div>
     </div>
+    <br>
+    <div class="card ">
+        <div class="card-body">
+            <div class="sub-header">Edit Profile</div>
+            <br/>
+            <div class="sub-body">
+                <div class="row g-2">
+                    <div class="col-md">
+                        <div class="mb-2">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" value="{{ creator.user.username }}" disabled readonly>
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="mb-2">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" value="{{ creator.user.email }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col-md">
+                        <div class="mb-2">
+                            <label for="firstname">First Name</label>
+                            <input type="text" id="firstname" name="firstname" value="{{ creator.user.first_name }}">
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="mb-2">
+                            <label for="lastname">Last Name</label>
+                            <input type="text" id="lastname" name="lastname" value="{{ creator.user.last_name }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-2">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description">{{ creator.description }}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div>
+        <button form="profileUpdate" type="submit" class="btn btn-outline-primary profile-button">Update Profile</button>
+    </div>
+</form>
+<div class="card-footer text-center">
+    <br>
+    <h3 class="card-title">Share Review Form Link</h3>
+    <button type="button" class="btn btn-outline-dark" id="copyLink">
+        <i class="fa fa-clone" aria-hidden="true"></i> Copy Link
+    </button>
+    <a type="button" class="btn btn-outline-success" href="whatsapp://send?text=http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+    </a>
+    <br>
 </div>
+
 {% endblock results %}
 
 {% block js %}

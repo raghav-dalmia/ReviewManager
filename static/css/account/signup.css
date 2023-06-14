@@ -1,33 +1,33 @@
 body,html {
-    background-color: #e8f3ff;
+    background-color: #2C2C2E;
     color: #007bff;
+    height: 100%;
 }
 
-.outer {
-    height: 0vh;
-}
-
-.box-outer {
-    height: 100vh;
-}
-
-.outer-row {
-    width: 0vw;
-    height: 10vh;
-}
-
-.box-inner {
-    height: 70vh;
+.left-banner{
+    padding-top: 20vh;
 }
 
 .card {
     border-style: inherit;
+    background-color: #222123;
+    height: 100%;
+    padding: 8vw 10vw;
+}
+
+.row {
+    text-align: center;
+}
+
+.login-svg {
+    height: 40%;
+    width: 40%;
+    margin: auto;
 }
 
 .title-text {
     padding: 1rem;
     line-height: 0%;
-    color: #000000;
     font-family: 'Nunito Sans', sans-serif;
 }
 
@@ -46,16 +46,7 @@ body,html {
       min-height: 100%;
     }
 
-    .outer-row {
-        height: 0vh;
+    .left-banner {
+        display: none;
     }
-
-    .box-outer {
-        height: 0vh;
-    }
-
-    .box-inner {
-        height: 100vh;
-    }
-    
 }
