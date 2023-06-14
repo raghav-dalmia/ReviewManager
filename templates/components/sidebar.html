@@ -12,16 +12,16 @@
             <i class="fa-solid fa-chart-simple"></i>
             <span>Results</span>
         </a>
-        <a href="{% url 'form' %}" class="redirect-tab-panel">
+        <!-- <a href="{% url 'form' %}" class="redirect-tab-panel">
             <i class="fa-regular fa-rectangle-list"></i>
             <span>Form</span>
-        </a>
+        </a> -->
         <a href="{% url 'profile' %}" class="redirect-tab-panel profile-button">
             <i class="fa-solid fa-user"></i>
             <span>Profile</span>
         </a>
     </div>
-    <div class="col-sm" style="background: #e8f3ff;">
+    <div class="col-sm" style="background: #2C2C2E;">
         {% block results %}
         {% endblock results %}
     </div>

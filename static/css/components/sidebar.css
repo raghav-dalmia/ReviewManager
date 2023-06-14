@@ -9,7 +9,7 @@
   }
 
   .left-panel a {
-    color: #6c7383;
+    color: whitesmoke;
     font-weight: 200;
     padding: 0.5rem 2rem;
     margin: 0.5rem 1rem;
@@ -22,7 +22,7 @@
   }
 
   .left-panel a.active {
-    background-color: pink;
+    background-color: #007bff;
   }
 
   .redirect-tab-panel {

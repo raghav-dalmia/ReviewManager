@@ -8,53 +8,55 @@
     <link rel="stylesheet" type="text/css" href=" {% static '/css/account/signup.css' %} ">
 {% endblock css %}
 
-    <nav class="navbar navbar-light bg-light">
-        <a class="container navbar-brand" href="#">Brand Name</a>
-    </nav>
-    
-    <div class="container">
+<div class="row h-100">
+    <div class="col left-banner">
         <div class="row">
-          <div class="col-sm box-outer">
-          </div>
-          <div class="col-sm box">
-            <div class="row outer-row"></div>
-            <div class="row box-inner">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="title-text">
-                            <h4>New here?</h4>
-                            <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+            <img class = "login-svg" src="{% static 'img/login.svg' %}" alt="" class = "filter-blue">
+        </div>
+        <br/>
+        <div class="row">
+            <h1 class="font-weight-light">Manage reviews, as easily as ever.</h1>    
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <img class = "login-svg" src="{% static 'img/logo.svg' %}" alt="" class = "filter-blue">
+                </div>
+                <br/>
+                <br/>
+                <div class="title-text">
+                    <h5 class="font-weight-light">New here? Let's get you started!</h5>
+                </div>
+                <div class="row g-2">
+                    <form method="post" action={% url 'signup' %}>
+                        {% csrf_token %}
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" id="username" name="username" placeholder="User Name" required>
+                            <label for="username">Instagram User Name</label>
                         </div>
-                        <div class="row g-2">
-                            <form method="post" action={% url 'signup' %}>
-                                {% csrf_token %}
-                                <div class="form-floating mb-2">
-                                    <input type="text" class="form-control" id="username" name="username" placeholder="User Name" required>
-                                    <label for="username">Instagram User Name</label>
-                                </div>
-                                <div class="form-floating mb-2">
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" minlength="4" required>
-                                    <label for="password">Password</label>
-                                </div>
-                                <div class="btn-toolbar float-end" role="toolbar">
-                                    <div class="btn-group p-2" role="group">
-                                        <button type="submit" class="btn btn-dark">Create</button>
-                                    </div>
-                                </div>
-                            </form>
-                            <div>
-                                <p class="text-center mt-2"><a href={% url 'login' %}>Already have an account.</a></p>
+                        <br/>
+                        <div class="form-floating mb-2">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" minlength="4" required>
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="btn-toolbar float-end" role="toolbar">
+                            <div class="btn-group p-2" role="group">
+                                <button type="submit" class="btn btn-outline-primary">Create</button>
                             </div>
                         </div>
+                    </form>
+                    <div>
+                        <p class="text-center mt-2"><a href={% url 'login' %}>Already have an account.</a></p>
                     </div>
                 </div>
             </div>
-            <div class="row outer-row"></div>
-          </div>
-          <div class="col-sm box-outer">
-          </div>
         </div>
-      </div>
+    </div>
+</div>
+</div>
 
+    
 
 {% endblock %}
