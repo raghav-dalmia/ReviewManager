@@ -7,7 +7,6 @@ from django.core.exceptions import ValidationError
 
 
 def get_file_path(instance, filename):
-    print(filename)
     ext = filename.split('.')[-1]
     filename = "%s.%s" % (int(time.time()), ext)
     return os.path.join('reviews', filename)
@@ -45,7 +44,7 @@ class Review(models.Model):
 
 class ReviewImage(models.Model):
     review = models.ForeignKey(Review, on_delete=models.CASCADE)
-    attachment = models.FileField(upload_to=get_file_path, max_length=300, null=True)
+    attachment = models.FileField(upload_to=get_file_path, max_length=50, null=True)
 
     class Meta:
         ordering = ["-pk"]

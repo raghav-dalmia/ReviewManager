@@ -27,17 +27,16 @@ class ProfileView(View):
         if not dao.models.utils.validPhoneNumber(phonenumber):
             messages.error(request, "Invalid phone number")
             return redirect('profile')
-        dao.update_creator(user=request.user, email=email, firstname=firstname, lastname=lastname,
-                           description=description, phonenumber=phonenumber, instagram=instagram, linkedin=linkedin)
-        creator = dao.get_creator(request.user)
-        creator.description = description
-        creator.question = question
-        creator.resultsToDisplay = numberOfResults
-        creator.orderBy = orderBy
-        creator.user.email = email
-        creator.user.first_name = firstname
-        creator.user.last_name = lastname
-        creator.user.save()
-        creator.save()
+        dao.update_creator(user=request.user,
+                           email=email,
+                           firstname=firstname,
+                           lastname=lastname,
+                           description=description,
+                           phonenumber=phonenumber,
+                           instagram=instagram,
+                           linkedin=linkedin,
+                           question=question,
+                           numberOfResults=numberOfResults,
+                           orderBy=orderBy)
         messages.success(request, "Profile update successfully")
         return redirect('profile')
