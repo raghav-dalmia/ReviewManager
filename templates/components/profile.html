@@ -17,7 +17,7 @@
             <div class="sub-body">
                 <div class="form-group">
                     <label for="numberOfResults" class="form-label">How many reviews do you want to show?</label>
-                    <input type="number" id="numberOfResults" name="numberOfResults" value="{{ creator.resultsToDisplay }}">
+                    <input type="number" id="numberOfResults" name="numberOfResults" value="{{ creator.resultsToDisplay }}" readonly>
                 </div>
                 <div class="input-group w-75 mx-auto mt-2 mb-4">
                     <input type="range" id="resultRange" value="{{ creator.resultsToDisplay }}" min="1" max="25" step="1">
@@ -56,7 +56,7 @@
                     <div class="col-md">
                         <div class="mb-2">
                             <label for="username">Username</label>
-                            <input type="text" id="username" value="{{ creator.user.username }}" disabled readonly>
+                            <input type="text" id="username" value="{{ creator.user.username }}" readonly>
                         </div>
                     </div>
                     <div class="col-md">
@@ -88,6 +88,44 @@
         </div>
     </div>
     <br>
+    <div class="card ">
+        <div class="card-body">
+            <div class="sub-header">Contact Details</div>
+            <br>
+            <div class="sub-body">
+                <div class="row g-2">
+                    <div class="col-md">
+                        <div class="mb-2">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" value="{{ creator.phone_number }}">
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="mb-2">
+                            <label for="instagram">Instagram Link</label>
+                            <input type="url" id="instagram" name="instagram" value="{{ creator.instagram_url }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col-md">
+                        <div class="mb-2">
+                            <label for="linkedin">LinkedIn Link</label>
+                            <input type="url" id="linkedin" name="linkedin" value="{{ creator.linkedin_url }}">
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="mb-2">
+                            <label for="facebook">Facebook Link</label>
+                            <input type="url" id="facebook" name="facebook" value="{{ creator.facebook_url }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+
     <div>
         <button form="profileUpdate" type="submit" class="btn btn-outline-primary profile-button">Update Profile</button>
     </div>
@@ -108,6 +146,12 @@
 
 {% block js %}
     {{ block.super }}
+    <script>
+        document.getElementById("copyLink").addEventListener("click", copyLink, false);
+        function copyLink() {
+            navigator.clipboard.writeText("http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}");
+        }
+    </script>
     <script type="text/javascript" src="{% static '/js/components/profile.js' %}"></script>
 {% endblock js %}
 

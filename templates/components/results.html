@@ -1,6 +1,89 @@
 {% extends './sidebar.html' %}
 {% load static %}
+
+{% block css %}
+{{ block.super }}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" type="text/css" href=" {% static '/css/components/results.css' %} ">
+{% endblock css %}
+
 {% block results %}
 {{ block.super }}
-    <h1>This is the results page</h1>
+
+    <div class="p-3">
+
+        <nav>
+            <ul class="pagination justify-content-end">
+                <li class="page-item"><a class="page-link text-light" id="num_7" href="{% url 'creatorAnalytics' num_days=7 %}">7 Days</a></li>
+                <li class="page-item"><a class="page-link text-light" id="num_15"  href="{% url 'creatorAnalytics' num_days=15 %}">15 Days</a></li>
+                <li class="page-item"><a class="page-link text-light" id="num_30"  href="{% url 'creatorAnalytics' num_days=30 %}">30 Days</a></li>
+            </ul>
+        </nav>
+
+        <div class="row row-cols-1 row-cols-md-2 g-3">
+            <div class="col">
+                <div class="card">
+                    <canvas id="pageViewsChart"></canvas>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <canvas id="pageViewsChart2"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("num_{{ num_days|safe }}").classList.add('active');
+        function showChart(chartId, chartData){
+            const ctx = document.getElementById(chartId).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: chartData.dates,
+                    datasets: [{
+                        label: 'Visit Count',
+                        data: chartData.counts,
+                        borderColor: '#007bff',
+                        backgroundColor: '#007bff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            color: 'white',
+                            text: chartData.title,
+                            font: {
+                                size: 18
+                            }
+                        }
+                    },
+                    layout: {
+                        padding: 10
+                    },
+                    scales: {
+                        x: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Date'
+                            }
+                        },
+                        y: {
+                            display: true,
+                            title: {
+                                display: true,
+                                text: 'Visit Count'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        showChart('pageViewsChart', {{ num_page_view|safe }});
+        showChart('pageViewsChart2', {{ num_review_created|safe }});
+    </script>
 {% endblock results %}

@@ -7,7 +7,7 @@ from . import dao
 class ProfileView(View):
 
     def get(self, request):
-        creator = dao.get_creator(request.user)
+        creator = dao.get_creator_from_username(request.user)
         context = {
             "creator": creator
         }
@@ -21,22 +21,21 @@ class ProfileView(View):
         question = str(request.POST['question'])
         numberOfResults = int(request.POST['numberOfResults'])
         orderBy = int(request.POST['orderBy'])
-        phonenumber = int(request.POST['phonenumber'])
+        phone = str(request.POST.get('phone', ""))
         instagram = str(request.POST['instagram'])
         linkedin = str(request.POST['linkedin'])
-        if not dao.models.utils.validPhoneNumber(phonenumber):
-            messages.error(request, "Invalid phone number")
-            return redirect('profile')
+        facebook = str(request.POST['facebook'])
         dao.update_creator(user=request.user,
                            email=email,
                            firstname=firstname,
                            lastname=lastname,
                            description=description,
-                           phonenumber=phonenumber,
+                           phonenumber=phone,
                            instagram=instagram,
                            linkedin=linkedin,
                            question=question,
                            numberOfResults=numberOfResults,
+                           facebook=facebook,
                            orderBy=orderBy)
         messages.success(request, "Profile update successfully")
         return redirect('profile')

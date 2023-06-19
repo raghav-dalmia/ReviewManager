@@ -23,8 +23,7 @@ from django.contrib.auth.decorators import login_required
 
 views = [
     # Will have landing page on this route
-    path('', login_required(TemplateView.as_view(template_name='./components/results.html')), name='about'),
-    path('result/', login_required(TemplateView.as_view(template_name='./components/results.html')), name='results'),
+    path('', login_required(TemplateView.as_view(template_name='./components/profile.html')), name='home'),
     path('form/', login_required(TemplateView.as_view(template_name='./components/form.html')), name='form'),
 ]
 
@@ -34,5 +33,5 @@ urlpatterns = views + [
     path('accounts/', include('allauth.urls')),
     path('user/', include('userProfile.urls')),
     path('review/', include('reviewService.urls')),
-    path('<str:username>/', include('creatorPage.urls')),
+    path('', include('creatorPage.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

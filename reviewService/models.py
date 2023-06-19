@@ -19,6 +19,7 @@ class Review(models.Model):
     packaging = models.TextField(max_length=1500, null=True, blank=True)
     feedback = models.CharField(max_length=1500, null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True, blank=True)
+    is_deleted = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["-created_on"]

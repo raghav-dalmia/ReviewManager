@@ -21,6 +21,12 @@
     padding: 0% 20% 0% 5%;
 }
 
+.profile-button {
+    display: block;
+    margin-left: auto;
+    margin-right: 5rem;
+}
+
 input, textarea, select {
     background: #2C2C2E;
     color: white;
@@ -37,12 +43,6 @@ select {
 label {
     padding-right: 2rem;
     padding-bottom: 0.6rem;
-}
-
-.profile-button {
-    display: block;
-    margin-left: auto;
-    margin-right: 5rem;
 }
 
 @media only screen and (max-width: 768px) {
