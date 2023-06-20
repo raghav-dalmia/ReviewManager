@@ -1,0 +1,21 @@
+{% extends './navbar.html' %}
+{% load static %}
+{% block body %}
+{{ block.super }}
+<div class="image-container">
+    <img src="{% static '/img/error.webp' %}" alt="error_logo">
+</div>
+<style>
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%; /* Set a height for the container if needed */
+    }
+
+    .image-container img {
+      max-width: 100%; /* Optionally, set a maximum width for the image */
+      max-height: 100%; /* Optionally, set a maximum height for the image */
+    }
+</style>
+{% endblock body %}

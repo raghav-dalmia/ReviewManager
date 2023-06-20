@@ -25,6 +25,7 @@ views = [
     # Will have landing page on this route
     path('', login_required(TemplateView.as_view(template_name='./components/profile.html')), name='home'),
     path('form/', login_required(TemplateView.as_view(template_name='./components/form.html')), name='form'),
+    path('home_error/', TemplateView.as_view(template_name='./components/error.html'), name="home_error"),
 ]
 
 urlpatterns = views + [
