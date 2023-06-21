@@ -3,10 +3,6 @@
     background: #222123;
 }
 
-.active {
-    background: #007bff!important;
-}
-
 .card-body{
     border-style: none;
     background-color: #222123;
