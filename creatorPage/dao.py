@@ -15,7 +15,7 @@ def get_review_page_view_context(username: str, num_days: int) -> dict:
     counts, dates = [], []
     for i in range(num_days):
         counts.append(get_view_review_count(username=username, start_date=start_date))
-        dates.append(start_date.strftime("%Y-%m-%d"))
+        dates.append(start_date.strftime("%d-%b"))
         start_date = start_date - timedelta(1)
     return {
         "title": "Views on review page",

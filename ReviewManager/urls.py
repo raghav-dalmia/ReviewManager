@@ -18,12 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from django.conf.urls.static import static
+from django.shortcuts import redirect
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
 views = [
     # Will have landing page on this route
-    path('', login_required(TemplateView.as_view(template_name='./components/profile.html')), name='home'),
+    path('', lambda request: redirect('creatorAnalytics', num_days=7), name='home'),
     path('form/', login_required(TemplateView.as_view(template_name='./components/form.html')), name='form'),
     path('home_error/', TemplateView.as_view(template_name='./components/error.html'), name="home_error"),
 ]

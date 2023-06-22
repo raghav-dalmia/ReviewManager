@@ -8,6 +8,7 @@
 {{ block.super }}
 
 <br/>
+
 <form id="profileUpdate" method="post" action="{% url 'profile' %}">
     {% csrf_token %}
     <div class="card ">
@@ -52,7 +53,19 @@
             <div class="sub-header">Edit Profile</div>
             <br/>
             <div class="sub-body">
-                <div class="row g-2">
+
+
+                <div class="row">
+                    <div class="col-md-4 w-auto mx-auto">
+                        <input id="profile" type="file" class="visually-hidden" accept=".png, .jpg, .jpeg .svg .webp">
+                        <label for="profile" class="m-auto">
+                            <div style="background-image:url('http://i.pravatar.cc/500?img=7'); height:150px; width: 150px; background-size: cover; background-repeat: no-repeat;" class="border border-light rounded-circle position-relative">
+                                <span class="position-absolute bottom-0 start-50 translate-middle badge rounded-pill bg-secondary"><i class="fa-solid fa-user-pen"></i> Edit</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row g-2">
                     <div class="col-md">
                         <div class="mb-2">
                             <label for="username">Username</label>
@@ -66,7 +79,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row g-2">
+                        <div class="row g-2">
                     <div class="col-md">
                         <div class="mb-2">
                             <label for="firstname">First Name</label>
@@ -80,9 +93,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="mb-2">
-                    <label for="description">Description</label>
-                    <textarea id="description" name="description">{{ creator.description }}</textarea>
+                        <div class="row g-2">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description">{{ creator.description }}</textarea>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
