@@ -5,7 +5,6 @@ from userProfile.models import Creator
 from django.core.exceptions import ValidationError
 
 
-
 def get_file_path(instance, filename):
     ext = filename.split('.')[-1]
     filename = "%s.%s" % (int(time.time()), ext)
@@ -28,7 +27,7 @@ class Review(models.Model):
         return str(self.pk) + " - " + str(self.creator.user.username)
 
     def clean(self):
-        if self.ratings<1 or self.ratings>5:
+        if self.ratings < 1 or self.ratings > 5:
             raise ValidationError({'ratings': 'ratings rages: 0 to 5.'})
         super().clean()
 
@@ -52,4 +51,3 @@ class ReviewImage(models.Model):
 
     def __str__(self):
         return str(self.review.pk) + " - " + str(self.pk)
-

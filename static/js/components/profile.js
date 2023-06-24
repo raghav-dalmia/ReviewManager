@@ -3,6 +3,19 @@ document.getElementById("resultRange").onchange = function() {
     document.getElementById("numberOfResults").value = rangeVal;
 }
 
+const imageInput = document.getElementById('profile');
+imageInput.addEventListener('change', function() {
+    const imagePreview = document.getElementById('profile_preview');
+    const file = imageInput.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          imagePreview.src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
+});
+
 function showToast(message) {
       // Create a new toast element
       var toastElement = document.createElement("div");

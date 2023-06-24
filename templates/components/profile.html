@@ -9,7 +9,7 @@
 
 <br/>
 
-<form id="profileUpdate" method="post" action="{% url 'profile' %}">
+<form id="profileUpdate" method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="card ">
         <div class="card-body">
@@ -56,12 +56,11 @@
 
 
                 <div class="row">
-                    <div class="col-md-4 w-auto mx-auto">
-                        <input id="profile" type="file" class="visually-hidden" accept=".png, .jpg, .jpeg .svg .webp">
-                        <label for="profile" class="m-auto">
-                            <div style="background-image:url('http://i.pravatar.cc/500?img=7'); height:150px; width: 150px; background-size: cover; background-repeat: no-repeat;" class="border border-light rounded-circle position-relative">
-                                <span class="position-absolute bottom-0 start-50 translate-middle badge rounded-pill bg-secondary"><i class="fa-solid fa-user-pen"></i> Edit</span>
-                            </div>
+                    <div class="col-md-4 w-auto mx-auto mb-2">
+                        <input id="profile" name="profile" type="file" class="visually-hidden" accept=".png, .jpg, .jpeg, .svg, .webp">
+                        <label for="profile" class="w-auto position-relative" style="padding: 0!important;">
+                            <img src="/media/{{ creator.profile_picture }}" id="profile_preview" height="150" width="150" class="border border-light rounded-circle">
+                            <span class="position-absolute bottom-0 start-50 translate-middle badge rounded-pill bg-secondary"><i class="fa-solid fa-user-pen"></i> Edit</span>
                         </label>
                     </div>
                     <div class="col-md-8">

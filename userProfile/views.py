@@ -14,6 +14,7 @@ class ProfileView(View):
         return render(request, 'components/profile.html', context=context)
 
     def post(self, request):
+        profile_picture = request.FILES['profile']
         email = str(request.POST['email'])
         firstname = str(request.POST['firstname'])
         lastname = str(request.POST['lastname'])
@@ -36,6 +37,7 @@ class ProfileView(View):
                            question=question,
                            numberOfResults=numberOfResults,
                            facebook=facebook,
-                           orderBy=orderBy)
+                           orderBy=orderBy,
+                           profile_picture=profile_picture)
         messages.success(request, "Profile update successfully")
         return redirect('profile')

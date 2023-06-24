@@ -20,6 +20,7 @@ class ORDERING_TYPE(models.IntegerChoices):
 
 class Creator(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile_picture = models.ImageField(upload_to=get_file_path, max_length=50, default='/profile/default.png')
     description = models.CharField(max_length=255, default="", blank=True)
     question = models.CharField(max_length=500, default="We want to hear more", null=False, blank=False)
     resultsToDisplay = models.PositiveIntegerField(default=5, null=False, blank=False)
