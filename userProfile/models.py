@@ -26,9 +26,11 @@ class Creator(models.Model):
     resultsToDisplay = models.PositiveIntegerField(default=5, null=False, blank=False)
     orderBy = models.IntegerField(default=ORDERING_TYPE.BEST, choices=ORDERING_TYPE.choices, null=False, blank=False)
     instagram_url = models.URLField(max_length=300, blank=True)
+    youtube_url = models.URLField(max_length=300, blank=True)
     linkedin_url = models.URLField(max_length=300, blank=True)
     facebook_url = models.URLField(max_length=300, blank=True)
-    phone_number = models.CharField(max_length=10, null=True, blank=True)
+    website_url = models.URLField(max_length=300, blank=True)
+    twitter_url = models.URLField(max_length=300, blank=True)
     last_updated = models.DateTimeField(auto_now=True)
     is_deleted = models.BooleanField(default=False)
 

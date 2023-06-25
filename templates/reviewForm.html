@@ -16,13 +16,21 @@
     <title>{{ username }} - Feedback</title>
   </head>
  <body>
+	<nav class="navbar">
+		<a class="navbar-brand" href="#">
+		<img src="{% static 'creatorPage/img/logo.svg' %}" alt="">
+		</a> 
+		<a href=""></a>
+	
+		<button type="button" class="btn btn-outline-light">Join Us!</button>
+	</nav>
   	<div class="head">
 		<div class="ok">
 			<div class="vector">
 				<object data="{% static '/img/reviewFormVector.svg' %}"> </object>
     		</div>
     		<div class="nudge">
-    			<p>Excited? Esctatic? Elated?</p>
+    			<p>Excited? Ecstatic? Elated?</p>
                 Let us know how you feel about <strong>@{{ username }}</strong>, we love hearing from our customers!
     		</div>
 		</div>
@@ -37,7 +45,7 @@
     				<input type="text" id="igHandle" aria-describedby="igHandle" maxlength="200" placeholder="Just your handle" name = "reviewee">
 			</div>
 
-			<label for="rating" class = "label">How did you like our product?</label>
+			<label for="rating" class = "label">How did you like it?</label>
             <input type="hidden" name="rating" id="rating" min="1" max="5" value="4">
 			<div class="emoji justify-content-center">
 				<ul class="feedback">
@@ -112,7 +120,7 @@
 
 			<div class="form-group details">
 				<label for="feedback" class = "label">{{ question }}</label>
-    				<input type="text" id="feedback" aria-describedby="feedback" maxlength="1500" placeholder="We try our best but we'd love to know more..." name="feedback">
+    				<input type="text" required id="feedback" aria-describedby="feedback" maxlength="1500" placeholder="We try our best but we'd love to know more..." name="feedback">
 			</div>
 
             <div class="form-group mb-1">

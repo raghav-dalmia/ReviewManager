@@ -64,7 +64,7 @@ function isValidInput(inputImages) {
     if(rating<1 || rating>5)
         return false;
     const packaging = $("#packaging").val();
-    if(!(packaging && packaging.length <=1500))
+    if(packaging && packaging.length > 1500)
         return false;
     const feedback = $("#feedback").val();
     return feedback && feedback.length <= 1500;
