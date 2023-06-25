@@ -110,28 +110,42 @@
                 <div class="row g-2">
                     <div class="col-md">
                         <div class="mb-2">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" value="{{ creator.phone_number }}">
+                            <label for="instagram">Instagram</label>
+                            <input type="url" id="social instagram" name="instagram" value="{{ creator.instagram_url }}">
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="mb-2">
-                            <label for="instagram">Instagram Link</label>
-                            <input type="url" id="instagram" name="instagram" value="{{ creator.instagram_url }}">
+                            <label for="youtube">Youtube</label>
+                            <input type="url" id="youtube" name="youtube" value="{{ creator.youtube_url }}">
                         </div>
                     </div>
                 </div>
                 <div class="row g-2">
                     <div class="col-md">
                         <div class="mb-2">
-                            <label for="linkedin">LinkedIn Link</label>
-                            <input type="url" id="linkedin" name="linkedin" value="{{ creator.linkedin_url }}">
+                            <label for="twitter">Twitter</label>
+                            <input type="url" id="social twitter" name="twitter" value="{{ creator.twitter_url }}">
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="mb-2">
-                            <label for="facebook">Facebook Link</label>
-                            <input type="url" id="facebook" name="facebook" value="{{ creator.facebook_url }}">
+                            <label for="website">Website</label>
+                            <input type="url" id="social website" name="website" value="{{ creator.website_url }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col-md">
+                        <div class="mb-2">
+                            <label for="linkedin">LinkedIn</label>
+                            <input type="url" id="social linkedin" name="linkedin" value="{{ creator.linkedin_url }}">
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="mb-2">
+                            <label for="facebook">Facebook</label>
+                            <input type="url" id="social facebook" name="facebook" value="{{ creator.facebook_url }}">
                         </div>
                     </div>
                 </div>
@@ -141,7 +155,7 @@
     <br>
 
     <div>
-        <button form="profileUpdate" type="submit" class="btn btn-outline-primary profile-button">Update Profile</button>
+        <button id = "urlForm" form="profileUpdate" type="submit" class="btn btn-outline-primary profile-button">Update Profile</button>
     </div>
 </form>
 <div class="card-footer text-center">
@@ -166,6 +180,16 @@
             navigator.clipboard.writeText("http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}");
         }
     </script>
+    <script>
+        $(document).ready(function() {
+         $('#urlForm').submit(function() {
+          var url = $('#social');
+          if(url.val().match(/^http:\/\//) == null) {
+           url.val("http://" + url.val());
+          }
+         });
+        });
+       </script>
     <script type="text/javascript" src="{% static '/js/components/profile.js' %}"></script>
 {% endblock js %}
 

@@ -1,6 +1,3 @@
-.filter-blue {
-    filter: invert(32%) sepia(100%) saturate(3144%) hue-rotate(200deg) brightness(104%) contrast(102%);
-  }
 
   .navbar-brand img {
     min-width: 30px;

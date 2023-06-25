@@ -37,12 +37,13 @@ body{
 
 .introduction .name {
     font-size: 1.3rem;
-    max-width: 100%;
+    padding-top: 5px;
 }
 
 .introduction .about {
     font-size: 0.87rem;
     padding-top: 5px;
+    padding-bottom: 10px;
 }
 
 .introduction .socials a{
@@ -55,7 +56,7 @@ body{
 .reviews {
     /* padding-bottom: 1rem; */
     padding-top: 1rem;
-    padding: 1rem 1.4rem;
+    padding: 1rem 1.2rem;
 }
 
 .reviews .review-title {
@@ -67,13 +68,14 @@ body{
 }
 
 .reviews .review-info {
-    padding: 0.6rem 0rem;
     font-size: 0.8rem;
     opacity: 0.7;
 }
 
 .reviews .reviewee {
     padding-left: 0rem;
+    color: #007bff;
+    font-size: 0.87rem;
 }
 
 .reviews .review-content {
@@ -86,7 +88,11 @@ body{
 }
 
 .reviews .rating{
-    padding: 0.5rem 0rem;
+    padding: 0.5rem 0.3rem;
+}
+
+.rating {
+    padding-right: 1rem !important;
 }
 
 .reviews .rating span{
@@ -100,7 +106,7 @@ body{
 }
 
 .metrics .value{
-    font-size: 3rem;
+    font-size: 2.5rem;
     justify-content: center;
 }
 
