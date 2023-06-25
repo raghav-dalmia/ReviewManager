@@ -173,9 +173,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGGING = {
     "version": 1,
+    'disable_existing_loggers': False,
     "handlers": {
         "file": {
-            "level": "ERROR",
+            "level": "DEBUG",
             "class": "logging.FileHandler",
             "filename": "error.log",
         },

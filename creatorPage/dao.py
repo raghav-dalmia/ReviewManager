@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+from django.db.models import Sum
 from .models import PageView
 from userProfile import dao as UserDao
 
@@ -28,3 +29,12 @@ def get_view_review_count(username: str, start_date: date) -> int:
     creator = UserDao.get_creator_from_username(username=username)
     page_view, created = PageView.objects.get_or_create(creator=creator, date=start_date)
     return page_view.visit_count
+
+
+def get_total_review_view_count(username: str, num_days: int) -> int:
+    creator = UserDao.get_creator_from_username(username=username)
+    end_date = date.today()
+    start_date = end_date - timedelta(days=num_days)
+    return int(
+        PageView.objects.filter(creator=creator, date__range=(start_date, end_date)).aggregate(Sum('visit_count'))[
+            'visit_count__sum'])

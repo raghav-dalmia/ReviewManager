@@ -20,15 +20,36 @@
             </ul>
         </nav>
 
+        <div class="row row-cols-1 row-cols-md-3 g-3 mb-3">
+            <div class="col">
+                <div class="card text-center p-3">
+                    <h4 class="text-white"><strong>Average Rating</strong></h4>
+                    <h1>{{ avg_rating|safe }}</h1>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card text-center p-3">
+                    <h4 class="text-white"><strong>Total Reviews</strong></h4>
+                    <h1>{{ total_reviews|safe }}</h1>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card text-center p-3">
+                    <h4 class="text-white"><strong>Views on review page</strong></h4>
+                    <h1>{{ total_views|safe }}</h1>
+                </div>
+            </div>
+        </div>
+
         <div class="row row-cols-1 row-cols-md-2 g-3">
             <div class="col">
                 <div class="card">
-                    <canvas id="pageViewsChart"></canvas>
+                    <canvas id="pageViewsChart" style="height: 35vh;"></canvas>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
-                    <canvas id="pageViewsChart2"></canvas>
+                    <canvas id="pageViewsChart2" style="height: 35vh;"></canvas>
                 </div>
             </div>
         </div>
