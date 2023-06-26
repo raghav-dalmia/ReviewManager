@@ -20,4 +20,5 @@ def creator_analytics(request, num_days: int = 7):
         "num_page_view": creatorPageDao.get_review_page_view_context(username=username, num_days=num_days),
         "num_review_created": reviewServiceDao.get_review_form_view_context(username=username, num_days=num_days)
     }
+    context["max_range"] = int(max(max(context.get("num_page_view").get("counts")), max(context.get("num_review_created").get("counts"))))+1
     return render(request, 'components/results.html', context)

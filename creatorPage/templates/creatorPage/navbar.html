@@ -2,8 +2,20 @@
 <nav class="navbar">
     <a class="navbar-brand" href="#">
     <img src="{% static 'creatorPage/img/logo.svg' %}" alt="">
-    </a> 
-    <a href=""></a>
-
-    <button type="button" class="btn btn-outline-light">Join Us!</button>
+    </a>
+    {% if not user.is_authenticated %}
+			<button type="button" class="btn btn-outline-light">Join Us!</button>
+		{% elif user.username == creatorDetail.user.username %}
+		<div class="btn-toolbar" role="toolbar">
+			<button type="button" class="btn btn-outline-primary" style="margin-right: 10px;" id="copyLink">
+				<i class="fa fa-clone" aria-hidden="true"></i>
+			</button>
+			<a type="button" class="btn btn-outline-success" href="whatsapp://send?text=http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}" target="_blank">
+				<i class="fa-brands fa-whatsapp"></i>
+			</a>
+<!--			<a type="button" class="btn instagram" href="instagram://share?text=http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}" target="_blank">-->
+<!--				<i class="fa-brands fa-instagram"></i>-->
+<!--			</a>-->
+		</div>
+		{% endif %}
 </nav>

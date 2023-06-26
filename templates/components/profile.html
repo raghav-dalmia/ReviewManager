@@ -6,6 +6,12 @@
 {% endblock css %}
 {% block results %}
 {{ block.super }}
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("nav_profile").classList.add('active-button');
+        document.getElementById("side_profile").classList.add('active-button');
+    });
+</script>
 
 <br/>
 
@@ -110,27 +116,27 @@
                 <div class="row g-2">
                     <div class="col-md">
                         <div class="mb-2">
-                            <label for="instagram">Instagram</label>
+                            <label for="social instagram">Instagram</label>
                             <input type="url" id="social instagram" name="instagram" value="{{ creator.instagram_url }}">
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="mb-2">
-                            <label for="youtube">Youtube</label>
-                            <input type="url" id="youtube" name="youtube" value="{{ creator.youtube_url }}">
+                            <label for="social youtube">Youtube</label>
+                            <input type="url" id="social youtube" name="youtube" value="{{ creator.youtube_url }}">
                         </div>
                     </div>
                 </div>
                 <div class="row g-2">
                     <div class="col-md">
                         <div class="mb-2">
-                            <label for="twitter">Twitter</label>
+                            <label for="social twitter">Twitter</label>
                             <input type="url" id="social twitter" name="twitter" value="{{ creator.twitter_url }}">
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="mb-2">
-                            <label for="website">Website</label>
+                            <label for="social website">Website</label>
                             <input type="url" id="social website" name="website" value="{{ creator.website_url }}">
                         </div>
                     </div>
@@ -138,13 +144,13 @@
                 <div class="row g-2">
                     <div class="col-md">
                         <div class="mb-2">
-                            <label for="linkedin">LinkedIn</label>
+                            <label for="social linkedin">LinkedIn</label>
                             <input type="url" id="social linkedin" name="linkedin" value="{{ creator.linkedin_url }}">
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="mb-2">
-                            <label for="facebook">Facebook</label>
+                            <label for="social facebook">Facebook</label>
                             <input type="url" id="social facebook" name="facebook" value="{{ creator.facebook_url }}">
                         </div>
                     </div>
@@ -160,7 +166,7 @@
 </form>
 <div class="card-footer text-center">
     <br>
-    <h3 class="card-title">Share Review Form Link</h3>
+    <h3 class="card-title">Share Your RevuLink</h3>
     <button type="button" class="btn btn-outline-dark" id="copyLink">
         <i class="fa fa-clone" aria-hidden="true"></i> Copy Link
     </button>
@@ -174,10 +180,12 @@
 
 {% block js %}
     {{ block.super }}
+
     <script>
         document.getElementById("copyLink").addEventListener("click", copyLink, false);
         function copyLink() {
             navigator.clipboard.writeText("http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}");
+            showToast("Link copied");
         }
     </script>
     <script>

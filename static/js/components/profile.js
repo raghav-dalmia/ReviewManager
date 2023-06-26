@@ -24,7 +24,7 @@ function showToast(message) {
       toastElement.setAttribute("aria-live", "assertive");
       toastElement.setAttribute("aria-atomic", "true");
       toastElement.setAttribute("data-bs-autohide", "true");
-      toastElement.setAttribute("data-bs-delay", "3000");
+      toastElement.setAttribute("data-bs-delay", "5000");
 
       // Create the toast header
       var toastHeader = document.createElement("div");

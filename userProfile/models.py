@@ -2,6 +2,7 @@ import os
 import time
 from . import utils
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
@@ -41,6 +42,8 @@ class Creator(models.Model):
 
     def save(self, *args, **kwargs):
         self.full_clean()
+        if not self.pk:
+            self.last_updated = timezone.now()
         return super().save(*args, **kwargs)
 
     def __str__(self):

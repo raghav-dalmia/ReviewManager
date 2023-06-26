@@ -23,4 +23,9 @@
     <div class="row review-content">
         {{ review.feedback }}
     </div>
+    <div>
+        {% for image in review_img %}
+            <img src="/media/{{ image.attachment }}" height="50" width="50" class="border border-light mt-2">
+        {% endfor %}
+    </div>
 </div>

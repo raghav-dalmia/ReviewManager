@@ -1,6 +1,7 @@
 import os
 import time
 from django.db import models
+from django.utils import timezone
 from userProfile.models import Creator
 from django.core.exceptions import ValidationError
 
@@ -39,6 +40,8 @@ class Review(models.Model):
             self.reviewee = self.reviewee.strip()
             if len(self.reviewee) == 0:
                 self.reviewee = "Anonymous"
+        if not self.pk:
+            self.created_on = timezone.now()
         return super().save(*args, **kwargs)
 
 

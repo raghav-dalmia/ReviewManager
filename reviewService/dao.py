@@ -1,4 +1,5 @@
 from datetime import date, timedelta
+from django.utils import timezone
 from django.db.models import Avg
 from userProfile import dao as UserDao
 from . import models as ReviewModel
@@ -22,14 +23,21 @@ def create_review(username: str, feedback: str, reviewee: str, packaging: str, r
 def get_review_context(username: str) -> dict:
     creator = UserDao.get_creator_from_username(username=username)
     reviews = ReviewModel.Review.objects.order_by(creator.get_orderby_clause())[:creator.resultsToDisplay]
+    review_context = []
+    for review in reviews:
+        review_img = ReviewModel.ReviewImage.objects.filter(review=review)
+        review_context.append({
+            "review": review,
+            "review_img": review_img
+        })
     return {
         "creatorDetail": creator,
-        "reviews": reviews
+        "reviews": review_context
     }
 
 
 def get_review_form_view_context(username: str, num_days: int) -> dict:
-    start_date = date.today()
+    start_date = timezone.now().date()
     counts, dates = [], []
     for i in range(num_days):
         counts.append(get_create_review_count(username=username, start_date=start_date))
@@ -37,8 +45,8 @@ def get_review_form_view_context(username: str, num_days: int) -> dict:
         start_date = start_date - timedelta(days=1)
     return {
         "title": "Review received",
-        "counts": counts,
-        "dates": dates,
+        "counts": counts[::-1],
+        "dates": dates[::-1],
     }
 
 
@@ -50,15 +58,15 @@ def get_create_review_count(username: str, start_date: date) -> int:
 
 def get_average_rating(username: str, num_days: int):
     creator = UserDao.get_creator_from_username(username=username)
-    end_date = date.today()
-    start_date = end_date - timedelta(days=num_days)
+    end_date = timezone.now().date()
+    start_date = end_date - timedelta(days=num_days-1)
     avg_rating = ReviewModel.Review.objects.filter(creator=creator, created_on__range=(start_date, end_date)).aggregate(Avg('ratings'))['ratings__avg']
     return avg_rating or "Oops!! you don't have reviews."
 
 
 def get_total_number_of_reviews(username: str, num_days: int) -> int:
     creator = UserDao.get_creator_from_username(username=username)
-    end_date = date.today()
-    start_date = end_date - timedelta(days=num_days)
+    end_date = timezone.now().date()
+    start_date = end_date - timedelta(days=num_days-1)
     return int(ReviewModel.Review.objects.filter(creator=creator, created_on__range=(start_date, end_date)).count())
 

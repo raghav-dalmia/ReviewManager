@@ -30,7 +30,7 @@
                     <h5 class="font-weight-light">New here? Let's get you started!</h5>
                 </div>
                 <div class="row g-2">
-                    <form method="post" action={% url 'signup' %}>
+                    <form method="post" action="{% url 'signup' %}">
                         {% csrf_token %}
                         <div class="form-floating mb-2">
                             <input type="text" class="form-control" id="username" name="username" placeholder="User Name" required>

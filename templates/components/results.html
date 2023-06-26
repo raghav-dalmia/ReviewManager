@@ -56,18 +56,23 @@
     </div>
 
     <script>
-        document.getElementById("num_{{ num_days|safe }}").classList.add('active');
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("nav_result").classList.add('active-button');
+            document.getElementById("side_result").classList.add('active-button');
+            document.getElementById("num_{{ num_days|safe }}").classList.add('active');
+        });
         function showChart(chartId, chartData){
             const ctx = document.getElementById(chartId).getContext('2d');
             new Chart(ctx, {
-                type: 'bar',
+                type: 'line',
                 data: {
                     labels: chartData.dates,
                     datasets: [{
                         label: 'Visit Count',
                         data: chartData.counts,
-                        borderColor: '#007bff',
-                        backgroundColor: '#007bff'
+                        borderColor: 'rgba(0,123,255, 1)',
+                        backgroundColor: 'rgba(0,123,255, 0.5)',
+                        fill: true
                     }]
                 },
                 options: {
@@ -98,6 +103,14 @@
                             title: {
                                 display: true,
                                 text: 'Visit Count'
+                            },
+                            min: 0,
+                            max: {{ max_range|safe }},
+                            ticks: {
+                              stepSize: 2
+                            },
+                            grid: {
+                                color: 'rgba(200,200,200, 0.3)',
                             }
                         }
                     }
