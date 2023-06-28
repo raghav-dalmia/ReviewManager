@@ -1,7 +1,7 @@
 import traceback
 import logging
 from datetime import datetime
-from django.http import HttpResponse
+from django.shortcuts import render
 from django.utils.deprecation import MiddlewareMixin
 
 logger = logging.getLogger("django")
@@ -19,7 +19,7 @@ class LogRequestExceptionMiddleware(MiddlewareMixin):
         self.log_error("Timestamp: " + str(datetime.now()))
         self.log_error(request.body)
         self.log_error(traceback.format_exc())
-        return HttpResponse("in exception")
+        return render(request, './components/error.html')
     
     @staticmethod
     def log_error(message: str):

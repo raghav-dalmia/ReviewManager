@@ -1,17 +1,13 @@
 {% extends './sidebar.html' %}
 {% load static %}
-
 {% block css %}
 {{ block.super }}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet" type="text/css" href=" {% static '/css/components/results.css' %} ">
 {% endblock css %}
-
 {% block results %}
 {{ block.super }}
-
     <div class="p-3">
-
         <nav>
             <ul class="pagination justify-content-end">
                 <li class="page-item"><a class="page-link text-light" id="num_7" href="{% url 'creatorAnalytics' num_days=7 %}">7 Days</a></li>
@@ -19,7 +15,6 @@
                 <li class="page-item"><a class="page-link text-light" id="num_30"  href="{% url 'creatorAnalytics' num_days=30 %}">30 Days</a></li>
             </ul>
         </nav>
-
         <div class="row row-cols-1 row-cols-md-3 g-3 mb-3">
             <div class="col">
                 <div class="card text-center p-3">
@@ -40,7 +35,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row row-cols-1 row-cols-md-2 g-3">
             <div class="col">
                 <div class="card">
@@ -54,7 +48,6 @@
             </div>
         </div>
     </div>
-
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("nav_result").classList.add('active-button');

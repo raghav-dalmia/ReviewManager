@@ -14,7 +14,6 @@
 </script>
 
 <br/>
-
 <form id="profileUpdate" method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="card ">
@@ -175,12 +174,8 @@
     </a>
     <br>
 </div>
-
-{% endblock results %}
-
-{% block js %}
+{% endblock results %}{% block js %}
     {{ block.super }}
-
     <script>
         document.getElementById("copyLink").addEventListener("click", copyLink, false);
         function copyLink() {

@@ -27,6 +27,8 @@ views = [
     path('', login_required(lambda request: redirect('creatorAnalytics', num_days=7)), name='home'),
     path('form/', login_required(TemplateView.as_view(template_name='./components/form.html')), name='form'),
     path('home_error/', TemplateView.as_view(template_name='./components/error.html'), name="home_error"),
+    path('400/', TemplateView.as_view(template_name='./components/error.html'), name='error_400'),
+    path('500/', TemplateView.as_view(template_name='./components/error.html'), name='error_500'),
 ]
 
 urlpatterns = views + [

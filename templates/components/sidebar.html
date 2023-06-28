@@ -12,10 +12,6 @@
             <i class="fa-solid fa-chart-simple"></i>
             <span>Results</span>
         </a>
-        <!-- <a href="{% url 'form' %}" class="redirect-tab-panel">
-            <i class="fa-regular fa-rectangle-list"></i>
-            <span>Form</span>
-        </a> -->
         <a href="{% url 'profile' %}" class="redirect-tab-panel" id="side_profile">
             <i class="fa-solid fa-user"></i>
             <span>Profile</span>
@@ -30,9 +26,7 @@
         {% endblock results %}
     </div>
 </div>
-{% endblock body %}
-
-{% block js %}
+{% endblock body %}{% block js %}
 {{ block.super }}
-    <script type="text/javascript" src="{% static '/js/components/sidebar.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/components/sidebar.js' %}"></script>
 {% endblock js %}

@@ -7,59 +7,53 @@
 {{ block.super }}
     <link rel="stylesheet" type="text/css" href=" {% static '/css/account/login.css' %} ">
 {% endblock css %}
-    
-    <div class="row h-100">
-        <div class="col left-banner">
-            <div class="row">
-                <img class = "login-svg" src="{% static 'img/login.svg' %}" alt="">
-            </div>
-            <br/>
-            <div class="row">
-                <h1 class="font-weight-light">Manage reviews, as easily as ever.</h1>    
-            </div>
+<div class="row h-100">
+    <div class="col left-banner">
+        <div class="row">
+            <img class = "login-svg" src="{% static 'img/login.svg' %}" alt="">
         </div>
-        <div class="col">
-            <div class="card">
-                <div class="card-body">
-                    <div>
-                        <img class = "login-svg" src="{% static 'img/logo.svg' %}" alt="">
-                    </div>
-                    <br/>
-                    <br/>
-                    <div class="title-text">
-                        <h5 class="font-weight-light">Sign in to continue</h5>
-                    </div>
-                    <div class="row g-2">
-                        <form method="post" action={% url 'login' %}>
-                            {% csrf_token %}
-                            <div class="form-floating mb-2">
-                                <input type="text" class="form-control" id="username" name="username" required>
-                                <label for="username">User Name</label>
+        <br/>
+        <div class="row">
+            <h1 class="font-weight-light">Manage reviews, as easily as ever.</h1>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <div>
+                    <img class = "login-svg" src="{% static 'img/logo.svg' %}" alt="">
+                </div>
+                <br/>
+                <br/>
+                <div class="title-text">
+                    <h5 class="font-weight-light">Sign in to continue</h5>
+                </div>
+                <div class="row g-2">
+                    <form method="post" action={% url 'login' %}>
+                        {% csrf_token %}
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" id="username" name="username" required>
+                            <label for="username">User Name</label>
+                        </div>
+                        <div class="form-floating mb-2">
+                            <input type="password" class="form-control" id="password" name="password" minlength="4" required>
+                            <label for="password">Password</label>
+                        </div>
+                        <br/>
+                        <div class="btn-toolbar float-end" role="toolbar">
+                            <div class="btn-group" role="group">
+                                <button type="submit" class="btn btn-outline-primary">Login</button>
                             </div>
-                            <div class="form-floating mb-2">
-                                <input type="password" class="form-control" id="password" name="password" minlength="4" required>
-                                <label for="password">Password</label>
-                            </div>
-                            <br/>
-                            <div class="btn-toolbar float-end" role="toolbar">
-                                <div class="btn-group" role="group">
-                                    <button type="submit" class="btn btn-outline-primary">Login</button>
-                                </div>
-                            </div>
-                        </form>
-                        <p class="my-1 text-center fw-lighter">OR</p>
-                        <a class="btn btn-outline-primary" href={% provider_login_url "google" action="login" %}>
-                            <i class="fa-brands fa-google"></i> Login with Google
-                        </a>
-                        <p class="my-2"><a href={% url 'signup' %}>Want to create new account</a>?</p>
-                    </div>
+                        </div>
+                    </form>
+                    <p class="my-1 text-center fw-lighter">OR</p>
+                    <a class="btn btn-outline-primary" href={% provider_login_url "google" action="login" %}>
+                        <i class="fa-brands fa-google"></i> Login with Google
+                    </a>
+                    <p class="my-2"><a href={% url 'signup' %}>Want to create new account</a>?</p>
                 </div>
             </div>
         </div>
     </div>
-  </div>
-
-  
-    
-
+</div>
 {% endblock %}
