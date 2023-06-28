@@ -20,6 +20,10 @@
             <i class="fa-solid fa-user"></i>
             <span>Profile</span>
         </a>
+        <a href="{% url 'creatorPage' username=user.username %}" target="_blank" class="redirect-tab-panel">
+            <i class="fa-regular fa-star"></i>
+            <span>Reviews</span>
+        </a>
     </div>
     <div class="col-sm" style="background: #2C2C2E;">
         {% block results %}

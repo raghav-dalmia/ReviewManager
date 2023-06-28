@@ -31,6 +31,7 @@
                     <div><a href="{% url 'creatorAnalytics' num_days=7 %}" id="nav_result" class="redirect-tab">Results</a></div>
                     <!-- <div><a href="{% url 'form' %}" class="redirect-tab">Form</a></div> -->
                     <div><a aria-current="page" href="{% url 'profile' %}" class="redirect-tab">Profile</a></div>
+                    <div><a aria-current="page" href="{% url 'creatorPage' username=user.username %}" target="_blank" class="redirect-tab">Reviews</a></div>
                     <div><a type="button" class="btn btn-outline-dark" id="nav_profile" href="{% url 'logout' %}">Log Out</a></div>
                 </nav>
                 <div class="bar-icon"><i class="fa-solid fa-bars"></i></div>
