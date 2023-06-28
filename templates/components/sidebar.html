@@ -1,11 +1,8 @@
 {% extends './navbar.html' %}
 {% load static %}
-{% load compress %}
 {% block css %}
 {{ block.super }}
-{% compress css %}
 <link rel="stylesheet" type="text/css" href=" {% static '/css/components/sidebar.css' %} ">
-{% endcompress %}
 {% endblock css %}
 {% block body %}
 {{ block.super }}
@@ -15,6 +12,10 @@
             <i class="fa-solid fa-chart-simple"></i>
             <span>Results</span>
         </a>
+        <!-- <a href="{% url 'form' %}" class="redirect-tab-panel">
+            <i class="fa-regular fa-rectangle-list"></i>
+            <span>Form</span>
+        </a> -->
         <a href="{% url 'profile' %}" class="redirect-tab-panel" id="side_profile">
             <i class="fa-solid fa-user"></i>
             <span>Profile</span>
@@ -30,9 +31,8 @@
     </div>
 </div>
 {% endblock body %}
+
 {% block js %}
 {{ block.super }}
-{% compress js %}
-<script type="text/javascript" src="{% static '/js/components/sidebar.js' %}"></script>
-{% endcompress %}
+    <script type="text/javascript" src="{% static '/js/components/sidebar.js' %}"></script>
 {% endblock js %}

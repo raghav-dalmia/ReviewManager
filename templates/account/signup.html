@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load compress %}
 {% block title%}Create Account{% endblock %}
 {% block body %}
 {% load socialaccount %}
 {% block css %}
 {{ block.super }}
-    {% compress css %}
     <link rel="stylesheet" type="text/css" href=" {% static '/css/account/signup.css' %} ">
-    {% endcompress %}
 {% endblock css %}
+
 <div class="row h-100">
     <div class="col left-banner">
         <div class="row">
@@ -24,7 +22,7 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <img class = "login-svg" src="{% static 'img/logo.svg' %}">
+                    <img class = "login-svg" src="{% static 'img/logo.svg' %}" alt="">
                 </div>
                 <br/>
                 <br/>
@@ -50,11 +48,15 @@
                         </div>
                     </form>
                     <div>
-                        <p class="text-center mt-2"><a href="{% url 'login' %}">Already have an account.</a></p>
+                        <p class="text-center mt-2"><a href={% url 'login' %}>Already have an account.</a></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+</div>
+
+    
+
 {% endblock %}
