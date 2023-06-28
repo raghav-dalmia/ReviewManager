@@ -1,8 +1,11 @@
 {% extends './sidebar.html' %}
 {% load static %}
+{% load compress %}
 {% block css %}
 {{ block.super }}
-<link rel="stylesheet" type="text/css" href=" {% static '/css/components/profile.css' %} ">
+{% compress css %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/components/profile.css' %}">
+{% endcompress %}
 {% endblock css %}
 {% block results %}
 {{ block.super }}
@@ -159,10 +162,7 @@
         </div>
     </div>
     <br>
-
-    <div>
-        <button id = "urlForm" form="profileUpdate" type="submit" class="btn btn-outline-primary profile-button mb-2">Update Profile</button>
-    </div>
+    <div><button id = "urlForm" form="profileUpdate" type="submit" class="btn btn-outline-primary profile-button mb-2">Update Profile</button></div>
 </form>
 <div class="card-footer text-center">
     <br>
@@ -175,29 +175,28 @@
     </a>
     <br>
 </div>
-
 {% endblock results %}
-
 {% block js %}
-    {{ block.super }}
-
-    <script>
-        document.getElementById("copyLink").addEventListener("click", copyLink, false);
-        function copyLink() {
-            navigator.clipboard.writeText("http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}");
-            showToast("Link copied");
-        }
-    </script>
-    <script>
-        $(document).ready(function() {
-         $('#urlForm').submit(function() {
-          var url = $('#social');
-          if(url.val().match(/^http:\/\//) == null) {
-           url.val("http://" + url.val());
-          }
-         });
-        });
-       </script>
-    <script type="text/javascript" src="{% static '/js/components/profile.js' %}"></script>
+{{ block.super }}
+{% compress js %}
+<script>
+    document.getElementById("copyLink").addEventListener("click", copyLink, false);
+    function copyLink() {
+        navigator.clipboard.writeText("http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}");
+        showToast("Link copied");
+    }
+</script>
+<script>
+    $(document).ready(function() {
+     $('#urlForm').submit(function() {
+      var url = $('#social');
+      if(url.val().match(/^http:\/\//) == null) {
+       url.val("http://" + url.val());
+      }
+     });
+    });
+</script>
+<script type="text/javascript" src="{% static '/js/components/profile.js' %}"></script>
+{% endcompress %}
 {% endblock js %}
 

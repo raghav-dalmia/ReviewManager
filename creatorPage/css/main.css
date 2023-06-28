@@ -1,0 +1,115 @@
+body{
+    background: black;
+    color: white
+}
+
+
+/* NAVBAR CSS */
+.navbar-brand img{
+    min-width: 30px;
+    min-height: 15px;
+    width: 8rem;
+    height: 3rem;
+}
+
+/* INTRODUCTION CSS */
+.introduction img{
+    height: 10rem;
+    width: 10rem;
+    object-fit: cover;
+    border-radius: 50%;
+    object-position: center;
+}
+
+@media only screen and (max-width: 600px){
+    .introduction img{
+        height: 6.5rem;
+        width: 6.5rem;
+        object-fit: cover;
+        border-radius: 50%;
+        object-position: center;
+    } 
+}
+
+.introduction .info {
+    margin: 0rem 1rem;
+}
+
+.introduction .name {
+    font-size: 1.3rem;
+    padding-top: 5px;
+}
+
+.introduction .about {
+    font-size: 0.87rem;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+
+.introduction .socials a{
+    padding: 0.5rem 0.5rem;
+}
+
+
+/* Reviews CSS */
+
+.reviews {
+    /* padding-bottom: 1rem; */
+    padding-top: 1rem;
+    padding: 1rem 1.2rem;
+}
+
+.reviews .review-title {
+    color: #007bff;
+    font-size: 1.2rem;
+    line-height: 100%;
+    letter-spacing: 1px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.reviews .review-info {
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+.reviews .reviewee {
+    padding-left: 0rem;
+    color: #007bff;
+    font-size: 0.87rem;
+}
+
+.reviews .review-content {
+    font-size: 0.87rem;
+    font-family: 'Roboto', sans-serif;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.reviews .rating{
+    padding: 0.5rem 0.3rem;
+}
+
+.rating {
+    padding-right: 1rem !important;
+}
+
+.reviews .rating span{
+    padding-left: 0.2rem;
+}
+
+/* METRICS */
+
+.metrics {
+    padding: 1rem 2rem;
+}
+
+.metrics .value{
+    font-size: 2.5rem;
+    justify-content: center;
+}
+
+.metrics .title{
+    justify-content: center;
+}

@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'compressor',
+
     # all auth
     'django.contrib.sites',
     'allauth',
@@ -60,7 +62,6 @@ LOGIN_REDIRECT_URL = 'results'
 ACCOUNT_LOGOUT_ON_GET = True
 SOCIALACCOUNT_QUERY_EMAIL = True
 SOCIALACCOUNT_LOGIN_ON_GET = True
-
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -151,7 +152,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_ROOT = '/Users/mayankchauhan/Desktop/Odium/ReviewManager'
+STATIC_ROOT = '/Users/raghavdalmia/PycharmProjects/ReviewManager'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
@@ -189,3 +190,16 @@ LOGGING = {
         },
     },
 }
+
+COMPRESS_ENABLED = True
+COMPRESS_OUTPUT_DIR = 'compressed/'
+COMPRESS_CSS_FILTERS = [
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter',
+]
+COMPRESS_JS_FILTERS = [
+    'compressor.filters.jsmin.JSMinFilter',
+]
+
+COMPRESS_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
+COMPRESS_URL = STATIC_URL

@@ -1,17 +1,18 @@
 {% extends './sidebar.html' %}
 {% load static %}
-
+{% load compress %}
 {% block css %}
 {{ block.super }}
+{% compress js %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endcompress %}
+{% compress css %}
 <link rel="stylesheet" type="text/css" href=" {% static '/css/components/results.css' %} ">
+{% endcompress %}
 {% endblock css %}
-
 {% block results %}
 {{ block.super }}
-
     <div class="p-3">
-
         <nav>
             <ul class="pagination justify-content-end">
                 <li class="page-item"><a class="page-link text-light" id="num_7" href="{% url 'creatorAnalytics' num_days=7 %}">7 Days</a></li>
@@ -19,7 +20,6 @@
                 <li class="page-item"><a class="page-link text-light" id="num_30"  href="{% url 'creatorAnalytics' num_days=30 %}">30 Days</a></li>
             </ul>
         </nav>
-
         <div class="row row-cols-1 row-cols-md-3 g-3 mb-3">
             <div class="col">
                 <div class="card text-center p-3">
@@ -54,70 +54,71 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("nav_result").classList.add('active-button');
-            document.getElementById("side_result").classList.add('active-button');
-            document.getElementById("num_{{ num_days|safe }}").classList.add('active');
-        });
-        function showChart(chartId, chartData){
-            const ctx = document.getElementById(chartId).getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: chartData.dates,
-                    datasets: [{
-                        label: 'Visit Count',
-                        data: chartData.counts,
-                        borderColor: 'rgba(0,123,255, 1)',
-                        backgroundColor: 'rgba(0,123,255, 0.5)',
-                        fill: true
-                    }]
+{% compress js %}
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("nav_result").classList.add('active-button');
+        document.getElementById("side_result").classList.add('active-button');
+        document.getElementById("num_{{ num_days|safe }}").classList.add('active');
+    });
+    function showChart(chartId, chartData){
+        const ctx = document.getElementById(chartId).getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: chartData.dates,
+                datasets: [{
+                    label: 'Visit Count',
+                    data: chartData.counts,
+                    borderColor: 'rgba(0,123,255, 1)',
+                    backgroundColor: 'rgba(0,123,255, 0.5)',
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        color: 'white',
+                        text: chartData.title,
+                        font: {
+                            size: 18
+                        }
+                    }
                 },
-                options: {
-                    responsive: true,
-                    plugins: {
+                layout: {
+                    padding: 10
+                },
+                scales: {
+                    x: {
+                        display: true,
                         title: {
                             display: true,
-                            color: 'white',
-                            text: chartData.title,
-                            font: {
-                                size: 18
-                            }
+                            text: 'Date'
                         }
                     },
-                    layout: {
-                        padding: 10
-                    },
-                    scales: {
-                        x: {
+                    y: {
+                        display: true,
+                        title: {
                             display: true,
-                            title: {
-                                display: true,
-                                text: 'Date'
-                            }
+                            text: 'Visit Count'
                         },
-                        y: {
-                            display: true,
-                            title: {
-                                display: true,
-                                text: 'Visit Count'
-                            },
-                            min: 0,
-                            max: {{ max_range|safe }},
-                            ticks: {
-                              stepSize: 2
-                            },
-                            grid: {
-                                color: 'rgba(200,200,200, 0.3)',
-                            }
+                        min: 0,
+                        max: {{ max_range|safe }},
+                        ticks: {
+                          stepSize: 2
+                        },
+                        grid: {
+                            color: 'rgba(200,200,200, 0.3)',
                         }
                     }
                 }
-            });
-        }
-        showChart('pageViewsChart', {{ num_page_view|safe }});
-        showChart('pageViewsChart2', {{ num_review_created|safe }});
-    </script>
+            }
+        });
+    }
+    showChart('pageViewsChart', {{ num_page_view|safe }});
+    showChart('pageViewsChart2', {{ num_review_created|safe }});
+</script>
+{% endcompress %}
 {% endblock results %}
