@@ -1,6 +1,13 @@
 {% load star_rating %}
 <div class="reviews container">
     <div class="row review-info">
+        <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for image in review_img %}
+                <div class="carousel-item"><img src="/media/{{ image.attachment }}" class="d-block w-100"></div>
+                {% endfor %}
+            </div>
+        </div>
         <div class="col reviewee">
             @{{ review.reviewee }}
         </div>

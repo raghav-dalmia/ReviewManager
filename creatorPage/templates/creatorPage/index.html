@@ -1,4 +1,5 @@
 {% load static %}
+{% load star_rating %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -15,6 +16,9 @@
     <title>Hello, world!</title>
   </head>
   <body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <div class="container">
         <nav class="navbar">
             <a class="navbar-brand" href="#">
@@ -88,12 +92,59 @@
             </div>
         </div>
         {% for review_ctx in reviews %}
-          {% include './reviews.html' with review=review_ctx.review review_img=review_ctx.review_img %}
+        <div class="reviews container">
+            <div class="row review-info">
+                {% if review_ctx.review_img|length > 1 %}
+                <div id="carousel_{{ forloop.counter }}" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        {% for image in review_ctx.review_img %}
+                        <button type="button" data-bs-target="#carousel_{{ forloop.parentloop.counter }}" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.counter == 1 %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+                        {% endfor %}
+                    </div>
+                    <div class="carousel-inner">
+                        {% for image in review_ctx.review_img %}
+                        <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}"><img src="/media/{{ image.attachment }}" class="d-block w-100"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <script>
+                  var carousel_{{ forloop.counter }} = document.getElementById('carousel_{{ forloop.counter }}');
+                  var carousel = new bootstrap.Carousel(carousel_{{ forloop.counter }}, {
+                    interval: 5000,
+                    wrap: true,
+                  });
+                </script>
+                {% endif %}
+                <div class="col reviewee">
+                    @{{ review_ctx.review.reviewee }}
+                </div>
+                <div class="row rating">
+                    {% with ''|center:review_ctx.review.ratings as range %}
+                    {% for _ in range %}
+                        <span class="fa-sharp fa-solid fa-star"></span>
+                    {% endfor %}
+                    {% endwith %}
+
+                    {% with review_ctx.review.ratings|subtract_:"5" as emptyStar %}
+                    {% with ''|center:emptyStar as range %}
+                    {% for _ in range %}
+                        <span class="fa-sharp fa-regular fa-star"></span>
+                    {% endfor %}
+                    {% endwith %}
+                    {% endwith %}
+                </div>
+            </div>
+            <div class="row review-content">
+                {{ review_ctx.review.feedback }}
+            </div>
+            <div>
+                {% for image in review_img %}
+                    <img src="/media/{{ image.attachment }}" height="50" width="50" class="border border-light mt-2">
+                {% endfor %}
+            </div>
+        </div>
         {% endfor %}
     </div>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <div class="position-fixed bottom-0 end-0 p-3">
         <div id="toastContainer"></div>
     </div>
