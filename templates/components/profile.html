@@ -167,7 +167,7 @@
     <button type="button" class="btn btn-outline-dark" id="copyLink">
         <i class="fa fa-clone" aria-hidden="true"></i> Copy Link
     </button>
-    <a type="button" class="btn btn-outline-success" href="whatsapp://send?text=http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}">
+    <a type="button" class="btn btn-outline-success" href="whatsapp://send?text={{ domain|safe }}{% url 'reviewForm' username=user.username %}">
         <i class="fa-brands fa-whatsapp"></i> WhatsApp
     </a>
     <br>
@@ -177,7 +177,7 @@
     <script>
         document.getElementById("copyLink").addEventListener("click", copyLink, false);
         function copyLink() {
-            navigator.clipboard.writeText("http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}");
+            navigator.clipboard.writeText("{{ domain|safe }}{% url 'reviewForm' username=user.username %}");
             showToast("Link copied");
         }
         $(document).ready(function() {

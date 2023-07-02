@@ -34,7 +34,7 @@
 			<button type="button" class="btn btn-outline-primary me-2" id="copyLink">
 				<i class="fa fa-clone" aria-hidden="true"></i>
 			</button>
-			<a type="button" class="btn btn-outline-success me-2" href="whatsapp://send?text=http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}" target="_blank">
+			<a type="button" class="btn btn-outline-success me-2" href="whatsapp://send?text={{ domain|safe }}{% url 'reviewForm' username=user.username %}" target="_blank">
 				<i class="fa-brands fa-whatsapp"></i>
 			</a>
 		</div>
@@ -199,7 +199,7 @@
         {% endif %}
         document.getElementById("copyLink").addEventListener("click", copyLink, false);
         function copyLink() {
-            navigator.clipboard.writeText("http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}");
+            navigator.clipboard.writeText("{{ domain|safe }}{% url 'reviewForm' username=user.username %}");
             showToast("Link copied");
         }
     </script>
