@@ -13,7 +13,7 @@
     <script src="https://kit.fontawesome.com/d787f74692.js" crossorigin="anonymous"></script>
     <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
 
-    <title>Hello, world!</title>
+    <title>RevuLink - Collect reviews and listen to your customers</title>
   </head>
   <body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -118,7 +118,7 @@
                 <div class="col reviewee">
                     @{{ review_ctx.review.reviewee }}
                 </div>
-                <div class="row rating">
+                <div class="col rating text-end">
                     {% with ''|center:review_ctx.review.ratings as range %}
                     {% for _ in range %}
                         <span class="fa-sharp fa-solid fa-star"></span>
