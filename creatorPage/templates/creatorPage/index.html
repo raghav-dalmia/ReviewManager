@@ -94,7 +94,7 @@
         {% for review_ctx in reviews %}
         <div class="reviews container">
             <div class="row review-info">
-                {% if review_ctx.review_img|length > 1 %}
+                {% if review_ctx.review_img|length > 0 %}
                 <div id="carousel_{{ forloop.counter }}" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         {% for image in review_ctx.review_img %}
@@ -103,7 +103,7 @@
                     </div>
                     <div class="carousel-inner">
                         {% for image in review_ctx.review_img %}
-                        <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}"><img src="/media/{{ image.attachment }}" class="d-block w-100"></div>
+                        <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}"><img src="/media/{{ image.attachment }}" class="d-block mx-auto" style="max-height: 250px; max-width: 100%; height: auto; width: auto;"></div>
                         {% endfor %}
                     </div>
                 </div>
