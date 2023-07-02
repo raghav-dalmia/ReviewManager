@@ -22,7 +22,7 @@
                     {% if avg_rating == -1 %}
                         <p>You don't have reviews yet, share your link to get started.</p>
                     {% else %}
-                        <h1>{{ avg_rating|safe }}</h1>
+                        <h1>{{ avg_rating|safe|floatformat:1 }}</h1>
                     {% endif %}
                 </div>
             </div>

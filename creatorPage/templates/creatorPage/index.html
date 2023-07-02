@@ -75,7 +75,7 @@
             <div class="row">
                 <div class="col met-1">
                     <div class="row value">
-                        235
+                        {{ total_reviews|safe }}
                     </div>
                     <div class="row title">
                         Total Reviews
@@ -83,7 +83,7 @@
                 </div>
                 <div class="col met-2">
                     <div class="row value">
-                        4.9
+                        {{ avg_rating|safe|floatformat:1 }}
                     </div>
                     <div class="row title">
                         Average Rating

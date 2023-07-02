@@ -7,6 +7,8 @@ from . import dao as creatorPageDao
 def creator_page(request, username: str):
     creatorPageDao.add_view_review_analytics(username=username)
     context = reviewServiceDao.get_review_context(username=username)
+    context["total_reviews"] = reviewServiceDao.get_total_number_of_reviews(username=username)
+    context["avg_rating"] = reviewServiceDao.get_average_rating(username=username)
     return render(request, 'creatorPage/index.html', context)
 
 
