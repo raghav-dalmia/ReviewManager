@@ -160,46 +160,14 @@
         <div id="toastContainer"></div>
     </div>
     <script>
-        function showToast(message) {
-            var toastElement = document.createElement("div");
-            toastElement.classList.add("toast");
-            toastElement.setAttribute("role", "alert");
-            toastElement.setAttribute("aria-live", "assertive");
-            toastElement.setAttribute("aria-atomic", "true");
-            toastElement.setAttribute("data-bs-autohide", "true");
-            toastElement.setAttribute("data-bs-delay", "3000");
-            var toastHeader = document.createElement("div");
-            toastHeader.classList.add("toast-header", "bg-dark", "text-primary");
-            var strongElement = document.createElement("strong");
-            strongElement.classList.add("me-auto");
-            strongElement.textContent = "Message";
-            var closeButton = document.createElement("button");
-            closeButton.setAttribute("type", "button");
-            closeButton.classList.add("btn-close", "btn-close-white");
-            closeButton.setAttribute("data-bs-dismiss", "toast");
-            closeButton.setAttribute("aria-label", "Close");
-            var toastBody = document.createElement("div");
-            toastBody.classList.add("toast-body", "bg-dark", "text-light");
-            toastBody.textContent = message;
-            toastHeader.appendChild(strongElement);
-            toastHeader.appendChild(closeButton);
-            toastElement.appendChild(toastHeader);
-            toastElement.appendChild(toastBody);
-            var toastContainer = document.querySelector("#toastContainer");
-            toastContainer.appendChild(toastElement);
-            var toast = new bootstrap.Toast(toastElement, {
-            backdrop: false
-            });
-            toast.show();
-        }
         {% if messages %}
 		{% for message in messages %}
 		showToast("{{ message }}");
 		{% endfor %}
         {% endif %}
         document.getElementById("copyLink").addEventListener("click", copyLink, false);
-        function copyLink() {
-            navigator.clipboard.writeText("{{ domain|safe }}{% url 'reviewForm' username=user.username %}");
+        function copyLink(){
+            navigator.clipboard.writeText("{{ domain|safe }}{% url 'reviewForm' username=username %}");
             showToast("Link copied");
         }
     </script>
