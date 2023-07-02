@@ -4,7 +4,7 @@
         <div class="col reviewee">
             @{{ review.reviewee }}
         </div>
-        <div class="row rating">
+        <div class="col rating text-end">
             {% with ''|center:review.ratings as range %}
             {% for _ in range %}
                 <span class="fa-sharp fa-solid fa-star"></span>
