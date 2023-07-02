@@ -10,27 +10,31 @@
     <div class="p-3">
         <nav>
             <ul class="pagination justify-content-end">
-                <li class="page-item"><a class="page-link text-light" id="num_7" href="{% url 'creatorAnalytics' num_days=7 %}">7 Days</a></li>
-                <li class="page-item"><a class="page-link text-light" id="num_15"  href="{% url 'creatorAnalytics' num_days=15 %}">15 Days</a></li>
-                <li class="page-item"><a class="page-link text-light" id="num_30"  href="{% url 'creatorAnalytics' num_days=30 %}">30 Days</a></li>
+                <li class="page-item" onclick="activateLi(this)"><a class="page-link text-light" id="num_7" href="{% url 'creatorAnalytics' num_days=7 %}">7 Days</a></li>
+                <li class="page-item" onclick="activateLi(this)"><a class="page-link text-light" id="num_15"  href="{% url 'creatorAnalytics' num_days=15 %}">15 Days</a></li>
+                <li class="page-item" onclick="activateLi(this)"><a class="page-link text-light" id="num_30"  href="{% url 'creatorAnalytics' num_days=30 %}">30 Days</a></li>
             </ul>
         </nav>
         <div class="row row-cols-1 row-cols-md-3 g-3 mb-3">
             <div class="col">
                 <div class="card text-center p-3">
-                    <h4 class="text-white"><strong>Average Rating</strong></h4>
-                    <h1>{{ avg_rating|safe }}</h1>
+                    <h4 class="text-white">Average Rating</h4>
+                    {% if avg_rating == -1 %}
+                        <p>You don't have reviews yet, share your link to get started.</p>
+                    {% else %}
+                        <h1>{{ avg_rating|safe }}</h1>
+                    {% endif %}
                 </div>
             </div>
             <div class="col">
                 <div class="card text-center p-3">
-                    <h4 class="text-white"><strong>Total Reviews</strong></h4>
+                    <h4 class="text-white">Total Reviews</h4>
                     <h1>{{ total_reviews|safe }}</h1>
                 </div>
             </div>
             <div class="col">
                 <div class="card text-center p-3">
-                    <h4 class="text-white"><strong>Views on review page</strong></h4>
+                    <h4 class="text-white">Views on review page</h4>
                     <h1>{{ total_views|safe }}</h1>
                 </div>
             </div>
@@ -49,6 +53,13 @@
         </div>
     </div>
     <script>
+        var currentURL = window.location.href;
+        var anchorElements = document.querySelectorAll(".pagination a");
+        anchorElements.forEach(function (anchor) {
+            if (anchor.href === currentURL) {
+                anchor.parentNode.classList.add("active");
+            }
+        });
         document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("nav_result").classList.add('active-button');
             document.getElementById("side_result").classList.add('active-button');

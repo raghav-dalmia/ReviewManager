@@ -61,7 +61,7 @@ def get_average_rating(username: str, num_days: int):
     end_date = timezone.now().date()
     start_date = end_date - timedelta(days=num_days-1)
     avg_rating = ReviewModel.Review.objects.filter(creator=creator, created_on__range=(start_date, end_date)).aggregate(Avg('ratings'))['ratings__avg']
-    return avg_rating or "Oops!! you don't have reviews."
+    return avg_rating or -1
 
 
 def get_total_number_of_reviews(username: str, num_days: int) -> int:

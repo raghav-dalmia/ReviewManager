@@ -1,9 +1,15 @@
 .card, .page-link, .page-link:hover {
     border-style: none;
     background: #222123;
+    border-radius: 10px;
 }
 
 .card-body{
     border-style: none;
     background-color: #222123;
+    border-radius: 10px;
+}
+
+.page-link {
+    border-radius: 0px;
 }

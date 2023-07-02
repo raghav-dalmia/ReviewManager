@@ -93,10 +93,7 @@ body{
 
 .rating {
     padding-right: 1rem !important;
-}
-
-.reviews .rating span{
-    padding-left: 0.2rem;
+    float: right;
 }
 
 /* METRICS */
