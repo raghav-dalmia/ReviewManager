@@ -1,4 +1,5 @@
 from django.views import View
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from . import dao
@@ -28,4 +29,4 @@ class ReviewFormView(View):
             ratings=ratings,
         )
         messages.success(request, "Feedback submitted successfully.")
-        return redirect('reviewForm', username=username)
+        return HttpResponse("Success")

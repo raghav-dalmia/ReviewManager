@@ -1,16 +1,11 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
 	{% load static %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="{% static 'fontawesomefree/css/all.min.css' %}" rel="stylesheet" type="text/css">
-
-    <!-- <link rel="stylesheet" type="text/css" href="../static/css/reviewForm.css"> -->
 	<link rel="stylesheet" type="text/css" href=" {% static '/css/reviewForm.css' %} ">
     <link rel="shortcut icon" type="image/png" href="{% static 'img/logo.ico' %}"/>
     <title>{{ username }} - Feedback</title>
@@ -32,7 +27,6 @@
 			  background: #d6249f;
 		    }
 		</style>
-
 		{% if not user.is_authenticated %}
 			<button type="button" class="btn btn-outline-light">Join Us!</button>
 		{% elif user.username == username %}
@@ -43,13 +37,8 @@
 			<a type="button" class="btn btn-outline-success me-2" href="whatsapp://send?text=http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}" target="_blank">
 				<i class="fa-brands fa-whatsapp"></i>
 			</a>
-<!--			<a type="button" class="btn instagram" href="instagram://share?text=http://127.0.0.1:8000{% url 'reviewForm' username=user.username %}" target="_blank">-->
-<!--				<i class="fa-brands fa-instagram"></i>-->
-<!--			</a>-->
 		</div>
 		{% endif %}
-	
-
 	</nav>
   	<div class="head">
 		<div class="ok">
@@ -62,7 +51,6 @@
     		</div>
 		</div>
 	</div>
-
   	<form data-action='{% url "reviewForm" username=username %}' enctype='multipart/form-data' id="form">
 		{% csrf_token %}
 	    <div class="body">
@@ -70,7 +58,6 @@
 				<label for="igHandle" class = "label">Drop your instagram @</label>
     				<input type="text" id="igHandle" aria-describedby="igHandle" maxlength="200" placeholder="Just your handle" name = "reviewee">
 			</div>
-
 			<label for="rating" class = "label">How did you like it?</label>
             <input type="hidden" name="rating" id="rating" min="1" max="5" value="4">
 			<div class="emoji justify-content-center">
@@ -138,17 +125,14 @@
 				    </symbol>
 				</svg>
 			</div>
-
     		<div class="form-group delivery">
 				<label for="packaging" class = "label">How was the packaging experience?</label>
     				<input type="text" id="packaging" aria-describedby="packaging" maxlength="1500" placeholder="We know you loved it!!" name="packaging">
 			</div>
-
 			<div class="form-group details">
 				<label for="feedback" class = "label">{{ question }}</label>
     				<input type="text" required id="feedback" aria-describedby="feedback" maxlength="1500" placeholder="We try our best but we'd love to know more..." name="feedback">
 			</div>
-
             <div class="form-group mb-1">
                 <label for="attachment" class="uploader-box">
                     Pictures speak louder than words.
@@ -158,7 +142,7 @@
                     <br>
 					<p style="padding-top: 0.7rem;">Upload Images</p>
                 </label>
-                <input type="file" class="form-control" style="display: none;" name="attachment" id="attachment" accept=".jpeg,.jpg, .gif,.png, .svg, .webp, .ico"  multiple>
+                <input type="file" class="form-control" style="display: none;" name="attachment" id="attachment" accept=".jpeg,.jpg,.png"  multiple>
             </div>
             <div class="form-group container mb-2">
                 <div class="row g-3" id="previewImages"></div>

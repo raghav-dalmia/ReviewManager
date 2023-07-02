@@ -1,5 +1,8 @@
 import os
 import time
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from . import utils
 from django.db import models
 from django.utils import timezone
@@ -17,6 +20,44 @@ class ORDERING_TYPE(models.IntegerChoices):
     BEST = 1, '-ratings'
     LATEST = 2, '-created_on'
     OLDEST = 3, 'created_on'
+
+
+def resize_image(image):
+    # Open the image using Pillow
+    img = Image.open(image)
+
+    # Set the maximum width and height for the resized image
+    max_size = (800, 800)
+
+    # Resize the image while maintaining the aspect ratio
+    img.thumbnail(max_size)
+
+    # Create a BytesIO object to temporarily hold the resized image
+    output = BytesIO()
+
+    # Convert RGBA image to RGB mode if necessary
+    if img.mode == 'RGB':
+        img.save(output, format='JPEG', quality=70)
+        resized_image = InMemoryUploadedFile(
+            output,
+            'ImageField',
+            f"{image.name.split('.')[0]}.jpg",
+            'image/jpeg',
+            output.tell(),
+            None
+        )
+    elif  img.mode == 'RGBA':
+        img.save(output, format='PNG', quality=70)
+        resized_image = InMemoryUploadedFile(
+            output,
+            'ImageField',
+            f"{image.name.split('.')[0]}.png",
+            'image/jpeg',
+            output.tell(),
+            None
+        )
+
+    return resized_image
 
 
 class Creator(models.Model):
@@ -44,6 +85,8 @@ class Creator(models.Model):
         self.full_clean()
         if not self.pk:
             self.last_updated = timezone.now()
+        if self.profile_picture:
+            self.profile_picture = resize_image(self.profile_picture)
         return super().save(*args, **kwargs)
 
     def __str__(self):

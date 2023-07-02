@@ -18,6 +18,50 @@ textarea.oninput = function() {
   textarea.style.height = Math.min(textarea.scrollHeight, heightLimit) + "px";
 };
 
+function showToast(message) {
+      // Create a new toast element
+      var toastElement = document.createElement("div");
+      toastElement.classList.add("toast");
+      toastElement.setAttribute("role", "alert");
+      toastElement.setAttribute("aria-live", "assertive");
+      toastElement.setAttribute("aria-atomic", "true");
+      toastElement.setAttribute("data-bs-autohide", "true");
+      toastElement.setAttribute("data-bs-delay", "5000");
+
+      // Create the toast header
+      var toastHeader = document.createElement("div");
+      toastHeader.classList.add("toast-header", "bg-dark", "text-primary");
+      var strongElement = document.createElement("strong");
+      strongElement.classList.add("me-auto");
+      strongElement.textContent = "Message";
+      var closeButton = document.createElement("button");
+      closeButton.setAttribute("type", "button");
+      closeButton.classList.add("btn-close", "btn-close-white");
+      closeButton.setAttribute("data-bs-dismiss", "toast");
+      closeButton.setAttribute("aria-label", "Close");
+
+      // Create the toast body
+      var toastBody = document.createElement("div");
+      toastBody.classList.add("toast-body", "bg-dark", "text-light");
+      toastBody.textContent = message;
+
+      // Build the toast structure
+      toastHeader.appendChild(strongElement);
+      toastHeader.appendChild(closeButton);
+      toastElement.appendChild(toastHeader);
+      toastElement.appendChild(toastBody);
+
+      // Add the toast to the toast container
+      var toastContainer = document.querySelector("#toastContainer");
+      toastContainer.appendChild(toastElement);
+
+      // Create an instance of bootstrap.Toast and show the toast
+      var toast = new bootstrap.Toast(toastElement, {
+        backdrop: false // Optional: Disable clicking outside to close the toast
+      });
+      toast.show();
+}
+
 function clearImage(pid) {
     console.log("Deleting " + pid)
     $("#prev_"+pid).remove();
@@ -78,7 +122,7 @@ $("#formSubmit").on('click', function (e) {
         inputImages.push(inputImageMap[image_id])
     }
     if(!isValidInput(inputImages)){
-        alert("form not valid");
+        showToast("Opps!! something went wrong... Please try again.");
         return;
     }
     const reviewFormData = new FormData($('form')[0]);
@@ -92,11 +136,10 @@ $("#formSubmit").on('click', function (e) {
         enctype: 'multipart/form-data',
         data: reviewFormData,
         success: function () {
-            alert('success');
-            clearFormData(id);
+            window.location.reload(true);
         },
         error: function (err) {
-            alert('error' + err.toString());
+            showToast("Opps!! something went wrong... Please try again.");
         }
     });
     
