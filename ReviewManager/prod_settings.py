@@ -20,10 +20,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-rtgh-2iy90^qeproj&^unla9dlm9a)bs2tpus-8x*-6$wx*1)g'
+SECRET_KEY = '2iy90^qeproj&^unla9dlm9a)bs2tpus-8x*-6$wx*1)g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["revulink.me", "revulink.pythonanywhere.com"]
 

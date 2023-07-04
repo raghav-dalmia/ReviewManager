@@ -1,10 +1,9 @@
 .idea
 *.sqlite3
 *.db
-media
+media/profile
+media/reviews
 **/__pycache__/
-migrations/
-*/migrations/
 
 ### OSX ###
 .DS_Store
