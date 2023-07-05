@@ -9,7 +9,7 @@ def creator_page(request, username: str):
     context = reviewServiceDao.get_review_context(username=username)
     context["total_reviews"] = reviewServiceDao.get_overall_number_of_reviews(username=username)
     context["avg_rating"] = reviewServiceDao.get_overall_average_rating(username=username)
-    return render(request, 'creatorPage/index.html', context)
+    return render(request, 'creatorPage.html', context)
 
 
 def creator_analytics(request, num_days: int = 7):

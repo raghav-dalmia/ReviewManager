@@ -11,8 +11,8 @@ from django.core.exceptions import ValidationError
 
 
 def get_file_path(instance, filename):
-    ext = filename.split('.')[-1]
-    filename = "%s.%s" % (int(time.time()), ext)
+    name, ext = filename.split('.')
+    filename = name if name == "default" else "%s.%s" % (int(time.time()), ext)
     return os.path.join('profile', filename)
 
 
@@ -46,7 +46,7 @@ def resize_image(image):
             output.tell(),
             None
         )
-    elif  img.mode == 'RGBA':
+    elif img.mode == 'RGBA':
         img.save(output, format='PNG', quality=70)
         resized_image = InMemoryUploadedFile(
             output,
@@ -62,7 +62,7 @@ def resize_image(image):
 
 class Creator(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_picture = models.ImageField(upload_to=get_file_path, max_length=50, default='/profile/default.png')
+    profile_picture = models.ImageField(upload_to=get_file_path, max_length=50, default='default.png')
     description = models.CharField(max_length=255, default="", blank=True)
     question = models.CharField(max_length=500, default="We want to hear more", null=False, blank=False)
     resultsToDisplay = models.PositiveIntegerField(default=5, null=False, blank=False)

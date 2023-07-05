@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-rtgh-2iy90^qeproj&^unla9dlm9a)bs2tpus-8x*-6$wx*1)g'
+SECRET_KEY = '2iy90^qeproj&^unla9dlm9a)bs2tpus-8x*-6$wx*1)g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['reviewmanager.pythonanywhere.com']
+ALLOWED_HOSTS = ["revulink.me", "revulink.pythonanywhere.com"]
 
 SITE_ID = 1
 
@@ -50,9 +50,13 @@ INSTALLED_APPS = [
     'fontawesomefree',
 
     # my custom apps
-    'appAuth'
+    'appAuth',
+    'userProfile',
+    'reviewService',
+    'creatorPage',
 ]
 
+LOGIN_REDIRECT_URL = 'results'
 ACCOUNT_LOGOUT_ON_GET = True
 SOCIALACCOUNT_QUERY_EMAIL = True
 SOCIALACCOUNT_LOGIN_ON_GET = True
@@ -75,6 +79,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'middleware.PageViewMiddleware.PageViewMiddleware',
+    'middleware.logExceptionMiddleware.LogRequestExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'ReviewManager.urls'
@@ -91,10 +97,17 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request',
+                'context_processors.context_processors.global_constants',
             ],
         },
     },
 ]
+
+SETTINGS_PATH = os.path.normpath(os.path.dirname(__file__))
+TEMPLATE_DIRS = (
+    os.path.join(SETTINGS_PATH, 'templates'),
+)
 
 WSGI_APPLICATION = 'ReviewManager.wsgi.application'
 
@@ -104,10 +117,10 @@ WSGI_APPLICATION = 'ReviewManager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'reviewManager$reviewManager',
-        'USER': 'reviewManager',
-        'PASSWORD': 'qazwsx098',
-        'HOST': 'reviewManager.mysql.pythonanywhere-services.com',
+        'NAME': 'revulink$revulink',
+        'USER': 'revulink',
+        'PASSWORD': 'Mc_6Rd_4',
+        'HOST': 'revulink.mysql.pythonanywhere-services.com',
     }
 }
 
@@ -143,6 +156,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+STATIC_ROOT = '/Users/mayankchauhan/Desktop/Odium/ReviewManager'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
@@ -158,3 +172,25 @@ AUTHENTICATION_BACKENDS = [
     # `account` specific authentication methods, such as login by e-mail
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGGING = {
+    "version": 1,
+    'disable_existing_loggers': False,
+    "handlers": {
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.FileHandler",
+            "filename": "error.log",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "level": "ERROR",
+            "propagate": True,
+        },
+    },
+}
