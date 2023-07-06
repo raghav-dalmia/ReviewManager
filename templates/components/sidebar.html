@@ -7,6 +7,7 @@
 {% block body %}
 {{ block.super }}
 <div class="row">
+    <div class="col" style="z-index: 10;">
     <div class="d-none d-md-flex left-panel">
         <a href="{% url 'creatorAnalytics' num_days=7 %}" class="redirect-tab-panel" id="side_result">
             <i class="fa-solid fa-chart-simple"></i>
@@ -21,7 +22,8 @@
             <span>Reviews</span>
         </a>
     </div>
-    <div class="col-sm" style="background: #2C2C2E;">
+    </div>
+    <div class="col-sm" style="background: #2C2C2E; z-index: 0;">
         {% block results %}
         {% endblock results %}
     </div>
