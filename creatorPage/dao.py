@@ -23,7 +23,7 @@ def get_review_page_view_context(username: str, num_days: int) -> dict:
         dates.append(start_date.strftime("%d-%b"))
         start_date = start_date - timedelta(1)
     return {
-        "title": "Views on review page",
+        "title": "Views on RevuLink",
         "counts": counts[::-1],
         "dates": dates[::-1],
     }

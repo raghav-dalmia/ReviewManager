@@ -9,16 +9,16 @@
     border-style: none;
     background-color: #222123;
     border-radius: 10px;
-    /* padding: 1rem 4rem; */
 }
 
 .sub-header {
+    color: "#F5F5F5"!important;
     font-size: x-large;
     padding-left: 1% !important;
 }
 
 .sub-body {
-    padding: 0% 20% 0% 5%;
+    padding: 0% 5% 0% 5%;
 }
 
 .profile-button {

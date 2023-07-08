@@ -39,7 +39,7 @@ def resize_image(image):
             output.tell(),
             None
         )
-    elif  img.mode == 'RGBA':
+    elif img.mode == 'RGBA':
         img.save(output, format='PNG', quality=70)
         resized_image = InMemoryUploadedFile(
             output,

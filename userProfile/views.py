@@ -15,19 +15,19 @@ class ProfileView(View):
 
     def post(self, request):
         profile_picture = request.FILES.get('profile')
-        email = str(request.POST['email'])
-        firstname = str(request.POST['firstname'])
-        lastname = str(request.POST['lastname'])
-        description = str(request.POST['description'])
-        question = str(request.POST['question'])
-        numberOfResults = int(request.POST['numberOfResults'])
-        orderBy = int(request.POST['orderBy'])
-        instagram = str(request.POST['instagram'])
-        linkedin = str(request.POST['linkedin'])
-        facebook = str(request.POST['facebook'])
-        website = str(request.POST['website'])
-        twitter = str(request.POST['twitter'])
-        youtube = str(request.POST['youtube'])
+        email = str(request.POST.get('email', '')).strip()
+        firstname = str(request.POST.get('firstname', '')).strip()
+        lastname = str(request.POST.get('lastname', '')).strip()
+        description = str(request.POST.get('description', '')).strip()
+        question = str(request.POST.get('question', '')).strip()
+        numberOfResults = int(request.POST.get('numberOfResults', ''))
+        orderBy = int(request.POST.get('orderBy', ''))
+        instagram = str(request.POST.get('instagram', '')).strip()
+        linkedin = str(request.POST.get('linkedin', '')).strip()
+        facebook = str(request.POST.get('facebook', '')).strip()
+        website = str(request.POST.get('website', '')).strip()
+        twitter = str(request.POST.get('twitter', '')).strip()
+        youtube = str(request.POST.get('youtube', '')).strip()
         dao.update_creator(user=request.user,
                            email=email,
                            firstname=firstname,

@@ -47,11 +47,7 @@ body{
     padding: 0.5rem 0.5rem;
 }
 
-
-/* Reviews CSS */
-
 .reviews {
-    /* padding-bottom: 1rem; */
     padding-top: 1rem;
     padding: 1rem 1.2rem;
 }
@@ -81,7 +77,6 @@ body{
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 
 .reviews .rating{
