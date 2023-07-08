@@ -132,15 +132,13 @@
                 </div>
             </div>
             <div class="row review-content">
-                {{ review_ctx.review.feedback }}
-            </div>
-            <div>
-                {% for image in review_img %}
-                    <img src="/media/{{ image.attachment }}" height="50" width="50" class="border border-light mt-2">
-                {% endfor %}
+                <p>{{ review_ctx.review.packaging }}
+                    <br>{{ review_ctx.review.feedback }}</p>
             </div>
         </div>
-        {% endfor %}
+        {% if reviews and forloop.counter != reviews|length and reviews|length > 0 %}
+        <hr class="text-white mx-auto" style="width: 95%; margin: 0;">
+        {% endif %}{% endfor %}
     </div>
     <div class="position-fixed bottom-0 end-0 p-3"><div id="toastContainer"></div></div>
     <script>

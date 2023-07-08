@@ -11,11 +11,21 @@
     <div class="p-3">
         <nav>
             <ul class="pagination justify-content-end">
-                <li class="page-item" onclick="activateLi(this)"><a class="page-link text-light" id="num_7" href="{% url 'creatorAnalytics' num_days=7 %}">7 Days</a></li>
-                <li class="page-item" onclick="activateLi(this)"><a class="page-link text-light" id="num_15"  href="{% url 'creatorAnalytics' num_days=15 %}">15 Days</a></li>
-                <li class="page-item" onclick="activateLi(this)"><a class="page-link text-light" id="num_30"  href="{% url 'creatorAnalytics' num_days=30 %}">30 Days</a></li>
+                <li class="page-item"><a class="page-link text-light" id="num_7" href="{% url 'creatorAnalytics' num_days=7 %}">7 Days</a></li>
+                <li class="page-item"><a class="page-link text-light" id="num_15"  href="{% url 'creatorAnalytics' num_days=15 %}">15 Days</a></li>
+                <li class="page-item"><a class="page-link text-light" id="num_30"  href="{% url 'creatorAnalytics' num_days=30 %}">30 Days</a></li>
             </ul>
         </nav>
+        {% if total_reviews <= 200 %}
+        <div class="row row-cols-1 row-cols-md-1 g-3 mb-3">
+            <div class="col">
+                <div class="card p-3">
+                    <h3 class="text-white"><i class="fa-solid fa-quote-left"></i></h3>
+                    <p class="ms-3" id="quote"></p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
         <div class="row row-cols-1 row-cols-md-3 g-3 mb-3">
             <div class="col">
                 <div class="card text-center p-3">
@@ -35,7 +45,7 @@
             </div>
             <div class="col">
                 <div class="card text-center p-3">
-                    <h4 class="text-white">Views on review page</h4>
+                    <h4 class="text-white">Views on RevuLink</h4>
                     <h1>{{ total_views|safe }}</h1>
                 </div>
             </div>
@@ -54,17 +64,22 @@
         </div>
     </div>
     <script>
-        var currentURL = window.location.href;
-        var anchorElements = document.querySelectorAll(".pagination a");
-        anchorElements.forEach(function (anchor) {
-            if (anchor.href === currentURL) {
-                anchor.parentNode.classList.add("active");
-            }
-        });
+        const text = "Our AI can provide advanced analytics like “Customer Repeat Purchase Probability”, “Customer Satisfaction Index”, “Reputation Improvement Metric” if you have more than 200 reviews. Start sharing your RevuForm now.";
+        const typingAnimationElement = document.getElementById("quote");
+        let ind = 0;
+        function type() {
+            typingAnimationElement.innerHTML += text.charAt(ind);
+            ind++;
+            if(ind<text.length)
+                setTimeout(type, 50);
+        }
+        type();
+    </script>
+    <script>
         document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("nav_result").classList.add('active-button');
             document.getElementById("side_result").classList.add('active-button');
-            document.getElementById("num_{{ num_days|safe }}").classList.add('active');
+            document.getElementById("num_{{ num_days|safe }}").parentNode.classList.add('active');
         });
         function showChart(chartId, chartData){
             const ctx = document.getElementById(chartId).getContext('2d');
@@ -122,7 +137,7 @@
                 }
             });
         }
-        showChart('pageViewsChart', {{ num_page_view|safe }});
-        showChart('pageViewsChart2', {{ num_review_created|safe }});
+        showChart('pageViewsChart2', {{ num_page_view|safe }});
+        showChart('pageViewsChart', {{ num_review_created|safe }});
     </script>
 {% endblock results %}

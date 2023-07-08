@@ -18,44 +18,7 @@
     {% csrf_token %}
     <div class="card ">
         <div class="card-body">
-            <div class="sub-header">Review Site Control</div>
-            <br>
-            <div class="sub-body">
-                <div class="form-group">
-                    <label for="numberOfResults" class="form-label">How many reviews do you want to show?</label>
-                    <input type="number" id="numberOfResults" name="numberOfResults" value="{{ creator.resultsToDisplay }}" readonly>
-                </div>
-                <div class="input-group w-75 mx-auto mt-2 mb-4">
-                    <input type="range" id="resultRange" value="{{ creator.resultsToDisplay }}" min="1" max="25" step="1">
-                </div>
-                <div class="form-group">
-                    <label for="orderBy">How do you want to order the reviews?</label>
-                    <select class="custom-select" id="orderBy" name="orderBy">
-                        <option {% if creator.orderBy == 1 %} selected {% endif %} value="1">Best rated first</option>
-                        <option {% if creator.orderBy == 2 %} selected {% endif %} value="2">Newest first</option>
-                        <option {% if creator.orderBy == 3 %} selected {% endif %} value="3">Oldest first</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="card ">
-        <div class="card-body">
-            <div class="sub-header">Review Form Control</div>
-            <br>
-            <div class="sub-body">
-                <div class="input-group" style="display: flex;">
-                    <label for="question">Any question you would like to add to the form?</label>
-                    <textarea class="m-1" id="question" name="question">{{ creator.question }}</textarea>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <div class="card ">
-        <div class="card-body">
-            <div class="sub-header">Edit Profile</div>
+            <div class="sub-header text-white">Profile Setting</div>
             <br/>
             <div class="sub-body">
                 <div class="row">
@@ -65,36 +28,23 @@
                             <img src="/media/{{ creator.profile_picture }}" id="profile_preview" height="150" width="150" class="border border-light rounded-circle">
                             <span class="position-absolute bottom-0 start-50 translate-middle badge rounded-pill bg-secondary"><i class="fa-solid fa-user-pen"></i> Edit</span>
                         </label>
+                        <h5 class="text-white text-center mt-2"><strong>{{ creator.user.username }}</strong></h5>
                     </div>
                     <div class="col-md-8">
-                        <div class="row g-2">
-                    <div class="col-md">
-                        <div class="mb-2">
-                            <label for="username">Username</label>
-                            <input type="text" id="username" value="{{ creator.user.username }}" readonly>
+                        <div class="row mb-2 g-2">
+                            <div class="col-md">
+                                <label for="firstname">First Name</label>
+                                <input type="text" id="firstname" name="firstname" value="{{ creator.user.first_name }}">
+                            </div>
+                            <div class="col-md">
+                                <label for="lastname">Last Name</label>
+                                <input type="text" id="lastname" name="lastname" value="{{ creator.user.last_name }}">
+                            </div>
+                            <div class="col-md">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" value="{{ creator.user.email }}">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="mb-2">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" value="{{ creator.user.email }}">
-                        </div>
-                    </div>
-                </div>
-                        <div class="row g-2">
-                    <div class="col-md">
-                        <div class="mb-2">
-                            <label for="firstname">First Name</label>
-                            <input type="text" id="firstname" name="firstname" value="{{ creator.user.first_name }}">
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="mb-2">
-                            <label for="lastname">Last Name</label>
-                            <input type="text" id="lastname" name="lastname" value="{{ creator.user.last_name }}">
-                        </div>
-                    </div>
-                </div>
                         <div class="row g-2">
                             <label for="description">Description</label>
                             <textarea id="description" name="description">{{ creator.description }}</textarea>
@@ -107,9 +57,12 @@
     <br>
     <div class="card ">
         <div class="card-body">
-            <div class="sub-header">Contact Details</div>
-            <br>
-            <div class="sub-body">
+            <div class="sub-header text-white clearfix">
+                Contact Details
+                <i class="fa-solid fa-square-caret-down float-end" data-bs-toggle="collapse" data-bs-target="#contact_collapse" aria-expanded="false" aria-controls="contact_collapse"></i>
+            </div>
+            <div class="sub-body collapse" id="contact_collapse">
+                <br>
                 <div class="row g-2">
                     <div class="col-md">
                         <div class="mb-2">
@@ -156,6 +109,49 @@
         </div>
     </div>
     <br>
+    <div class="card ">
+        <div class="card-body">
+            <div class="sub-header text-white clearfix">
+                RevuLink Page Setting
+                <i class="fa-solid fa-square-caret-down float-end" data-bs-toggle="collapse" data-bs-target="#review_collapse" aria-expanded="false" aria-controls="review_collapse"></i>
+            </div>
+            <div class="sub-body collapse" id="review_collapse">
+                <br>
+                <div class="form-group">
+                    <label for="numberOfResults" class="form-label">How many customer reviews do you want to show on your RevuLink page?</label>
+                    <input type="number" id="numberOfResults" name="numberOfResults" value="{{ creator.resultsToDisplay }}" readonly>
+                </div>
+                <div class="input-group w-75 mx-auto mt-2 mb-4">
+                    <input type="range" id="resultRange" value="{{ creator.resultsToDisplay }}" min="1" max="25" step="1">
+                </div>
+                <div class="form-group">
+                    <label for="orderBy">How do you want to order the reviews?</label>
+                    <select class="custom-select" id="orderBy" name="orderBy">
+                        <option {% if creator.orderBy == 1 %} selected {% endif %} value="1">Best rated first</option>
+                        <option {% if creator.orderBy == 2 %} selected {% endif %} value="2">Newest first</option>
+                        <option {% if creator.orderBy == 3 %} selected {% endif %} value="3">Oldest first</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="card ">
+        <div class="card-body">
+            <div class="sub-header text-white clearfix">
+                RevuLink Form Setting
+                <i class="fa-solid fa-square-caret-down float-end" data-bs-toggle="collapse" data-bs-target="#form_collapse" aria-expanded="false" aria-controls="form_collapse"></i>
+            </div>
+            <div class="sub-body collapse" id="form_collapse">
+                <br>
+                <div class="input-group" style="display: flex;">
+                    <label for="question">Any question you would like to add to the form?</label>
+                    <textarea class="m-1" id="question" name="question">{{ creator.question }}</textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
 
     <div>
         <button id = "urlForm" form="profileUpdate" type="submit" class="btn btn-outline-primary profile-button mb-2">Update Profile</button>
@@ -163,7 +159,7 @@
 </form>
 <div class="card-footer text-center">
     <br>
-    <h3 class="card-title">Share Your RevuLink</h3>
+    <h3 class="card-title">Share your Revu Form</h3>
     <button type="button" class="btn btn-outline-dark" id="copyLink">
         <i class="fa fa-clone" aria-hidden="true"></i> Copy Link
     </button>

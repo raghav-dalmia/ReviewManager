@@ -47,7 +47,7 @@ def get_review_form_view_context(username: str, num_days: int) -> dict:
         dates.append(start_date.strftime("%d-%b"))
         start_date = start_date - timedelta(days=1)
     return {
-        "title": "Review received",
+        "title": "Reviews Received",
         "counts": counts[::-1],
         "dates": dates[::-1],
     }

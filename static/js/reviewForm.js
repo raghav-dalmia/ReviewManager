@@ -7,19 +7,11 @@ document.querySelectorAll('.feedback li').forEach(entry => entry.addEventListene
     e.preventDefault();
 }));
 
-let textarea = document.getElementById("feedback");
-let heightLimit = 200;
 let id = 0;
 const inputImageMap = new Map();
 const imageContainer = $("#previewImages");
 
-textarea.oninput = function() {
-  textarea.style.height = "";
-  textarea.style.height = Math.min(textarea.scrollHeight, heightLimit) + "px";
-};
-
 function showToast(message) {
-      // Create a new toast element
       var toastElement = document.createElement("div");
       toastElement.classList.add("toast");
       toastElement.setAttribute("role", "alert");
@@ -28,7 +20,6 @@ function showToast(message) {
       toastElement.setAttribute("data-bs-autohide", "true");
       toastElement.setAttribute("data-bs-delay", "5000");
 
-      // Create the toast header
       var toastHeader = document.createElement("div");
       toastHeader.classList.add("toast-header", "bg-dark", "text-primary");
       var strongElement = document.createElement("strong");
@@ -40,24 +31,19 @@ function showToast(message) {
       closeButton.setAttribute("data-bs-dismiss", "toast");
       closeButton.setAttribute("aria-label", "Close");
 
-      // Create the toast body
       var toastBody = document.createElement("div");
       toastBody.classList.add("toast-body", "bg-dark", "text-light");
       toastBody.textContent = message;
 
-      // Build the toast structure
       toastHeader.appendChild(strongElement);
       toastHeader.appendChild(closeButton);
       toastElement.appendChild(toastHeader);
       toastElement.appendChild(toastBody);
 
-      // Add the toast to the toast container
       var toastContainer = document.querySelector("#toastContainer");
       toastContainer.appendChild(toastElement);
-
-      // Create an instance of bootstrap.Toast and show the toast
       var toast = new bootstrap.Toast(toastElement, {
-        backdrop: false // Optional: Disable clicking outside to close the toast
+        backdrop: false
       });
       toast.show();
 }
@@ -110,9 +96,10 @@ function isValidInput(inputImages) {
     const packaging = $("#packaging").val();
     if(packaging && packaging.length > 1500)
         return false;
-    const feedback = $("#feedback").val();
-    return feedback && feedback.length <= 1500;
-
+    const feedback = $("#feedback");
+    if(feedback && feedback.val())
+        return feedback.val().length <= 1500;
+    return true;
 }
 $("#formSubmit").on('click', function (e) {
     e.preventDefault();

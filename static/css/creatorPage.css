@@ -3,8 +3,6 @@ body{
     color: white
 }
 
-
-/* NAVBAR CSS */
 .navbar-brand img{
     min-width: 30px;
     min-height: 15px;
@@ -12,11 +10,10 @@ body{
     height: 3rem;
 }
 
-/* INTRODUCTION CSS */
 .introduction img{
     height: 10rem;
     width: 10rem;
-    object-fit: cover;
+    object-fit: fill;
     border-radius: 50%;
     object-position: center;
 }
@@ -25,7 +22,7 @@ body{
     .introduction img{
         height: 6.5rem;
         width: 6.5rem;
-        object-fit: cover;
+        object-fit: fill;
         border-radius: 50%;
         object-position: center;
     } 
@@ -50,11 +47,7 @@ body{
     padding: 0.5rem 0.5rem;
 }
 
-
-/* Reviews CSS */
-
 .reviews {
-    /* padding-bottom: 1rem; */
     padding-top: 1rem;
     padding: 1rem 1.2rem;
 }
@@ -84,7 +77,6 @@ body{
     display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
-    overflow: hidden;
 }
 
 .reviews .rating{
@@ -95,8 +87,6 @@ body{
     padding-right: 1rem !important;
     float: right;
 }
-
-/* METRICS */
 
 .metrics {
     padding: 1rem 2rem;

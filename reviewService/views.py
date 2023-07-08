@@ -15,10 +15,10 @@ class ReviewFormView(View):
         return render(request, './reviewForm.html', context=context)
 
     def post(self, request, username: str):
-        ratings = int(request.POST['rating'])
-        reviewee = str(request.POST['reviewee'])
-        feedback = str(request.POST['feedback'])
-        packaging = str(request.POST['packaging'])
+        ratings = int(request.POST.get('rating', 5))
+        reviewee = str(request.POST.get('reviewee', '')).strip()
+        feedback = str(request.POST.get('feedback', '')).strip()
+        packaging = str(request.POST.get('packaging', '')).strip()
         attachments = request.FILES.getlist('attachment')
         dao.create_review(
             username=username,
