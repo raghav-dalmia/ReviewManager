@@ -64,7 +64,7 @@ class Creator(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_picture = models.ImageField(upload_to=get_file_path, max_length=50, default='default.png')
     description = models.CharField(max_length=255, default="", blank=True)
-    question = models.CharField(max_length=500, default="How was the packaging experience?", null=True, blank=True)
+    question = models.CharField(max_length=500, null=True, blank=True)
     resultsToDisplay = models.PositiveIntegerField(default=5, null=False, blank=False)
     orderBy = models.IntegerField(default=ORDERING_TYPE.BEST, choices=ORDERING_TYPE.choices, null=False, blank=False)
     instagram_url = models.URLField(max_length=300, blank=True)
