@@ -86,6 +86,7 @@ body{
 .rating {
     padding-right: 1rem !important;
     float: right;
+    color: #007bff;
 }
 
 .metrics {
