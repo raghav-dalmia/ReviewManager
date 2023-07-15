@@ -28,7 +28,7 @@ class ProfileView(View):
         website = str(request.POST.get('website', '')).strip()
         twitter = str(request.POST.get('twitter', '')).strip()
         youtube = str(request.POST.get('youtube', '')).strip()
-        dao.update_creator(user=request.user,
+        dao.update_creator(request=request,
                            email=email,
                            firstname=firstname,
                            lastname=lastname,

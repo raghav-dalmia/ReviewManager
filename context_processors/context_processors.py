@@ -1,4 +1,7 @@
+from ReviewManager import settings
+
+
 def global_constants(request):
     return {
-        'domain': 'http://127.0.0.1:8000',
+        'domain': 'https://127.0.0.1/' if settings.DEBUG else 'http://revulink.me/',
     }

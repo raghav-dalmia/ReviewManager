@@ -1,0 +1,19 @@
+{% extends './navbar.html' %}
+{% load static %}
+{% block body %}
+{{ block.super }}
+<div class="image-container"><img src="{% static '/img/error.webp' %}" alt="error_logo"></div>
+<footer class="text-center text-white mt-5"> Please contact us at <a href="mailto:support@revulink.me" class="text-primary" target="_new">support@revulink.me</a> for any assistance or inquiries.</footer>
+<style>
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+    .image-container img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+</style>
+{% endblock body %}
