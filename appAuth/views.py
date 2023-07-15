@@ -13,7 +13,6 @@ def signup_user(request):
     if request.method == "POST":
         username = str(request.POST['username'])
         password = str(request.POST['password'])
-        print("\n-----------------------------\n", username, password, "\n-----------------------------\n")
         try:
             creator = create_creator(username=username, password=password)
             user = authenticate(username=creator.user.username, password=password)

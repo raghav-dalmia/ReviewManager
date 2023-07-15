@@ -20,10 +20,10 @@ def get_creator_from_username(username: str) -> models.Creator:
     return models.Creator.objects.get(user=user)
 
 
-def update_creator(user: User, description: str, instagram: str, linkedin: str, email: str,
+def update_creator(request, description: str, instagram: str, linkedin: str, email: str,
                    firstname: str, lastname: str, question: str, numberOfResults: int, orderBy: int, facebook: str,
                    profile_picture, website: str, youtube: str, twitter: str) -> models.Creator:
-    creator = get_creator_from_username(user)
+    creator = request.creator
     creator.description = description
     creator.instagram_url = instagram
     creator.linkedin_url = linkedin
@@ -39,7 +39,6 @@ def update_creator(user: User, description: str, instagram: str, linkedin: str, 
     creator.orderBy = orderBy
     if profile_picture:
         creator.profile_picture = profile_picture
-    creator.user.save()
     creator.save()
     creator.user.save()
     return creator
