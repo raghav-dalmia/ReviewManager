@@ -90,4 +90,9 @@ target/
 __pycache__/
 
 venv
+aws_config/creds.py
 
+ReviewManager/admin/
+ReviewManager/css/
+ReviewManager/img/
+ReviewManager/js/

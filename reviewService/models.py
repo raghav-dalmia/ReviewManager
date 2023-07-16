@@ -58,7 +58,7 @@ class Review(models.Model):
     reviewee = models.CharField(max_length=200, blank=True, default="Anonymous")
     ratings = models.PositiveSmallIntegerField(null=False)
     packaging = models.TextField(max_length=1500, null=True, blank=True)
-    feedback = models.CharField(max_length=1500, null=True, blank=True)
+    feedback = models.CharField(max_length=1500, default="How's the packaging experience?", null=True, blank=True)
     created_on = models.DateTimeField(auto_now_add=True, blank=True)
     is_deleted = models.BooleanField(default=False)
 
@@ -94,9 +94,8 @@ class ReviewImage(models.Model):
         ordering = ["-pk"]
 
     def save(self, *args, **kwargs):
-        if self.attachment:
-            self.attachment = resize_image(self.attachment)
-
+        # if self.attachment:
+        #     self.attachment = resize_image(self.attachment)
         super().save(*args, **kwargs)
 
     def __str__(self):
