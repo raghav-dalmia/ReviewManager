@@ -25,7 +25,7 @@
                     <div class="col-md-4 w-auto mx-auto mb-2">
                         <input id="profile" name="profile" type="file" class="visually-hidden" accept=".png, .jpg, .jpeg">
                         <label for="profile" class="w-auto position-relative" style="padding: 0!important;">
-                            <img src="/media/{{ creator.profile_picture }}" id="profile_preview" height="150" width="150" class="border border-light rounded-circle">
+                            <img src="{{ media_url }}{{ creator.profile_picture }}" id="profile_preview" height="150" width="150" class="border border-light rounded-circle">
                             <span class="position-absolute bottom-0 start-50 translate-middle badge rounded-pill bg-secondary"><i class="fa-solid fa-user-pen"></i> Edit</span>
                         </label>
                         <h5 class="text-white text-center mt-2"><strong>{{ creator.user.username }}</strong></h5>

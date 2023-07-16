@@ -38,7 +38,7 @@
         </nav>
         <div class="introduction container">
             <div class="flex-nowrap text-center">
-                <img src="/media/{{ creatorDetail.profile_picture }}">
+                <img src="{{ media_url }}{{ creatorDetail.profile_picture }}">
                 <div class="info text-center">
                     <div class="name">
                         {{ creatorDetail.user.first_name }} {{ creatorDetail.user.last_name }}
@@ -103,7 +103,7 @@
                     {% endif %}
                     <div class="carousel-inner">
                         {% for image in review_ctx.review_img %}
-                        <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}"><img src="/media/{{ image.attachment }}" class="d-block mx-auto" style="max-height: 250px; max-width: 100%; height: auto; width: auto;"></div>
+                        <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}"><img src="{{ media_url }}{{ image.attachment }}" class="d-block mx-auto" style="max-height: 250px; max-width: 100%; height: auto; width: auto;"></div>
                         {% endfor %}
                     </div>
                 </div>

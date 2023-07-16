@@ -12,7 +12,7 @@ from django.core.exceptions import ValidationError
 
 def get_file_path(instance, filename):
     name, ext = filename.split('.')
-    filename = name if name == "default" else "%s.%s" % (int(time.time()), ext)
+    filename = filename if name == "default" else "%s_%s.%s" % (str(instance.user.id), name, ext)
     return os.path.join('profile', filename)
 
 
@@ -85,8 +85,6 @@ class Creator(models.Model):
         self.full_clean()
         if not self.pk:
             self.last_updated = timezone.now()
-        if self.profile_picture:
-            self.profile_picture = resize_image(self.profile_picture)
         return super().save(*args, **kwargs)
 
     def __str__(self):
