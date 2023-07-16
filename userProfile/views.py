@@ -14,9 +14,7 @@ class ProfileView(View):
         return render(request, 'components/profile.html', context=context)
 
     def post(self, request):
-        print("update profile")
         profile_picture = request.FILES.get('profile')
-        print(profile_picture)
         email = str(request.POST.get('email', '')).strip()
         firstname = str(request.POST.get('firstname', '')).strip()
         lastname = str(request.POST.get('lastname', '')).strip()
