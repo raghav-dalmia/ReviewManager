@@ -26,7 +26,7 @@
                     <div><a aria-current="page" href="{% url 'profile' %}" class="redirect-tab">Profile</a></div>
                     <div><a href="{% url 'creatorAnalytics' num_days=7 %}" id="nav_result" class="redirect-tab">Dashboard</a></div>
                     <div><a aria-current="page" href="{% url 'creatorPage' username=user.username %}" target="_blank" class="redirect-tab"></i>RevuLink</a></div>
-                    <div><a aria-current="page" href="{% url 'reviewForm' username=user.username %}" target="_blank" class="redirect-tab">Revu Form</a></div>
+                    <div><a aria-current="page" href="{% url 'review_form' username=user.username %}" target="_blank" class="redirect-tab">Revu Form</a></div>
                     <div><a type="button" class="my_btn btn btn-outline-primary" id="nav_profile" href="{% url 'logout' %}">Log Out</a></div>
                 </nav>
                 <div class="bar-icon"><i class="fa-solid fa-bars"></i></div>

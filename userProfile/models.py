@@ -11,8 +11,7 @@ from django.core.exceptions import ValidationError
 
 
 def get_file_path(instance, filename):
-    name, ext = filename.split('.')
-    filename = filename if name == "default" else "%s_%s.%s" % (str(instance.user.id), name, ext)
+    filename = filename if filename == "default.png" else "%s_%s" % (str(instance.user.id), filename)
     return os.path.join('profile', filename)
 
 

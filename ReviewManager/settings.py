@@ -24,13 +24,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rtgh-2iy90^qeproj&^unla9dlm9a)bs2tpus-8x*-6$wx*1)g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = not PROD_SERVER
-LOCAL_ENV = PROD_SERVER
+DEBUG = True
+LOCAL_ENV = not PROD_SERVER
 
 if LOCAL_ENV:
     ALLOWED_HOSTS = ['127.0.0.1']
 else:
     ALLOWED_HOSTS = [DOMAIN_NAME, PUBLIC_IP, 'www.'+DOMAIN_NAME, SUBDOMAIN_NAME+'.'+DOMAIN_NAME]
+    CSRF_TRUSTED_ORIGINS = ALLOWED_HOSTS
 
 SITE_ID = 1
 
@@ -83,7 +84,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'middleware.RequestUpdater.RequestUpdater',
-    # 'middleware.logExceptionMiddleware.LogRequestExceptionMiddleware',
+    'middleware.logExceptionMiddleware.LogRequestExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'ReviewManager.urls'
@@ -202,21 +203,21 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-# LOGGING = {
-#     "version": 1,
-#     'disable_existing_loggers': False,
-#     "handlers": {
-#         "file": {
-#             "level": "DEBUG",
-#             "class": "logging.FileHandler",
-#             "filename": "error.log",
-#         },
-#     },
-#     "loggers": {
-#         "django": {
-#             "handlers": ["file"],
-#             "level": "ERROR",
-#             "propagate": True,
-#         },
-#     },
-# }
+LOGGING = {
+    "version": 1,
+    'disable_existing_loggers': False,
+    "handlers": {
+        "file": {
+            "level": "ERROR",
+            "class": "logging.FileHandler",
+            "filename": "error.log",
+        },
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["file"],
+            "level": "ERROR",
+            "propagate": True,
+        },
+    },
+}
