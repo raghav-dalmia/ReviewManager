@@ -89,6 +89,7 @@ class Review(models.Model):
 class ReviewImage(models.Model):
     review = models.ForeignKey(Review, on_delete=models.CASCADE)
     attachment = models.ImageField(upload_to=get_file_path, max_length=50, null=True)
+    is_deleted = models.BooleanField(default=False)
 
     class Meta:
         ordering = ["-pk"]

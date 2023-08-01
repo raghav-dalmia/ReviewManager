@@ -10,14 +10,14 @@ def create_creator(username: str, password: str) -> models.Creator:
 
 def get_creator(user: User) -> models.Creator:
     try:
-        return models.Creator.objects.get(user__username__exact=user.username)
+        return models.Creator.objects.get(user__username__exact=user.username, is_deleted=False)
     except ObjectDoesNotExist:
         return models.Creator.objects.create(user=user)
 
 
 def get_creator_from_username(username: str) -> models.Creator:
     user = User.objects.get(username=username)
-    return models.Creator.objects.get(user=user)
+    return models.Creator.objects.get(user=user, is_deleted=False)
 
 
 def update_creator(request, description: str, instagram: str, linkedin: str, email: str,

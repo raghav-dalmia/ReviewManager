@@ -10,7 +10,7 @@ class ReviewFormView(View):
     def get(self, request, username: str):
         context = {
             "username": username,
-            "question": dao.get_review_question(request=request)
+            "question": dao.get_review_question(username=username)
         }
         return render(request, './reviewForm.html', context=context)
 
@@ -21,12 +21,12 @@ class ReviewFormView(View):
         packaging = str(request.POST.get('packaging', '')).strip()
         attachments = request.FILES.getlist('attachment')
         dao.create_review(
-            request=request,
             reviewee=reviewee,
             packaging=packaging,
             feedback=feedback,
             attachments=attachments,
             ratings=ratings,
+            username=username
         )
         messages.success(request, "Feedback submitted successfully.")
         return HttpResponse("Success")
