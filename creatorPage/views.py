@@ -3,17 +3,19 @@ from django.shortcuts import render
 from reviewService import dao as reviewServiceDao
 from . import dao as creatorPageDao
 
+userDao = reviewServiceDao.UserDao
+
 
 def creator_page(request, username: str):
-    creatorPageDao.add_view_review_analytics(request=request)
-    context = reviewServiceDao.get_review_context(request=request)
-    context["total_reviews"] = reviewServiceDao.get_overall_number_of_reviews(request=request)
-    context["avg_rating"] = reviewServiceDao.get_overall_average_rating(request=request)
+    creator = userDao.get_creator_from_username(username=username)
+    creatorPageDao.add_view_review_analytics(creator=creator)
+    context = reviewServiceDao.get_review_context(creator=creator)
+    context["total_reviews"] = reviewServiceDao.get_overall_number_of_reviews(creator=creator)
+    context["avg_rating"] = reviewServiceDao.get_overall_average_rating(creator=creator)
     return render(request, 'creatorPage.html', context)
 
 
 def creator_analytics(request, num_days: int = 7):
-    username = request.user.username
     context = {
         "num_days": num_days,
         "total_views": creatorPageDao.get_total_review_view_count(request=request, num_days=num_days),

@@ -17,7 +17,6 @@ imageInput.addEventListener('change', function() {
 });
 
 function showToast(message) {
-      // Create a new toast element
       var toastElement = document.createElement("div");
       toastElement.classList.add("toast");
       toastElement.setAttribute("role", "alert");
@@ -26,7 +25,6 @@ function showToast(message) {
       toastElement.setAttribute("data-bs-autohide", "true");
       toastElement.setAttribute("data-bs-delay", "5000");
 
-      // Create the toast header
       var toastHeader = document.createElement("div");
       toastHeader.classList.add("toast-header", "bg-dark", "text-primary");
       var strongElement = document.createElement("strong");
@@ -38,35 +36,26 @@ function showToast(message) {
       closeButton.setAttribute("data-bs-dismiss", "toast");
       closeButton.setAttribute("aria-label", "Close");
 
-      // Create the toast body
       var toastBody = document.createElement("div");
       toastBody.classList.add("toast-body", "bg-dark", "text-light");
       toastBody.textContent = message;
 
-      // Build the toast structure
       toastHeader.appendChild(strongElement);
       toastHeader.appendChild(closeButton);
       toastElement.appendChild(toastHeader);
       toastElement.appendChild(toastBody);
 
-      // Add the toast to the toast container
       var toastContainer = document.querySelector("#toastContainer");
       toastContainer.appendChild(toastElement);
 
-      // Create an instance of bootstrap.Toast and show the toast
       var toast = new bootstrap.Toast(toastElement, {
-        backdrop: false // Optional: Disable clicking outside to close the toast
+        backdrop: false
       });
       toast.show();
 }
 
-document.getElementById('profileUpdate').addEventListener('submit', function(event) {
+document.getElementById('profileUpdate').addEventListener('click', function(event) {
     var isValid = true;
-    const question = document.getElementById('question').value.trim();
-    if(question==''){
-        showToast("Opps!! you forget to enter question.");
-        isValid = false;
-    }
     const email = document.getElementById('email').value.trim();
     if(!validateEmail(email)){
         showToast("Opps!! you enter invalid email.");
@@ -77,36 +66,26 @@ document.getElementById('profileUpdate').addEventListener('submit', function(eve
         showToast("Opps!! you forget to enter firstname.");
         isValid = false;
     }
-    const lastname = document.getElementById('lastname').value.trim();
-    if(lastname==''){
-        showToast("Opps!! you forget to enter lastname.");
-        isValid = false;
-    }
     const description = document.getElementById('description').value.trim();
     if(description==''){
         showToast("Opps!! you forget to enter description.");
         isValid = false;
     }
-    const phone = document.getElementById('phone').value.trim();
-    if(phone!='' && !validatePhoneNumber(phone)){
-        showToast("Opps!! you enter invalid phone.");
-        isValid = false;
-    }
-    const instagram = document.getElementById('instagram').value.trim();
-    if(instagram!='' && !validateInstagramLink(instagram)){
-        showToast("Opps!! you enter invalid instagram profile.");
-        isValid = false;
-    }
-    const linkedin = document.getElementById('linkedin').value.trim();
-    if(linkedin!='' && validateLinkedInLink(linkedin)){
-        showToast("Opps!! you enter invalid linkedin profile.");
-        isValid = false;
-    }
-    const facebook = document.getElementById('facebook').value.trim();
-    if(facebook!='' && !validateFacebookLink(facebook)){
-        showToast("Opps!! you enter invalid facebook profile.");
-        isValid = false;
-    }
+//    const instagram = document.getElementById('instagram').value.trim();
+//    if(instagram!='' && !validateInstagramLink(instagram)){
+//        showToast("Opps!! you enter invalid instagram profile.");
+//        isValid = false;
+//    }
+//    const linkedin = document.getElementById('linkedin').value.trim();
+//    if(linkedin!='' && validateLinkedInLink(linkedin)){
+//        showToast("Opps!! you enter invalid linkedin profile.");
+//        isValid = false;
+//    }
+//    const facebook = document.getElementById('facebook').value.trim();
+//    if(facebook!='' && !validateFacebookLink(facebook)){
+//        showToast("Opps!! you enter invalid facebook profile.");
+//        isValid = false;
+//    }
     if(!isValid){
         event.preventDefault();
     } else {
@@ -117,11 +96,6 @@ document.getElementById('profileUpdate').addEventListener('submit', function(eve
 function validateEmail(email) {
     var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return pattern.test(email);
-}
-
-function validatePhoneNumber(phoneNumber) {
-    var pattern = /^[5-9]\d{9}$/;
-    return pattern.test(phoneNumber);
 }
 
 function validateInstagramLink(instagramLink) {
@@ -139,3 +113,23 @@ function validateFacebookLink(facebookLink) {
     return pattern.test(facebookLink);
 }
 
+const ele = document.getElementById('rotate-icon');
+let cr = 0;
+ele.addEventListener('click', () => {
+  cr = (cr+180)%360;
+  ele.style.transform = `rotate(${cr}deg)`;
+});
+
+const ele1 = document.getElementById('rotate-icon-1');
+let cr1 = 0;
+ele1.addEventListener('click', () => {
+  cr1 = (cr1+180)%360;
+  ele1.style.transform = `rotate(${cr1}deg)`;
+});
+
+const ele2 = document.getElementById('rotate-icon-2');
+let cr2 = 0;
+ele2.addEventListener('click', () => {
+  cr2 = (cr2+180)%360;
+  ele2.style.transform = `rotate(${cr2}deg)`;
+});

@@ -31,7 +31,8 @@ if LOCAL_ENV:
     ALLOWED_HOSTS = ['127.0.0.1']
 else:
     ALLOWED_HOSTS = [DOMAIN_NAME, PUBLIC_IP, 'www.'+DOMAIN_NAME, SUBDOMAIN_NAME+'.'+DOMAIN_NAME]
-    CSRF_TRUSTED_ORIGINS = ALLOWED_HOSTS
+
+CSRF_TRUSTED_ORIGINS = ["https://" + ALLOWED_HOST for ALLOWED_HOST in ALLOWED_HOSTS]
 
 SITE_ID = 1
 
@@ -79,7 +80,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
