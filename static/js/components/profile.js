@@ -54,7 +54,7 @@ function showToast(message) {
       toast.show();
 }
 
-document.getElementById('profileUpdate').addEventListener('click', function(event) {
+document.getElementById('urlForm').addEventListener('click', function(event) {
     var isValid = true;
     const email = document.getElementById('email').value.trim();
     if(!validateEmail(email)){
@@ -89,7 +89,7 @@ document.getElementById('profileUpdate').addEventListener('click', function(even
     if(!isValid){
         event.preventDefault();
     } else {
-        this.submit();
+        document.getElementById('profileUpdate').submit();
     }
 })
 
