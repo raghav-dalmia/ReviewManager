@@ -12,6 +12,12 @@
         document.getElementById("side_profile").classList.add('active-button');
     });
 </script>
+<style>
+    .rotate-180 {
+      transform: rotate(180deg);
+      transition: transform 0.3s ease; /* Optional: Add transition for smooth animation */
+    }
+</style>
 
 <br/>
 <form id="profileUpdate" method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
@@ -59,7 +65,7 @@
         <div class="card-body">
             <div class="sub-header text-white clearfix">
                 Contact Details
-                <i class="fa-solid fa-square-caret-down float-end" data-bs-toggle="collapse" data-bs-target="#contact_collapse" aria-expanded="false" aria-controls="contact_collapse"></i>
+                <i class="fa-solid fa-chevron-down float-end" id="rotate-icon-2" data-bs-toggle="collapse" data-bs-target="#contact_collapse" aria-expanded="false" aria-controls="contact_collapse"></i>
             </div>
             <div class="sub-body collapse" id="contact_collapse">
                 <br>
@@ -113,7 +119,7 @@
         <div class="card-body">
             <div class="sub-header text-white clearfix">
                 RevuLink Page Setting
-                <i class="fa-solid fa-square-caret-down float-end" data-bs-toggle="collapse" data-bs-target="#review_collapse" aria-expanded="false" aria-controls="review_collapse"></i>
+                <i class="fa-solid fa-chevron-down float-end" id="rotate-icon-1" data-bs-toggle="collapse" data-bs-target="#review_collapse" aria-expanded="false" aria-controls="review_collapse"></i>
             </div>
             <div class="sub-body collapse" id="review_collapse">
                 <br>
@@ -140,7 +146,7 @@
         <div class="card-body">
             <div class="sub-header text-white clearfix">
                 RevuLink Form Setting
-                <i class="fa-solid fa-square-caret-down float-end" data-bs-toggle="collapse" data-bs-target="#form_collapse" aria-expanded="false" aria-controls="form_collapse"></i>
+                <i class="fa-solid fa-chevron-down float-end" id="rotate-icon" data-bs-toggle="collapse" data-bs-target="#form_collapse" aria-expanded="false" aria-controls="form_collapse"></i>
             </div>
             <div class="sub-body collapse" id="form_collapse">
                 <br>
@@ -154,7 +160,7 @@
     <br>
 
     <div>
-        <button id = "urlForm" form="profileUpdate" type="submit" class="btn btn-outline-primary profile-button mb-2">Update Profile</button>
+        <button id = "urlForm" form="profileUpdate" type="button" class="btn btn-outline-primary profile-button mb-2">Update Profile</button>
     </div>
 </form>
 <div class="card-footer text-center">

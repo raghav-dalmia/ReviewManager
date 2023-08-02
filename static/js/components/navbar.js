@@ -3,7 +3,6 @@ const items = document.querySelectorAll(".header .container nav a");
 const barIcon = document.querySelector(".bar-icon");
 const closeIcon = document.querySelector(".close-icon");
 const overlay = document.querySelector(".overlay");
-const redirectTabPanel = document.querySelector(".redirect-tab-panel")
 
 items.forEach((item) => {
   item.addEventListener("click", () => {
@@ -29,8 +28,4 @@ closeIcon.addEventListener("click", () => {
 overlay.addEventListener("click", () => {
   navItem.classList.toggle("active");
   overlay.classList.toggle("active");
-});
-
-redirectTabPanel.addEventListener("click", () => {
-    redirectTabPanel.classList.toggle("active")
 });

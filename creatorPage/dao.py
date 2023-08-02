@@ -8,8 +8,7 @@ from userProfile import dao as UserDao
 current_timezone = pytz_timezone('Asia/Kolkata')
 
 
-def add_view_review_analytics(request):
-    creator = request.creator
+def add_view_review_analytics(creator):
     page_visit, created = PageView.objects.get_or_create(date=timezone.now().astimezone(current_timezone).date(), creator=creator)
     page_visit.visit_count += 1
     page_visit.save()

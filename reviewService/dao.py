@@ -22,8 +22,7 @@ def create_review(feedback: str, reviewee: str, packaging: str, ratings: int, us
     return review
 
 
-def get_review_context(request) -> dict:
-    creator = request.creator
+def get_review_context(creator) -> dict:
     reviews = ReviewModel.Review.objects.filter(creator=creator, is_deleted=False).order_by(creator.get_orderby_clause())[:creator.resultsToDisplay]
     review_context = []
     for review in reviews:
@@ -66,8 +65,7 @@ def get_average_rating(request, num_days: int):
     return avg_rating or -1
 
 
-def get_overall_average_rating(request) -> float:
-    creator = request.creator
+def get_overall_average_rating(creator) -> float:
     avg_rating = ReviewModel.Review.objects.filter(creator=creator, is_deleted=False).aggregate(Avg('ratings'))['ratings__avg']
     return avg_rating or 0.0
 
@@ -80,7 +78,6 @@ def get_total_number_of_reviews(request, num_days: int) -> int:
     return int(val)
 
 
-def get_overall_number_of_reviews(request) -> int:
-    creator = request.creator
+def get_overall_number_of_reviews(creator) -> int:
     val = ReviewModel.Review.objects.filter(creator=creator, is_deleted=False).count() or 0
     return int(val)
