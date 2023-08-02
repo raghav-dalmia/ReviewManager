@@ -20,8 +20,8 @@ body,html {
 }
 
 .login-svg {
-    height: 40%;
-    width: 40%;
+    height: 50%;
+    width: 50%;
     margin: auto;
 }
 
@@ -35,10 +35,22 @@ body,html {
     font-weight: 300;
 }
 
+.tagline {
+    font-weight: 300;
+    font-size: 1.3rem;
+    padding: 2rem 5rem;
+}
+
 .btn-outline-primary {
     color: #007bff;
     border-color: #007bff;
 }
+
+input[type="text"], input[type="password"], textarea {
+    background-color : #212529; 
+    color: whitesmoke;
+    border-style: none;
+  }
 
 @media only screen and (max-width: 768px) {
     body {
