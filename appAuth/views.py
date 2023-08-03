@@ -30,7 +30,6 @@ def signup_user(request):
 
 @never_cache
 def login_user(request):
-    print("hello")
     if request.user.is_authenticated:
         return redirect('creatorAnalytics', num_days=7)
     if request.method == "POST":
