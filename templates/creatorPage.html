@@ -30,9 +30,10 @@
                 <button type="button" class="btn btn-outline-primary" style="margin-right: 10px;" id="copyLink">
                     <i class="fa fa-clone" aria-hidden="true"></i>
                 </button>
-                <a type="button" class="btn btn-outline-success" href="whatsapp://send?text={{ domain|safe }}{% url 'reviewForm' username=user.username %}" target="_blank">
+                <a type="button" class="btn btn-outline-success me-2" href="whatsapp://send?text={{ domain|safe }}{% url 'creatorPage' username=user.username %}" target="_blank">
                     <i class="fa-brands fa-whatsapp"></i>
                 </a>
+                <a type="button" class="btn btn-outline-primary" href="{% url 'review_form' username=user.username %}" target="_blank">RevuForm</a>
             </div>
             {% endif %}
         </nav>
@@ -183,7 +184,7 @@
         {% endif %}
         document.getElementById("copyLink").addEventListener("click", copyLink, false);
         function copyLink() {
-            navigator.clipboard.writeText("{{ domain|safe }}{% url 'reviewForm' username=creatorDetail.user.username %}");
+            navigator.clipboard.writeText("{{ domain|safe }}{% url 'creatorPage' username=creatorDetail.user.username %}");
             showToast("Link copied");
         }
     </script>
