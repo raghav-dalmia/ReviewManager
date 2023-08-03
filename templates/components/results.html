@@ -42,7 +42,7 @@
         <div class="col">
             <div class="card text-center p-3">
                 <h4 class="text-white">Average Rating</h4>
-                {% if avg_rating == -1 %}
+                {% if avg_rating|safe == -1 %}
                     <p>You don't have reviews yet, share your <a href="{{ domain|safe }}{% url 'reviewForm' username=user.username %}">RevuForm</a> to get started.</p>
                 {% else %}
                     <h1>{{ avg_rating|safe|floatformat:1 }}</h1>

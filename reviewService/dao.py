@@ -1,7 +1,9 @@
 from datetime import date, timedelta
+from typing import List
+
 from django.utils import timezone
 from pytz import timezone as pytz_timezone
-from django.db.models import Avg
+from django.db.models import Avg, Sum
 from . import models as ReviewModel
 from userProfile import dao as UserDao
 
@@ -39,29 +41,36 @@ def get_review_context(creator) -> dict:
 
 def get_review_form_view_context(request, num_days: int) -> dict:
     start_date = timezone.now().astimezone(current_timezone).date()
-    counts, dates = [], []
+    counts, dates, rating, total_review = [], [], 0.0, 0
     for i in range(num_days):
-        counts.append(get_create_review_count(request=request, start_date=start_date))
+        count, rate = get_create_review_count(request=request, start_date=start_date)
+        counts.append(count)
+        rating += rate
+        total_review += count
         dates.append(start_date.strftime("%d-%b"))
         start_date = start_date - timedelta(days=1)
     return {
         "title": "Reviews Received",
         "counts": counts[::-1],
         "dates": dates[::-1],
+        "total_reviews": total_review,
+        "avg_rating": rating/total_review,
     }
 
 
-def get_create_review_count(request, start_date: date) -> int:
+def get_create_review_count(request, start_date: date) -> list[int]:
     creator = request.creator
-    review_count = ReviewModel.Review.objects.filter(creator=creator, created_on__date=start_date, is_deleted=False).count()
-    return review_count or 0
+    reviews = ReviewModel.Review.objects.filter(creator=creator, created_on__date=start_date, is_deleted=False)
+    review_count = reviews.count()
+    return [int(review_count or 0), int(reviews.aggregate(Sum('ratings'))['ratings__sum'] or 0)]
 
 
 def get_average_rating(request, num_days: int):
     creator = request.creator
     end_date = timezone.now().astimezone(current_timezone).date()
-    start_date = end_date - timedelta(days=num_days-1)
+    start_date = end_date - timedelta(days=num_days)
     avg_rating = ReviewModel.Review.objects.filter(creator=creator, is_deleted=False, created_on__range=(start_date, end_date)).aggregate(Avg('ratings'))['ratings__avg']
+    print(ReviewModel.Review.objects.filter(creator=creator, is_deleted=False, created_on__range=(start_date, end_date)))
     return avg_rating or -1
 
 
@@ -73,7 +82,7 @@ def get_overall_average_rating(creator) -> float:
 def get_total_number_of_reviews(request, num_days: int) -> int:
     creator = request.creator
     end_date = timezone.now().astimezone(current_timezone).date()
-    start_date = end_date - timedelta(days=num_days - 1)
+    start_date = end_date - timedelta(days=num_days)
     val = ReviewModel.Review.objects.filter(creator=creator, is_deleted=False, created_on__range=(start_date, end_date)).count() or 0
     return int(val)
 
