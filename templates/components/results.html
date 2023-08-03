@@ -27,14 +27,15 @@
     <script>
         const text = "Our AI can provide advanced analytics like “Customer Repeat Purchase Probability”, “Customer Satisfaction Index”, “Reputation Improvement Metric” if you have more than 200 reviews. Start sharing your RevuForm now.";
         const typingAnimationElement = document.getElementById("quote");
-        let ind = 0;
-        function type() {
-            typingAnimationElement.innerHTML += text.charAt(ind);
-            ind++;
-            if(ind<text.length)
-                setTimeout(type, 25);
-        }
-        type();
+<!--        let ind = 0;-->
+<!--        function type() {-->
+<!--            typingAnimationElement.innerHTML += text.charAt(ind);-->
+<!--            ind++;-->
+<!--            if(ind<text.length)-->
+<!--                setTimeout(type, 25);-->
+<!--        }-->
+<!--        type();-->
+    typingAnimationElement.innerHTML = text;
     </script>
     {% endif %}
     <div class="row row-cols-1 row-cols-md-3 g-3 mb-3">
@@ -42,7 +43,7 @@
             <div class="card text-center p-3">
                 <h4 class="text-white">Average Rating</h4>
                 {% if avg_rating == -1 %}
-                    <p>You don't have reviews yet, share your <a href="{{ domain|safe }}{% url 'reviewForm' username=user.username %}">Revu Form</a> to get started.</p>
+                    <p>You don't have reviews yet, share your <a href="{{ domain|safe }}{% url 'reviewForm' username=user.username %}">RevuForm</a> to get started.</p>
                 {% else %}
                     <h1>{{ avg_rating|safe|floatformat:1 }}</h1>
                 {% endif %}

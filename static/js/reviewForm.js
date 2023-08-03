@@ -49,17 +49,8 @@ function showToast(message) {
 }
 
 function clearImage(pid) {
-    console.log("Deleting " + pid)
     $("#prev_"+pid).remove();
     inputImageMap.delete(pid);
-}
-
-function clearFormData(id) {
-    $('#form')[0].reset()
-    for(let image_id = 1; image_id <= id; image_id++){
-        console.log(image_id)
-        clearImage(image_id)
-    }
 }
 
 $("#attachment").on("change", function (e) {
