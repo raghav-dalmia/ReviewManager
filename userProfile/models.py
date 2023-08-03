@@ -1,13 +1,11 @@
 import os
-import time
 from PIL import Image
 from io import BytesIO
 from django.core.files.uploadedfile import InMemoryUploadedFile
-from . import utils
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
+from django.core.validators import URLValidator
 
 
 def get_file_path(instance, filename):

@@ -72,42 +72,42 @@
                 <div class="row g-2">
                     <div class="col-md">
                         <div class="mb-2">
-                            <label for="social instagram">Instagram</label>
-                            <input type="url" id="social instagram" name="instagram" value="{{ creator.instagram_url }}">
+                            <label for="social_instagram">Instagram</label>
+                            <input type="url" id="social_instagram" name="instagram" value="{{ creator.instagram_url }}">
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="mb-2">
-                            <label for="social youtube">Youtube</label>
-                            <input type="url" id="social youtube" name="youtube" value="{{ creator.youtube_url }}">
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-2">
-                    <div class="col-md">
-                        <div class="mb-2">
-                            <label for="social twitter">Twitter</label>
-                            <input type="url" id="social twitter" name="twitter" value="{{ creator.twitter_url }}">
-                        </div>
-                    </div>
-                    <div class="col-md">
-                        <div class="mb-2">
-                            <label for="social website">Website</label>
-                            <input type="url" id="social website" name="website" value="{{ creator.website_url }}">
+                            <label for="social_youtube">Youtube</label>
+                            <input type="url" id="social_youtube" name="youtube" value="{{ creator.youtube_url }}">
                         </div>
                     </div>
                 </div>
                 <div class="row g-2">
                     <div class="col-md">
                         <div class="mb-2">
-                            <label for="social linkedin">LinkedIn</label>
-                            <input type="url" id="social linkedin" name="linkedin" value="{{ creator.linkedin_url }}">
+                            <label for="social_twitter">Twitter</label>
+                            <input type="url" id="social_twitter" name="twitter" value="{{ creator.twitter_url }}">
                         </div>
                     </div>
                     <div class="col-md">
                         <div class="mb-2">
-                            <label for="social facebook">Facebook</label>
-                            <input type="url" id="social facebook" name="facebook" value="{{ creator.facebook_url }}">
+                            <label for="social_website">Website</label>
+                            <input type="url" id="social_website" name="website" value="{{ creator.website_url }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-2">
+                    <div class="col-md">
+                        <div class="mb-2">
+                            <label for="social_linkedin">LinkedIn</label>
+                            <input type="url" id="social_linkedin" name="linkedin" value="{{ creator.linkedin_url }}">
+                        </div>
+                    </div>
+                    <div class="col-md">
+                        <div class="mb-2">
+                            <label for="social_facebook">Facebook</label>
+                            <input type="url" id="social_facebook" name="facebook" value="{{ creator.facebook_url }}">
                         </div>
                     </div>
                 </div>
@@ -176,21 +176,13 @@
 </div>
 {% endblock results %}{% block js %}
     {{ block.super }}
+    <script type="text/javascript" src="{% static '/js/components/profile.js' %}"></script>
     <script>
         document.getElementById("copyLink").addEventListener("click", copyLink, false);
         function copyLink() {
-            navigator.clipboard.writeText("{{ domain|safe }}{% url 'reviewForm' username=user.username %}");
+            navigator.clipboard.writeText("{{ domain|safe }}{% url 'review_form' username=user.username %}");
             showToast("Link copied");
-        }
-        $(document).ready(function() {
-         $('#urlForm').submit(function() {
-          var url = $('#social');
-          if(url.val().match(/^http:\/\//) == null) {
-           url.val("http://" + url.val());
-          }
-         });
-        });
-       </script>
-    <script type="text/javascript" src="{% static '/js/components/profile.js' %}"></script>
+        };
+    </script>
 {% endblock js %}
 

@@ -133,3 +133,16 @@ ele2.addEventListener('click', () => {
   cr2 = (cr2+180)%360;
   ele2.style.transform = `rotate(${cr2}deg)`;
 });
+
+const contactCollapse = document.getElementById('contact_collapse');
+if (contactCollapse) {
+    const inputElements = contactCollapse.querySelectorAll('input[type="url"]');
+    inputElements.forEach(input => {
+        input.addEventListener('blur', function() {
+            const urlValue = this.value.trim();
+            if (urlValue && !urlValue.startsWith('http://') && !urlValue.startsWith('https://')) {
+                this.value = 'https://' + urlValue;
+            }
+        });
+    });
+}
