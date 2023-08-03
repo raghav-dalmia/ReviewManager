@@ -5,7 +5,6 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.core.validators import URLValidator
 
 
 def get_file_path(instance, filename):
@@ -74,8 +73,6 @@ class Creator(models.Model):
     is_deleted = models.BooleanField(default=False)
 
     def clean(self):
-        # if not utils.validPhoneNumber(self.phone_number):
-        #     raise ValidationError({'phonenumber': 'Oops, you entered invalid phone number :('})
         super().clean()
 
     def save(self, *args, **kwargs):

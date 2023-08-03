@@ -53,13 +53,6 @@ function clearImage(pid) {
     inputImageMap.delete(pid);
 }
 
-function clearFormData(id) {
-    $('#form')[0].reset()
-    for(let image_id = 1; image_id <= id; image_id++){
-        clearImage(image_id)
-    }
-}
-
 $("#attachment").on("change", function (e) {
     const files = e.target.files;
     const filesArr = Array.prototype.slice.call(files);
