@@ -71,21 +71,6 @@ document.getElementById('urlForm').addEventListener('click', function(event) {
         showToast("Opps!! you forget to enter description.");
         isValid = false;
     }
-//    const instagram = document.getElementById('instagram').value.trim();
-//    if(instagram!='' && !validateInstagramLink(instagram)){
-//        showToast("Opps!! you enter invalid instagram profile.");
-//        isValid = false;
-//    }
-//    const linkedin = document.getElementById('linkedin').value.trim();
-//    if(linkedin!='' && validateLinkedInLink(linkedin)){
-//        showToast("Opps!! you enter invalid linkedin profile.");
-//        isValid = false;
-//    }
-//    const facebook = document.getElementById('facebook').value.trim();
-//    if(facebook!='' && !validateFacebookLink(facebook)){
-//        showToast("Opps!! you enter invalid facebook profile.");
-//        isValid = false;
-//    }
     if(!isValid){
         event.preventDefault();
     } else {

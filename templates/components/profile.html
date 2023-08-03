@@ -12,13 +12,6 @@
         document.getElementById("side_profile").classList.add('active-button');
     });
 </script>
-<style>
-    .rotate-180 {
-      transform: rotate(180deg);
-      transition: transform 0.3s ease; /* Optional: Add transition for smooth animation */
-    }
-</style>
-
 <br/>
 <form id="profileUpdate" method="post" action="{% url 'profile' %}" enctype="multipart/form-data">
     {% csrf_token %}
