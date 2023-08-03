@@ -33,7 +33,6 @@
                 <a type="button" class="btn btn-outline-success me-2" href="whatsapp://send?text={{ domain|safe }}{% url 'creatorPage' username=user.username %}" target="_blank">
                     <i class="fa-brands fa-whatsapp"></i>
                 </a>
-                <a type="button" class="btn btn-outline-primary" href="{% url 'review_form' username=user.username %}" target="_blank">RevuForm</a>
             </div>
             {% endif %}
         </nav>
@@ -49,23 +48,24 @@
                     </div>
                     <div class="socials">
                         {% if creatorDetail.instagram_url %}
-                            <a href={{ creatorDetail.instagram_url }} target="_blank" id="share-fb" class="sharer button"><i class="fa-brands fa-instagram fa-lg" style="color: #007bff;"></i></a>
+                            <a href={{ creatorDetail.instagram_url }} target="_blank" class="sharer button"><i class="fa-brands fa-instagram fa-lg" style="color: #007bff;"></i></a>
                         {% endif %}
                         {% if creatorDetail.youtube_url %}
-                            <a href={{ creatorDetail.youtube_url }} target="_blank" id="share-fb" class="sharer button"><i class="fa-brands fa-youtube fa-lg" style="color: #007bff;"></i></a>
+                            <a href={{ creatorDetail.youtube_url }} target="_blank" class="sharer button"><i class="fa-brands fa-youtube fa-lg" style="color: #007bff;"></i></a>
                         {% endif %}
                         {% if creatorDetail.website_url %}
-                            <a href={{ creatorDetail.website_url }} target="_blank" id="share-fb" class="sharer button"><i class="fa fa-link fa-lg" style="color: #007bff;"></i></a>
+                            <a href={{ creatorDetail.website_url }} target="_blank" class="sharer button"><i class="fa fa-link fa-lg" style="color: #007bff;"></i></a>
                         {% endif %}
                         {% if creatorDetail.twitter_url %}
-                            <a href={{ creatorDetail.twitter_url }} target="_blank" id="share-fb" class="sharer button"><i class="fa-brands fa-twitter fa-lg" style="color: #007bff;"></i></a>
+                            <a href={{ creatorDetail.twitter_url }} target="_blank" class="sharer button"><i class="fa-brands fa-twitter fa-lg" style="color: #007bff;"></i></a>
                         {% endif %}
                         {% if creatorDetail.facebook_url %}
-                            <a href={{ creatorDetail.facebook_url }} target="_blank" id="share-link" class="link button"><i class="fa-brands fa-facebook fa-lg" style="color: #007bff;"></i></a>
+                            <a href={{ creatorDetail.facebook_url }} target="_blank" class="link button"><i class="fa-brands fa-facebook fa-lg" style="color: #007bff;"></i></a>
                         {% endif %}
                         {% if creatorDetail.linkedin_url %}
-                            <a href={{ creatorDetail.linkedin_url }} target="_blank" id="share-link" class="link button"><i class="fa-brands fa-linkedin fa-lg" style="color: #007bff;"></i></a>
+                            <a href={{ creatorDetail.linkedin_url }} target="_blank" class="link button"><i class="fa-brands fa-linkedin fa-lg" style="color: #007bff;"></i></a>
                         {% endif %}
+                        <a href="{% url 'review_form' username=user.username %}" target="_blank" id="share-link" class="link button"><i class="fa-solid fa-clipboard-list fa-lg" style="color: #007bff;"></i></a>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
         <div class="reviews container">
             <div class="row review-info">
                 {% if review_ctx.review_img|length > 0 %}
-                <div id="carousel_{{ forloop.counter }}" class="carousel slide" data-bs-ride="carousel">
+                <div id="carousel_{{ forloop.counter }}" class="carousel slide mb-2" data-bs-ride="carousel">
                     {% if review_ctx.review_img|length > 1 %}
                     <div class="carousel-indicators">
                         {% for image in review_ctx.review_img %}
@@ -104,7 +104,7 @@
                     {% endif %}
                     <div class="carousel-inner">
                         {% for image in review_ctx.review_img %}
-                        <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}"><img src="{{ media_url }}{{ image.attachment }}" class="d-block mx-auto" style="max-height: 250px; max-width: 100%; height: auto; width: auto;"></div>
+                        <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}"><img src="{{ media_url }}{{ image.attachment }}" class="d-block mx-auto" style="height: 250px; max-width: 100%; width: auto;"></div>
                         {% endfor %}
                     </div>
                 </div>
@@ -117,7 +117,12 @@
                 </script>
                 {% endif %}
                 <div class="col reviewee">
-                    @{{ review_ctx.review.reviewee }}
+                    {% if review_ctx.review.reviewee == "Anonymous" %}
+                        @{{ review_ctx.review.reviewee }}
+                    {% else %}
+                        <a href="https://www.instagram.com/{{ review_ctx.review.reviewee }}" target="_blank">@{{ review_ctx.review.reviewee }}</a>
+                    {% endif %}
+
                 </div>
                 <div class="col rating text-end">
                     {% with ''|center:review_ctx.review.ratings as range %}
@@ -136,7 +141,7 @@
             </div>
             <div class="row review-content">
                 <p>{{ review_ctx.review.packaging }}
-                    <br>{{ review_ctx.review.feedback }}</p>
+                <br>{{ review_ctx.review.feedback }}</p>
             </div>
         </div>
         {% if reviews and forloop.counter != reviews|length and reviews|length > 0 %}

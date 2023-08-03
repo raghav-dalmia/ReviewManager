@@ -5,7 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 def create_creator(username: str, password: str) -> models.Creator:
     user = User.objects.create_user(username=username, password=password)
-    return models.Creator.objects.create(user=user)
+    return models.Creator.objects.create(user=user, instagram_url="https://www.instagram.com/"+username)
 
 
 def get_creator(user: User) -> models.Creator:
