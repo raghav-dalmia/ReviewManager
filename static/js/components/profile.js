@@ -113,25 +113,16 @@ function validateFacebookLink(facebookLink) {
     return pattern.test(facebookLink);
 }
 
-const ele = document.getElementById('rotate-icon');
-let cr = 0;
-ele.addEventListener('click', () => {
-  cr = (cr+180)%360;
-  ele.style.transform = `rotate(${cr}deg)`;
-});
-
-const ele1 = document.getElementById('rotate-icon-1');
-let cr1 = 0;
-ele1.addEventListener('click', () => {
-  cr1 = (cr1+180)%360;
-  ele1.style.transform = `rotate(${cr1}deg)`;
-});
-
-const ele2 = document.getElementById('rotate-icon-2');
-let cr2 = 0;
-ele2.addEventListener('click', () => {
-  cr2 = (cr2+180)%360;
-  ele2.style.transform = `rotate(${cr2}deg)`;
+document.querySelectorAll('div[data-bs-toggle="collapse"]').forEach(collapseEle => {
+    collapseEle.addEventListener('click', () => {
+        const collapseIcon = collapseEle.getElementsByTagName("i")[0];
+        let rotateVal = collapseIcon.getAttribute("data-rotate");
+        rotateVal+=180;
+        if(rotateVal>=360)
+            rotateVal=0;
+        collapseIcon.setAttribute("data-rotate", rotateVal);
+        collapseIcon.style.transform = `rotate(${rotateVal}deg)`;
+    });
 });
 
 const contactCollapse = document.getElementById('contact_collapse');
