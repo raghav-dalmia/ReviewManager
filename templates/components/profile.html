@@ -165,11 +165,11 @@
 </form>
 <div class="card-footer text-center">
     <br>
-    <h3 class="card-title">Share your Revu Form</h3>
+    <h3 class="card-title">Share your RevuForm</h3>
     <button type="button" class="btn btn-outline-dark" id="copyLink">
         <i class="fa fa-clone" aria-hidden="true"></i> Copy Link
     </button>
-    <a type="button" class="btn btn-outline-success" href="whatsapp://send?text={{ domain|safe }}{% url 'reviewForm' username=user.username %}">
+    <a type="button" class="btn btn-outline-success" href="whatsapp://send?text={{ domain|safe }}{% url 'review_form' username=user.username %}">
         <i class="fa-brands fa-whatsapp"></i> WhatsApp
     </a>
     <br>
