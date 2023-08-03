@@ -54,7 +54,7 @@ def get_review_form_view_context(request, num_days: int) -> dict:
         "counts": counts[::-1],
         "dates": dates[::-1],
         "total_reviews": total_review,
-        "avg_rating": rating/total_review,
+        "avg_rating": rating / total_review if total_review != 0 else -1,
     }
 
 
