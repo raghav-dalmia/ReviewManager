@@ -58,7 +58,7 @@ def get_review_form_view_context(request, num_days: int) -> dict:
     }
 
 
-def get_create_review_count(request, start_date: date) -> list[int]:
+def get_create_review_count(request, start_date: date) -> List[int]:
     creator = request.creator
     reviews = ReviewModel.Review.objects.filter(creator=creator, created_on__date=start_date, is_deleted=False)
     review_count = reviews.count()
