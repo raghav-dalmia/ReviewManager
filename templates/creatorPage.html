@@ -27,12 +27,13 @@
             </button>
             {% elif user.username == creatorDetail.user.username %}
             <div class="btn-toolbar" role="toolbar">
-                <button type="button" class="btn btn-outline-primary" style="margin-right: 10px;" id="copyLink">
+                <button type="button" class="btn btn-outline-light me-2" id="copyLink">
                     <i class="fa fa-clone" aria-hidden="true"></i>
                 </button>
                 <a type="button" class="btn btn-outline-success me-2" href="whatsapp://send?text={{ domain|safe }}{% url 'creatorPage' username=user.username %}" target="_blank">
                     <i class="fa-brands fa-whatsapp"></i>
                 </a>
+                <a href="{% url 'review_form' username=user.username %}" target="_blank" id="share-link" type="button" class="btn btn-outline-primary"><i class="fa-solid fa-clipboard-list fa-lg" style="color: #007bff;"></i></a>
             </div>
             {% endif %}
         </nav>
@@ -65,7 +66,6 @@
                         {% if creatorDetail.linkedin_url %}
                             <a href={{ creatorDetail.linkedin_url }} target="_blank" class="link button"><i class="fa-brands fa-linkedin fa-lg" style="color: #007bff;"></i></a>
                         {% endif %}
-                        <a href="{% url 'review_form' username=user.username %}" target="_blank" id="share-link" class="link button"><i class="fa-solid fa-clipboard-list fa-lg" style="color: #007bff;"></i></a>
                     </div>
                 </div>
             </div>

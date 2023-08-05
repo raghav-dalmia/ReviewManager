@@ -33,7 +33,7 @@
 			</button>
 		{% elif user.username == username %}
 		<div class="btn-toolbar" role="toolbar">
-			<button type="button" class="btn btn-outline-primary me-2" id="copyLink">
+			<button type="button" class="btn btn-outline-light me-2" id="copyLink">
 				<i class="fa fa-clone" aria-hidden="true"></i>
 			</button>
 			<a type="button" class="btn btn-outline-success me-2" href="whatsapp://send?text={{ domain|safe }}{% url 'review_form' username=user.username %}" target="_blank">
