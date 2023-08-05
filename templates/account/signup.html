@@ -40,11 +40,9 @@
                             <input type="password" class="form-control" id="password" name="password" placeholder="Password" minlength="4" required>
                             <label for="password">Password</label>
                         </div>
-                        <div class="btn-toolbar float-end" role="toolbar">
-                            <div class="btn-group p-2" role="group">
-                                <button type="submit" class="btn btn-outline-primary">Create</button>
-                            </div>
-                        </div>
+                        <small><a class="float-end" href="{% url 'tnc' %}">Terms & Conditions</a></small>
+                        <br></br>
+                        <button type="submit" class="btn btn-outline-primary float-end">Create</button>
                     </form>
                     <div>
                         <p class="my-1 text-center fw-lighter">OR</p>
