@@ -36,6 +36,7 @@ views = [
     path('home_error/', TemplateView.as_view(template_name='./components/error.html'), name="home_error"),
     path('400/', TemplateView.as_view(template_name='./components/error.html'), name='error_400'),
     path('500/', TemplateView.as_view(template_name='./components/error.html'), name='error_500'),
+    path('terms/condition', TemplateView.as_view(template_name='./tnc.html'), name="tnc"),
 ]
 
 urlpatterns = views + [
