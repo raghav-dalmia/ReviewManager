@@ -49,7 +49,7 @@
     		</div>
     		<div class="nudge">
     			<p>Excited? Ecstatic? Elated?</p>
-                Let us know how you feel about <strong>@{{ username }}</strong>, we love hearing from our customers!
+                Let us know how you feel about <a href="https://www.instagram.com/{{ username }}" target="_blank"><strong>@{{ username }}</strong></a>, we love hearing from our customers!
     		</div>
 		</div>
 	</div>
@@ -155,11 +155,12 @@
                 </label>
                 <input type="file" class="form-control" style="display: none;" name="attachment" id="attachment" accept=".jpeg,.jpg,.png"  multiple>
             </div>
-            <div class="form-group container mb-2">
+            <div class="form-group container">
                 <div class="row g-3" id="previewImages"></div>
             </div>
+			<small><a class="float-end" href="{% url 'tnc' %}" target="_blank">Terms & Conditions</a></small><br>
 			<div class="submitBtn">
-				<button type="button" id="formSubmit" class="btn btn-outline-primary">Submit</button>
+				<button type="button" id="formSubmit" class="btn btn-outline-primary mt-1">Submit Revu</button>
 			</div>
 	    </div>
   	</form>
