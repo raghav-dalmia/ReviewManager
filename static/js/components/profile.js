@@ -76,12 +76,12 @@ document.getElementById('urlForm').addEventListener('click', function(event) {
     } else {
         document.getElementById('profileUpdate').submit();
     }
-})
+});
 
 function validateEmail(email) {
     var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return pattern.test(email);
-}
+};
 
 function validateInstagramLink(instagramLink) {
     var pattern = /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/([A-Za-z0-9_\-\.]+)/;
