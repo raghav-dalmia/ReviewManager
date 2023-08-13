@@ -152,30 +152,12 @@
     </div>
     <br>
 
-    <div>
-        <button id = "urlForm" form="profileUpdate" type="button" class="btn btn-outline-primary profile-button mb-2">Update Profile</button>
-    </div>
+    <nav class="navbar fixed-bottom header" id="footer" style="display: none;">
+        <button id = "urlForm" form="profileUpdate" type="button" class="btn btn-primary profile-button mt-2">Update Profile</button>
+    </nav>
 </form>
-<div class="card-footer text-center">
-    <br>
-    <h3 class="card-title">Share your RevuForm</h3>
-    <button type="button" class="btn btn-outline-dark" id="copyLink">
-        <i class="fa fa-clone" aria-hidden="true"></i> Copy Link
-    </button>
-    <a type="button" class="btn btn-outline-success" href="whatsapp://send?text={{ domain|safe }}{% url 'review_form' username=user.username %}">
-        <i class="fa-brands fa-whatsapp"></i> WhatsApp
-    </a>
-    <br>
-</div>
 {% endblock results %}{% block js %}
     {{ block.super }}
     <script type="text/javascript" src="{% static '/js/components/profile.js' %}"></script>
-    <script>
-        document.getElementById("copyLink").addEventListener("click", copyLink, false);
-        function copyLink() {
-            navigator.clipboard.writeText("{{ domain|safe }}{% url 'review_form' username=user.username %}");
-            showToast("Link copied");
-        };
-    </script>
 {% endblock js %}
 

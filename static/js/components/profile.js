@@ -122,3 +122,8 @@ if (contactCollapse) {
         });
     });
 }
+
+document.getElementById('profileUpdate').addEventListener('input', () => {
+      document.getElementById('footer').style.display = 'block';
+      document.getElementById('profileUpdate').style.marginBottom = '10vh';
+});
