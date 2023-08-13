@@ -1,7 +1,7 @@
-document.getElementById("resultRange").onchange = function() {
+document.getElementById("resultRange").addEventListener('input', function() {
     const rangeVal = document.getElementById("resultRange").value;
     document.getElementById("numberOfResults").value = rangeVal;
-}
+});
 
 const imageInput = document.getElementById('profile');
 imageInput.addEventListener('change', function() {
