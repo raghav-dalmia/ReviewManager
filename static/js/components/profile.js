@@ -1,7 +1,7 @@
-document.getElementById("resultRange").onchange = function() {
+document.getElementById("resultRange").addEventListener('input', function() {
     const rangeVal = document.getElementById("resultRange").value;
     document.getElementById("numberOfResults").value = rangeVal;
-}
+});
 
 const imageInput = document.getElementById('profile');
 imageInput.addEventListener('change', function() {
@@ -76,12 +76,12 @@ document.getElementById('urlForm').addEventListener('click', function(event) {
     } else {
         document.getElementById('profileUpdate').submit();
     }
-})
+});
 
 function validateEmail(email) {
     var pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return pattern.test(email);
-}
+};
 
 function validateInstagramLink(instagramLink) {
     var pattern = /^(?:https?:\/\/)?(?:www\.)?instagram\.com\/([A-Za-z0-9_\-\.]+)/;
@@ -122,3 +122,8 @@ if (contactCollapse) {
         });
     });
 }
+
+document.getElementById('profileUpdate').addEventListener('input', () => {
+      document.getElementById('footer').style.display = 'block';
+      document.getElementById('profileUpdate').style.marginBottom = '10vh';
+});

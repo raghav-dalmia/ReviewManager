@@ -115,14 +115,6 @@
                 <i class="fa-solid fa-chevron-down float-end" data-rotate="0"></i>
             </div>
             <div class="sub-body collapse" id="review_collapse">
-                <br>
-                <div class="form-group">
-                    <label for="numberOfResults" class="form-label">How many customer reviews do you want to show on your RevuLink page?</label>
-                    <input type="number" id="numberOfResults" name="numberOfResults" value="{{ creator.resultsToDisplay }}" readonly>
-                </div>
-                <div class="input-group w-75 mx-auto mt-2 mb-4">
-                    <input type="range" id="resultRange" value="{{ creator.resultsToDisplay }}" min="1" max="25" step="1">
-                </div>
                 <div class="form-group">
                     <label for="orderBy">How do you want to order the reviews?</label>
                     <select class="custom-select" id="orderBy" name="orderBy">
@@ -130,6 +122,14 @@
                         <option {% if creator.orderBy == 2 %} selected {% endif %} value="2">Newest first</option>
                         <option {% if creator.orderBy == 3 %} selected {% endif %} value="3">Oldest first</option>
                     </select>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="numberOfResults" class="form-label">How many customer reviews do you want to show on your RevuLink page?</label>
+                    <input type="number" id="numberOfResults" name="numberOfResults" value="{{ creator.resultsToDisplay }}" readonly disabled>
+                </div>
+                <div class="input-group w-75 mx-auto mt-2 mb-2">
+                    <input type="range" id="resultRange" value="{{ creator.resultsToDisplay }}" min="1" max="25" step="1">
                 </div>
             </div>
         </div>
@@ -150,32 +150,12 @@
             </div>
         </div>
     </div>
-    <br>
-
-    <div>
-        <button id = "urlForm" form="profileUpdate" type="button" class="btn btn-outline-primary profile-button mb-2">Update Profile</button>
-    </div>
+    <nav class="navbar fixed-bottom header" id="footer" style="display: none;">
+        <button id = "urlForm" form="profileUpdate" type="button" class="btn btn-primary profile-button mt-2">Update Profile</button>
+    </nav>
 </form>
-<div class="card-footer text-center">
-    <br>
-    <h3 class="card-title">Share your RevuForm</h3>
-    <button type="button" class="btn btn-outline-dark" id="copyLink">
-        <i class="fa fa-clone" aria-hidden="true"></i> Copy Link
-    </button>
-    <a type="button" class="btn btn-outline-success" href="whatsapp://send?text={{ domain|safe }}{% url 'review_form' username=user.username %}">
-        <i class="fa-brands fa-whatsapp"></i> WhatsApp
-    </a>
-    <br>
-</div>
 {% endblock results %}{% block js %}
     {{ block.super }}
     <script type="text/javascript" src="{% static '/js/components/profile.js' %}"></script>
-    <script>
-        document.getElementById("copyLink").addEventListener("click", copyLink, false);
-        function copyLink() {
-            navigator.clipboard.writeText("{{ domain|safe }}{% url 'review_form' username=user.username %}");
-            showToast("Link copied");
-        };
-    </script>
 {% endblock js %}
 
