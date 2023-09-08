@@ -41,10 +41,27 @@
                         </div>
                         <small><a class="float-end" href="{% url 'tnc' %}" target="_blank">Terms & Conditions</a></small>
                         <br></br>
-                        <button type="submit" class="btn btn-outline-primary float-end">Login</button>
+                        <button type="submit" class="btn btn-outline-primary btn-block float-end  w-100">Login</button>
                     </form>
+                    <div class="container my-3">
+                        <div class="row justify-content-center">
+                            <div class="col">
+                                <a href="{% provider_login_url 'google' %}" class="btn btn-google btn-block w-100">
+                                    <img src="{% static 'img/Google-Symbol.png' %}" alt="Google Logo" width="25" height="25">
+                                    Login with Google
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center mt-2">
+                            <div class="col">
+                                <a href="{% provider_login_url 'facebook' %}" class="btn btn-facebook btn-block w-100">
+                                    <i class="fab fa-facebook-square mr-2"></i> Login with Facebook
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <p class="my-1 text-center fw-lighter">OR</p>
-                    <p class="my-2"><a href="{% url 'signup' %}">Create new account</a>?</p>
+                    <p class="my-1"><a href="{% url 'signup' %}">Create new account</a>?</p>
                 </div>
             </div>
         </div>

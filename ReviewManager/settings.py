@@ -28,7 +28,7 @@ LOCAL_ENV = not PROD_SERVER
 DEBUG = LOCAL_ENV
 
 if LOCAL_ENV:
-    ALLOWED_HOSTS = ['127.0.0.1']
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 else:
     ALLOWED_HOSTS = [DOMAIN_NAME, PUBLIC_IP, 'www.'+DOMAIN_NAME, SUBDOMAIN_NAME+'.'+DOMAIN_NAME]
 
@@ -51,8 +51,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    # 'allauth.socialaccount.providers.facebook',
-    # 'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
 
     # my custom apps
     'appAuth',
@@ -62,19 +62,44 @@ INSTALLED_APPS = [
 ]
 
 LOGIN_REDIRECT_URL = 'creatorAnalytics'
-# ACCOUNT_LOGOUT_ON_GET = True
-# SOCIALACCOUNT_QUERY_EMAIL = True
-# SOCIALACCOUNT_LOGIN_ON_GET = True
+ACCOUNT_LOGOUT_ON_GET = True
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_LOGIN_ON_GET = True
 
 
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         "SCOPE": [
-#             "profile",
-#             "email",
-#         ]
-#     }
-# }
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['email', 'public_profile'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'INIT_PARAMS': {'cookie': True},
+        'FIELDS': [
+            'id',
+            'first_name',
+            'last_name',
+            'middle_name',
+            'name',
+            'name_format',
+            'picture',
+            'short_name',
+            'email'
+        ],
+        'EXCHANGE_TOKEN': True,
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v13.0',
+        'GRAPH_API_URL': 'https://graph.facebook.com/v13.0',
+    },
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    }
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
