@@ -8,6 +8,22 @@ body,html {
     padding-top: 20vh;
 }
 
+.btn-google {
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #000;
+}
+.btn-google:hover {
+    background-color: #f0f0f0;
+}
+.btn-facebook {
+    background-color: #1877F2;
+    color: #fff;
+}
+.btn-facebook:hover {
+    background-color: #1660C4;
+}
+
 .card {
     border-style: inherit;
     background-color: #222123;

@@ -3,7 +3,7 @@
 {% block title%}Create Account{% endblock %}
 {% block body %}
 {% load socialaccount %}
-{% block css %}€
+{% block css %}
 {{ block.super }}
     <link rel="stylesheet" type="text/css" href=" {% static '/css/account/signup.css' %} ">
 {% endblock css %}
@@ -46,7 +46,7 @@
                         </div>
                         <small><a class="float-end" href="{% url 'tnc' %}" target="_blank">Terms & Conditions</a></small>
                         <br>
-                        <button type="button" id="submit_form" class="btn btn-outline-primary float-end">Create</button>
+                        <button type="button" id="submit_form" class="btn btn-primary float-end btn-block w-100">Create</button>
                     </form>
                     <div>
                         <p class="my-1 text-center fw-lighter">OR</p>
