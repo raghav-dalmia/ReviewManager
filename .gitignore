@@ -91,6 +91,7 @@ __pycache__/
 
 venv
 aws_config/creds.py
+gcp_config
 
 ReviewManager/admin/
 ReviewManager/css/
