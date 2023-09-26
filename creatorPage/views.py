@@ -7,9 +7,9 @@ userDao = reviewServiceDao.UserDao
 
 def creator_page(request, username: str):
     creator = userDao.get_creator_from_username(username=username)
-    creatorPageDao.add_view_review_analytics(creator=creator)
     if not (request.user.is_authenticated and request.user.username == username):
         creatorPageDao.add_view_review_analytics(creator=creator)
+    context = reviewServiceDao.get_review_context(creator=creator)
     context["total_reviews"] = reviewServiceDao.get_overall_number_of_reviews(creator=creator)
     context["avg_rating"] = reviewServiceDao.get_overall_average_rating(creator=creator)
     return render(request, 'creatorPage.html', context)
