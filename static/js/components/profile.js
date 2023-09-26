@@ -45,9 +45,6 @@ const imageInput = document.getElementById('profile');
 imageInput.addEventListener('change', function() {
     const imagePreview = document.getElementById('profile_preview');
     const file = imageInput.files[0];
-    if(file.size>2100*1030){
-        showToast("Opps!! please upload image less than 2 MB");
-    }
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
@@ -59,10 +56,6 @@ imageInput.addEventListener('change', function() {
 
 document.getElementById('urlForm').addEventListener('click', function(event) {
     var isValid = true;
-    if(imageInput.files[0].size>2100*1030){
-        showToast("Opps!! please upload image less than 2 MB");
-        isValid = false;
-    }
     const email = document.getElementById('email').value.trim();
     if(!validateEmail(email)){
         showToast("Opps!! you enter invalid email.");
