@@ -53,43 +53,6 @@ function clearImage(pid) {
     inputImageMap.delete(pid);
 }
 
-function compressImage(file, callback) {
-    const reader = new FileReader();
-    reader.onload = function (event) {
-        const img = new Image();
-        img.src = event.target.result;
-
-        img.onload = function () {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            const maxWidth = 800;
-            const maxHeight = 800;
-            let width = img.width;
-            let height = img.height;
-
-            if (width > maxWidth) {
-                height *= maxWidth / width;
-                width = maxWidth;
-            }
-
-            if (height > maxHeight) {
-                width *= maxHeight / height;
-                height = maxHeight;
-            }
-
-            canvas.width = width;
-            canvas.height = height;
-            ctx.drawImage(img, 0, 0, width, height);
-
-            canvas.toBlob(function (blob) {
-                callback(blob);
-            }, 'image/jpeg', 0.8);
-        };
-    };
-
-    reader.readAsDataURL(file);
-}
-
 $("#attachment").on("change", function (e) {
     const files = e.target.files;
     const filesArr = Array.prototype.slice.call(files);
@@ -97,16 +60,7 @@ $("#attachment").on("change", function (e) {
         if (!file.type.match('image.*')) {
           return;
         }
-        if (file.size > 100 * 1024) {
-            compressImage(file, function (compressedBlob) {
-                const compressedFile = new File([compressedBlob], file.name, {
-                    type: 'image/jpeg',
-                });
-                inputImageMap[id]=compressedFile;
-            });
-        } else {
-            inputImageMap[id]=file;
-        }
+        inputImageMap[id]=file;
         id += 1
         const reader = new FileReader();
         reader.onload = function (e) {
