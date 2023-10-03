@@ -3,6 +3,19 @@ document.getElementById("resultRange").addEventListener('input', function() {
     document.getElementById("numberOfResults").value = rangeVal;
 });
 
+const imageInput = document.getElementById('profile');
+imageInput.addEventListener('change', function() {
+    const imagePreview = document.getElementById('profile_preview');
+    const file = imageInput.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          imagePreview.src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+    }
+});
+
 function showToast(message) {
       var toastElement = document.createElement("div");
       toastElement.classList.add("toast");
@@ -41,26 +54,9 @@ function showToast(message) {
       toast.show();
 }
 
-const imageInput = document.getElementById('profile');
-imageInput.addEventListener('change', function() {
-    const imagePreview = document.getElementById('profile_preview');
-    const file = imageInput.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          imagePreview.src = e.target.result;
-        }
-        reader.readAsDataURL(file);
-    }
-});
-
 document.getElementById('urlForm').addEventListener('click', function(event) {
     var isValid = true;
     const email = document.getElementById('email').value.trim();
-    if(!validateEmail(email)){
-        showToast("Opps!! you enter invalid email.");
-        isValid = false;
-    }
     const firstname = document.getElementById('firstname').value.trim();
     if(firstname==''){
         showToast("Opps!! you forget to enter firstname.");
