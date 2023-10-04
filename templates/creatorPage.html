@@ -104,7 +104,7 @@
                     {% endif %}
                     <div class="carousel-inner">
                         {% for image in review_ctx.review_img %}
-                        <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}"><img src="{{ media_url }}{{ image.attachment }}" class="d-block mx-auto" style="height: 250px; max-width: 100%; width: auto;"></div>
+                        <div class="carousel-item {% if forloop.counter == 1 %} active {% endif %}"><img src="{{ media_url }}{{ image.attachment }}" class="d-block mx-auto" style="max-height: 30vh; max-width: 100%; width: auto;"></div>
                         {% endfor %}
                     </div>
                 </div>
@@ -122,7 +122,6 @@
                     {% else %}
                         <a href="https://www.instagram.com/{{ review_ctx.review.reviewee }}" target="_blank">@{{ review_ctx.review.reviewee }}</a>
                     {% endif %}
-
                 </div>
                 <div class="col rating text-end">
                     {% with ''|center:review_ctx.review.ratings as range %}
@@ -144,9 +143,8 @@
                 <br>{{ review_ctx.review.feedback }}</p>
             </div>
         </div>
-        {% if reviews and forloop.counter != reviews|length and reviews|length > 0 %}
         <hr class="text-white mx-auto" style="width: 95%; margin: 0;">
-        {% endif %}{% endfor %}
+        {% endfor %}
     </div>
     <div class="position-fixed bottom-0 end-0 p-3"><div id="toastContainer"></div></div>
     <script>
