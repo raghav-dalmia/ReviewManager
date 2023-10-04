@@ -3,6 +3,10 @@ body{
     color: white
 }
 
+.container {
+    padding-left: 20vw;
+    padding-right: 20vw;
+}
 .navbar-brand img{
     min-width: 30px;
     min-height: 15px;
@@ -16,16 +20,6 @@ body{
     object-fit: fill;
     border-radius: 50%;
     object-position: center;
-}
-
-@media only screen and (max-width: 600px){
-    .introduction img{
-        height: 6.5rem;
-        width: 6.5rem;
-        object-fit: fill;
-        border-radius: 50%;
-        object-position: center;
-    } 
 }
 
 .introduction .info {
@@ -73,7 +67,6 @@ body{
 .reviews .review-content {
     font-size: 0.87rem;
     font-family: 'Roboto', sans-serif;
-    display: -webkit-box;
     -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
 }
@@ -99,4 +92,37 @@ body{
 
 .metrics .title{
     justify-content: center;
+}
+
+/* .carousel-item{
+    max-height: 10vh; 
+    max-width: 90vw; 
+    width: auto;
+} */
+
+/* .carousel-item {
+    height: 250px; 
+    max-width: 100%; 
+    width: auto;
+} */
+
+@media only screen and (max-width: 600px){
+    .introduction img{
+        height: 6.5rem;
+        width: 6.5rem;
+        object-fit: fill;
+        border-radius: 50%;
+        object-position: center;
+    } 
+
+    .container {
+        padding-left: 3vw;
+        padding-right: 3vw;
+    }
+
+    .navbar {
+        padding-left: 1rem;
+    }
+
+    
 }
